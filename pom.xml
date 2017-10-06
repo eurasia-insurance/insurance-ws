@@ -16,13 +16,14 @@
 	<name>Eurasia36 Lib : Web-servics</name>
 
 	<properties>
+		<!-- BOMS -->
+		<lapsa-bom.version>1.0-SNAPSHOT</lapsa-bom.version>
+		<lapsa-payara-bom.version>4.1.2-b1-SNAPSHOT</lapsa-payara-bom.version>
 		<!-- oldy -->
 		<insurance-lib.version>2.3-SNAPSHOT</insurance-lib.version>
 		<mail-lib.version>2.0-SNAPSHOT</mail-lib.version>
 		<!-- tech -->
 		<insurance-calculation.version>1.0-SNAPSHOT</insurance-calculation.version>
-		<lapsa-bom.version>1.0-SNAPSHOT</lapsa-bom.version>
-		<lapsa-payara-bom.version>4.1.2-b1-SNAPSHOT</lapsa-payara-bom.version>
 		<!-- FACADES -->
 		<insurance-facade.version>1.0-SNAPSHOT</insurance-facade.version>
 		<epayment-facade.version>1.0-SNAPSHOT</epayment-facade.version>
@@ -30,6 +31,21 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- BOMS -->
+			<dependency>
+				<groupId>tech.lapsa.lapsa</groupId>
+				<artifactId>lapsa-bom</artifactId>
+				<version>${lapsa-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.lapsa</groupId>
+				<artifactId>lapsa-payara-bom</artifactId>
+				<version>${lapsa-payara-bom.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
 			<!-- oldy -->
 			<dependency>
 				<groupId>com.lapsa.insurance-lib</groupId>
@@ -51,20 +67,6 @@
 				<groupId>tech.lapsa.insurance</groupId>
 				<artifactId>insurance-calculation</artifactId>
 				<version>${insurance-calculation.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.lapsa</groupId>
-				<artifactId>lapsa-bom</artifactId>
-				<version>${lapsa-bom.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.lapsa</groupId>
-				<artifactId>lapsa-payara-bom</artifactId>
-				<version>${lapsa-payara-bom.version}</version>
-				<scope>import</scope>
-				<type>pom</type>
 			</dependency>
 			<!-- FACADES -->
 			<dependency>
