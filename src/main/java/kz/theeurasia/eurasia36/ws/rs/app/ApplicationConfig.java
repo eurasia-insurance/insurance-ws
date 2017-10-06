@@ -14,8 +14,8 @@ import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.server.TracingConfig;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
-import com.lapsa.jerseyExtensions.authorization.AutheniticationFilterProvider;
 import com.lapsa.jerseyExtensions.localization.ValidationMessagesLocalizationProvider;
+import com.lapsa.rs.authorization.AutheniticationFilterProvider;
 
 import kz.theeurasia.eurasia36.ws.rs.provider.ApplicationParamConverterProvider;
 import kz.theeurasia.eurasia36.ws.rs.provider.JacksonObjectMapperProvider;

@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 import com.lapsa.eurasia36.facade.UserFacade;
 import com.lapsa.insurance.domain.crm.User;
-import com.lapsa.jerseyExtensions.authorization.QAuthenticatedUser;
+import com.lapsa.rs.authorization.QAuthenticatedUser;
 
 @RequestScoped
 public class AuthenticatedUser {

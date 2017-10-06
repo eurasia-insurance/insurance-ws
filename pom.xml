@@ -21,8 +21,7 @@
 		<mail-lib.version>2.0-SNAPSHOT</mail-lib.version>
 		<!-- tech -->
 		<insurance-calculation.version>1.0-SNAPSHOT</insurance-calculation.version>
-		<lapsa-jersey-extensions.version>1.0-SNAPSHOT</lapsa-jersey-extensions.version>
-		<lapsa-hibernate-validation.version>1.0-SNAPSHOT</lapsa-hibernate-validation.version>
+		<lapsa-bom.version>1.0-SNAPSHOT</lapsa-bom.version>
 		<lapsa-payara-bom.version>4.1.2-b1-SNAPSHOT</lapsa-payara-bom.version>
 		<!-- FACADES -->
 		<insurance-facade.version>1.0-SNAPSHOT</insurance-facade.version>
@@ -55,13 +54,10 @@
 			</dependency>
 			<dependency>
 				<groupId>tech.lapsa.lapsa</groupId>
-				<artifactId>lapsa-jersey-extensions</artifactId>
-				<version>${lapsa-jersey-extensions.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.lapsa</groupId>
-				<artifactId>lapsa-hibernate-validation</artifactId>
-				<version>${lapsa-hibernate-validation.version}</version>
+				<artifactId>lapsa-bom</artifactId>
+				<version>${lapsa-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>tech.lapsa.lapsa</groupId>
@@ -110,6 +106,12 @@
 		<dependency>
 			<groupId>tech.lapsa.insurance</groupId>
 			<artifactId>insurance-calculation</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>tech.lapsa.lapsa</groupId>
+			<artifactId>lapsa-rs-commons</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
