@@ -20,7 +20,7 @@ import com.lapsa.jerseyExtensions.localization.ValidationMessagesLocalizationPro
 import kz.theeurasia.eurasia36.ws.rs.provider.ApplicationParamConverterProvider;
 import kz.theeurasia.eurasia36.ws.rs.provider.JacksonObjectMapperProvider;
 
-@ApplicationPath("/" + WSPathNames.WS)
+@ApplicationPath("")
 public class ApplicationConfig extends Application {
 
     private final Set<Class<?>> classes;

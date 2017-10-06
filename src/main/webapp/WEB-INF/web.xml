@@ -13,9 +13,9 @@
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>ws-secured</web-resource-name>
-			<url-pattern>/ws/crm/*</url-pattern>
-			<url-pattern>/ws/policy/*</url-pattern>
-			<url-pattern>/ws/ebill/*</url-pattern>
+			<url-pattern>/crm/*</url-pattern>
+			<url-pattern>/policy/*</url-pattern>
+			<url-pattern>/ebill/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>*</role-name>
