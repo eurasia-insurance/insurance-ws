@@ -1,0 +1,17 @@
+kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyCostValidConstraintValidator.message = Сыйақының мөлшері дұрыс емес. Сыйақының дұрыс мөлшерін алу үшін сервисті пайдаланыңыз
+
+kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyParametersValid.message = Полис параметрінің қателігі
+
+kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverAndVehicleCountValid.message = Бір полистегі сақтандырылғантұлғалардың және көлік құралдарының санының дұрыс емес ара қатынасы 
+
+kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message = Сақтандырылған көлік құралының дұрыс емес параметрлері
+kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryAreaMustUndefined = ҚР аумағына уақытша кіру кезінде КҚ тіркелген өңірі берілмеуі тиіс (area eq UNDEFINED)
+kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMajorCityMustFalse = ҚР аумағына уақытша кірген жағдайда өңірлік маңызы бар қаланың белгісі болмауы тиіс (majorCity eq false)
+kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.areaMustNotUndefined = КҚ тіркеу өңірі берілуі тиіс (area ne UNDEFINED)
+kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mustBeMajorCity = Өңірлік маңызы бар қаланың белгісі болуы тиіс (majorCity eq true)
+
+kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message = Сақтандырылған тұлғаның дұрыс емес параметрлері
+kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.invalidInsuranceClass = Сақтандыру класының дұрыс емес мәні (insuranceClass). Сыйақының дұрыс мөлшерін алу үшін сервисті пайдаланыңыз
+kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message.invalidAgeClass = Сақтандырылған тұлғаның жас ерекшелігінің дұрыс емес мәні (ageClass)
+
+kz.theeurasia.eurasia36.ws.jaxb.validator.EbillValid.message = =KAZ= Электронный счет не найден
