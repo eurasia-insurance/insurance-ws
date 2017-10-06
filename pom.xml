@@ -23,14 +23,10 @@
 		<insurance-calculation.version>1.0-SNAPSHOT</insurance-calculation.version>
 		<lapsa-jersey-extensions.version>1.0-SNAPSHOT</lapsa-jersey-extensions.version>
 		<lapsa-hibernate-validation.version>1.0-SNAPSHOT</lapsa-hibernate-validation.version>
+		<lapsa-payara-bom.version>4.1.2-b1-SNAPSHOT</lapsa-payara-bom.version>
 		<!-- FACADES -->
 		<insurance-facade.version>1.0-SNAPSHOT</insurance-facade.version>
 		<epayment-facade.version>1.0-SNAPSHOT</epayment-facade.version>
-		<!-- Glassfish -->
-		<gf-embeded.jersey.version>2.10.4</gf-embeded.jersey.version>
-		<jackson-databind.version>2.6.3</jackson-databind.version>
-		<!-- external -->
-		<hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
 	</properties>
 
 	<dependencyManagement>
@@ -67,6 +63,13 @@
 				<artifactId>lapsa-hibernate-validation</artifactId>
 				<version>${lapsa-hibernate-validation.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.lapsa</groupId>
+				<artifactId>lapsa-payara-bom</artifactId>
+				<version>${lapsa-payara-bom.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
 			<!-- FACADES -->
 			<dependency>
 				<groupId>tech.lapsa.insurance</groupId>
@@ -79,29 +82,6 @@
 				<artifactId>epayment-facade</artifactId>
 				<version>${epayment-facade.version}</version>
 				<type>ejb</type>
-			</dependency>
-			<!-- Glassfish -->
-			<dependency>
-				<groupId>org.glassfish.jersey.media</groupId>
-				<artifactId>jersey-media-json-jackson</artifactId>
-				<version>${gf-embeded.jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.glassfish.jersey.core</groupId>
-				<artifactId>jersey-server</artifactId>
-				<version>${gf-embeded.jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-databind</artifactId>
-				<version>${jackson-databind.version}</version>
-			</dependency>
-			<!-- test -->
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-validator</artifactId>
-				<version>${hibernate-validator.version}</version>
-				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -176,6 +156,11 @@
 			<artifactId>jackson-databind</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<!-- JavaEE -->
 		<dependency>
 			<groupId>javax.enterprise</groupId>
@@ -211,11 +196,6 @@
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
