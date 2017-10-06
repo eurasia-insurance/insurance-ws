@@ -18,15 +18,12 @@
 	<properties>
 		<!-- BOMS -->
 		<lapsa-bom.version>1.0-SNAPSHOT</lapsa-bom.version>
+		<insurance-bom.version>1.0-SNAPSHOT</insurance-bom.version>
+		<epayment-bom.version>1.0-SNAPSHOT</epayment-bom.version>
 		<lapsa-payara-bom.version>4.1.2-b1-SNAPSHOT</lapsa-payara-bom.version>
 		<!-- oldy -->
 		<insurance-lib.version>2.3-SNAPSHOT</insurance-lib.version>
 		<mail-lib.version>2.0-SNAPSHOT</mail-lib.version>
-		<!-- tech -->
-		<insurance-calculation.version>1.0-SNAPSHOT</insurance-calculation.version>
-		<!-- FACADES -->
-		<insurance-facade.version>1.0-SNAPSHOT</insurance-facade.version>
-		<epayment-facade.version>1.0-SNAPSHOT</epayment-facade.version>
 	</properties>
 
 	<dependencyManagement>
@@ -36,6 +33,20 @@
 				<groupId>tech.lapsa.lapsa</groupId>
 				<artifactId>lapsa-bom</artifactId>
 				<version>${lapsa-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.epayment</groupId>
+				<artifactId>epayment-bom</artifactId>
+				<version>${epayment-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.insurance</groupId>
+				<artifactId>insurance-bom</artifactId>
+				<version>${insurance-bom.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -61,25 +72,6 @@
 				<groupId>com.lapsa.mail-lib</groupId>
 				<artifactId>mail-lib-impl</artifactId>
 				<version>${mail-lib.version}</version>
-			</dependency>
-			<!-- tech -->
-			<dependency>
-				<groupId>tech.lapsa.insurance</groupId>
-				<artifactId>insurance-calculation</artifactId>
-				<version>${insurance-calculation.version}</version>
-			</dependency>
-			<!-- FACADES -->
-			<dependency>
-				<groupId>tech.lapsa.insurance</groupId>
-				<artifactId>insurance-facade</artifactId>
-				<version>${insurance-facade.version}</version>
-				<type>ejb</type>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.epayment</groupId>
-				<artifactId>epayment-facade</artifactId>
-				<version>${epayment-facade.version}</version>
-				<type>ejb</type>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
