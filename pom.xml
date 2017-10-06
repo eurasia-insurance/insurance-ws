@@ -24,7 +24,7 @@
 		<lapsa-jersey-extensions.version>1.0-SNAPSHOT</lapsa-jersey-extensions.version>
 		<lapsa-hibernate-validation.version>1.0-SNAPSHOT</lapsa-hibernate-validation.version>
 		<!-- FACADES -->
-		<eurasia36-facade.version>1.0-SNAPSHOT</eurasia36-facade.version>
+		<insurance-facade.version>1.0-SNAPSHOT</insurance-facade.version>
 		<epayment-facade.version>1.0-SNAPSHOT</epayment-facade.version>
 		<!-- Glassfish -->
 		<gf-embeded.jersey.version>2.10.4</gf-embeded.jersey.version>
@@ -69,9 +69,9 @@
 			</dependency>
 			<!-- FACADES -->
 			<dependency>
-				<groupId>tech.lapsa.eurasia36</groupId>
-				<artifactId>eurasia36-facade</artifactId>
-				<version>${eurasia36-facade.version}</version>
+				<groupId>tech.lapsa.insurance</groupId>
+				<artifactId>insurance-facade</artifactId>
+				<version>${insurance-facade.version}</version>
 				<type>ejb</type>
 			</dependency>
 			<dependency>
@@ -147,8 +147,8 @@
 		</dependency>
 		<!-- FACADES -->
 		<dependency>
-			<groupId>tech.lapsa.eurasia36</groupId>
-			<artifactId>eurasia36-facade</artifactId>
+			<groupId>tech.lapsa.insurance</groupId>
+			<artifactId>insurance-facade</artifactId>
 			<type>ejb</type>
 			<scope>compile</scope>
 			<optional>false</optional>
