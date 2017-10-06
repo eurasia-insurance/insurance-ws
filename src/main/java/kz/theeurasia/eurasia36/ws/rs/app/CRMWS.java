@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.lapsa.eurasia36.facade.CallbackRequestFacade;
-import com.lapsa.eurasia36.facade.PolicyRequestFacade;
+import com.lapsa.eurasia36.facade.InsuranceRequestFacade;
 import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 import com.lapsa.insurance.elements.PaymentMethod;
@@ -62,12 +62,12 @@ public class CRMWS extends ALanguageDetectorWS {
     }
 
     @Inject
-    private PolicyRequestFacade policyRequestFacade;
+    private InsuranceRequestFacade insuranceRequestFacade;
 
     private XmlSendRequestResultShort _sendPolicyRequest(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, ServerException {
 	PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	policyRequestFacade.accept(policy);
+	insuranceRequestFacade.acceptAndReply(policy);
 	return new XmlSendRequestResultShort(DEFAULT_SUCCESS_MESSAGE);
     }
 
@@ -91,7 +91,7 @@ public class CRMWS extends ALanguageDetectorWS {
     private XmlSendRequestResultInfo _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, ServerException {
 	PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	PolicyRequest saved = policyRequestFacade.acceptAndReply(policy);
+	PolicyRequest saved = insuranceRequestFacade.acceptAndReply(policy);
 	XmlSendRequestResultInfo reply = new XmlSendRequestResultInfo(DEFAULT_SUCCESS_MESSAGE, saved.getId());
 	if (saved.getPayment() != null && saved.getPayment().getMethod() == PaymentMethod.PAYCARD_ONLINE)
 	    reply.setPaymentLink(kkbFactory.generatePaymentPageUrl(saved.getPayment().getExternalId()));
