@@ -1,7 +1,7 @@
-package kz.theeurasia.eurasia36.ws.rs.app;
+package tech.lapsa.eurasia36.ws.rs.app;
 
 import static com.lapsa.utils.RESTUtils.*;
-import static kz.theeurasia.eurasia36.ws.rs.app.ConverterUtil.*;
+import static tech.lapsa.eurasia36.ws.rs.app.ConverterUtil.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -23,11 +23,11 @@ import com.lapsa.insurance.security.InsuranceRole;
 import com.lapsa.kkb.services.KKBFactory;
 import com.lapsa.validation.NotNullValue;
 
-import kz.theeurasia.eurasia36.ws.auth.AuthenticatedUser;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlCallbackRequestInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyRequestInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlSendRequestResultInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlSendRequestResultShort;
+import tech.lapsa.eurasia36.ws.auth.AuthenticatedUser;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlCallbackRequestInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyRequestInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlSendRequestResultInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlSendRequestResultShort;
 
 @Path("/crm")
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

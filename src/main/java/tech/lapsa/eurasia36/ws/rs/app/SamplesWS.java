@@ -1,7 +1,7 @@
-package kz.theeurasia.eurasia36.ws.rs.app;
+package tech.lapsa.eurasia36.ws.rs.app;
 
 import static com.lapsa.utils.RESTUtils.*;
-import static kz.theeurasia.eurasia36.ws.rs.app.SamplesUtil.*;
+import static tech.lapsa.eurasia36.ws.rs.app.SamplesUtil.*;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Singleton;
@@ -11,11 +11,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlCallbackRequestInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyDriverInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyRequestInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyVehicleInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlCallbackRequestInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyDriverInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyRequestInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyVehicleInfo;
 
 @Path("/sample")
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

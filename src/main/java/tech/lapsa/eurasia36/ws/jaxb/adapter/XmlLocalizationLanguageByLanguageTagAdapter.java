@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.jaxb.adapter;
+package tech.lapsa.eurasia36.ws.jaxb.adapter;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 

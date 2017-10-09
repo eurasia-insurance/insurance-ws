@@ -1,10 +1,10 @@
-package kz.theeurasia.eurasia36.ws.rs.provider.converter;
+package tech.lapsa.eurasia36.ws.rs.provider.converter;
 
 import javax.ws.rs.ext.ParamConverter;
 
 import com.lapsa.international.localization.LocalizationLanguage;
 
-import kz.theeurasia.eurasia36.ws.rs.entity.LocalizationLanguageWrapped;
+import tech.lapsa.eurasia36.ws.rs.entity.LocalizationLanguageWrapped;
 
 public class LocalizationLanguageWrappedByLanguageTagParamConverter implements ParamConverter<LocalizationLanguageWrapped> {
 

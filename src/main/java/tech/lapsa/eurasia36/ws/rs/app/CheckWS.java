@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.rs.app;
+package tech.lapsa.eurasia36.ws.rs.app;
 
 import static com.lapsa.utils.RESTUtils.*;
 

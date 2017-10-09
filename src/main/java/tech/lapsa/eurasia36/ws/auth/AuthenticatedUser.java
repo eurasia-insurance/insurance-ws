@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.auth;
+package tech.lapsa.eurasia36.ws.auth;
 
 import java.security.Principal;
 

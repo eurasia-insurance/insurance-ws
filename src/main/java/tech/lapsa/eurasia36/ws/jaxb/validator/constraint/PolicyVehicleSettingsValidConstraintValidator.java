@@ -1,13 +1,13 @@
-package kz.theeurasia.eurasia36.ws.jaxb.validator.constraint;
+package tech.lapsa.eurasia36.ws.jaxb.validator.constraint;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import com.lapsa.kz.country.KZArea;
 
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyVehicleInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid;
-import kz.theeurasia.eurasia36.ws.jaxb.validator.ValidationMessages;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyVehicleInfo;
+import tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid;
+import tech.lapsa.eurasia36.ws.jaxb.validator.ValidationMessages;
 
 public class PolicyVehicleSettingsValidConstraintValidator
 	implements ConstraintValidator<PolicyVehicleSettingsValid, XmlPolicyVehicleInfo> {

@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.mail;
+package tech.lapsa.eurasia36.ws.mail;
 
 import javax.annotation.Resource;
 import javax.enterprise.inject.Produces;

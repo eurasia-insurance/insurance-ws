@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.jaxb.entity;
+package tech.lapsa.eurasia36.ws.jaxb.entity;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

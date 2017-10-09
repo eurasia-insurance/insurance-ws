@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.rs.app;
+package tech.lapsa.eurasia36.ws.rs.app;
 
 import java.time.LocalDate;
 
@@ -14,16 +14,16 @@ import com.lapsa.international.phone.CountryCode;
 import com.lapsa.international.phone.PhoneNumber;
 import com.lapsa.kz.country.KZArea;
 
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlCallbackRequestInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPaymentInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPeriodInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPersonalData;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyDriverInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyRequestInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyVehicleInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlRequesterInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlUTMInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlCallbackRequestInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPaymentInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPeriodInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPersonalData;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyDriverInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyRequestInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyVehicleInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlRequesterInfo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlUTMInfo;
 
 public class SamplesUtil {
     public static XmlPolicyDriverInfo driverSample() {

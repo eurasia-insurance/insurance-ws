@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.rs.app;
+package tech.lapsa.eurasia36.ws.rs.app;
 
 import static com.lapsa.utils.RESTUtils.*;
 
@@ -28,12 +28,12 @@ import com.lapsa.international.localization.LocalizationLanguage;
 import com.lapsa.kz.country.KZCity;
 import com.lapsa.validation.NotNullValue;
 
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlGeo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPOS;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPOSCity;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPOSEmail;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPOSPhone;
-import kz.theeurasia.eurasia36.ws.rs.entity.LocalizationLanguageWrapped;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlGeo;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPOS;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPOSCity;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPOSEmail;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPOSPhone;
+import tech.lapsa.eurasia36.ws.rs.entity.LocalizationLanguageWrapped;
 
 @Path("/pos")
 @Produces({ MediaType.APPLICATION_JSON })

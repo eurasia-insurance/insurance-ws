@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.mail;
+package tech.lapsa.eurasia36.ws.mail;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;

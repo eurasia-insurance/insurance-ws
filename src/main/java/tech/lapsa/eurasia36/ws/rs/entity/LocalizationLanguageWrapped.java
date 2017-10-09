@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.rs.entity;
+package tech.lapsa.eurasia36.ws.rs.entity;
 
 import com.lapsa.commons.function.MyObjects;
 import com.lapsa.international.localization.LocalizationLanguage;

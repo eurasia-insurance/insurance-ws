@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.rs.provider;
+package tech.lapsa.eurasia36.ws.rs.provider;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -10,8 +10,8 @@ import javax.ws.rs.ext.Provider;
 import com.lapsa.international.phone.PhoneNumber;
 import com.lapsa.international.phone.converter.rs.PhoneNumberParamConverter;
 
-import kz.theeurasia.eurasia36.ws.rs.entity.LocalizationLanguageWrapped;
-import kz.theeurasia.eurasia36.ws.rs.provider.converter.LocalizationLanguageWrappedByLanguageTagParamConverter;
+import tech.lapsa.eurasia36.ws.rs.entity.LocalizationLanguageWrapped;
+import tech.lapsa.eurasia36.ws.rs.provider.converter.LocalizationLanguageWrappedByLanguageTagParamConverter;
 
 @Provider
 public class ApplicationParamConverterProvider implements ParamConverterProvider {

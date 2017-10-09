@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.rs.app;
+package tech.lapsa.eurasia36.ws.rs.app;
 
 import java.util.Locale;
 
@@ -7,7 +7,7 @@ import javax.ws.rs.core.HttpHeaders;
 
 import com.lapsa.international.localization.LocalizationLanguage;
 
-import kz.theeurasia.eurasia36.ws.rs.entity.LocalizationLanguageWrapped;
+import tech.lapsa.eurasia36.ws.rs.entity.LocalizationLanguageWrapped;
 
 public abstract class ALanguageDetectorWS {
 

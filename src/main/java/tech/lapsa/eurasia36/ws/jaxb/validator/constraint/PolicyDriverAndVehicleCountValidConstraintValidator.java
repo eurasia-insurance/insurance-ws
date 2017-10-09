@@ -1,10 +1,10 @@
-package kz.theeurasia.eurasia36.ws.jaxb.validator.constraint;
+package tech.lapsa.eurasia36.ws.jaxb.validator.constraint;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyShort;
-import kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverAndVehicleCountValid;
+import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyShort;
+import tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverAndVehicleCountValid;
 
 public class PolicyDriverAndVehicleCountValidConstraintValidator
 	implements ConstraintValidator<PolicyDriverAndVehicleCountValid, XmlPolicyShort> {

@@ -1,4 +1,4 @@
-package kz.theeurasia.eurasia36.ws.rs.app;
+package tech.lapsa.eurasia36.ws.rs.app;
 
 public class WSPathNames {
     public static final String WS_QAZKOM = "qazkom";
