@@ -17,9 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.lapsa.commons.function.MyStrings;
-import com.lapsa.epayment.facade.EpaymentFacade;
-import com.lapsa.epayment.facade.EpaymentFacade.Ebill;
-import com.lapsa.eurasia36.facade.InsuranceRequestFacade;
+import com.lapsa.epayment.facade.QazkomFacade;
 import com.lapsa.mail2.MailException;
 import com.lapsa.mail2.MailFactory;
 import com.lapsa.mail2.MailMessageBuilder;
@@ -51,20 +49,14 @@ public class QazkomWS {
     // PRIVATE
 
     @Inject
-    private EpaymentFacade facade;
-
-    @Inject
-    private InsuranceRequestFacade requestFacade;
+    private QazkomFacade qazkomFacade;
 
     private Response postbackPayment(String rawResponse) {
 	try {
-	    Ebill ebill = facade.newResponseBuilder() //
+	    qazkomFacade.newResponseBuilder() //
 		    .withXml(rawResponse) //
 		    .build() //
 		    .handle();
-	    requestFacade.markPaymentSucces(Integer.valueOf(ebill.getExternalId()), //
-		    ebill.getReference(), //
-		    ebill.getPaid());
 	    return ok();
 	} catch (IllegalArgumentException e) {
 	    return handleApplicationError(e, rawResponse);
