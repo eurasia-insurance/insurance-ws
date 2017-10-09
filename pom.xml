@@ -8,25 +8,24 @@
 		<version>3.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>tech.lapsa.eurasia36</groupId>
-	<artifactId>eurasia36-ws</artifactId>
+	<groupId>tech.lapsa.insurance</groupId>
+	<artifactId>insurance-ws</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>Eurasia36 Lib : Web-servics</name>
+	<name>Insurance Lib : Web-servics</name>
 
 	<properties>
 		<!-- BOMS -->
 		<javax-javaee-bom.version>7.0-SNAPSHOT</javax-javaee-bom.version>
 		<payara-bom.version>4.1.2-1-SNAPSHOT</payara-bom.version>
-		<javax-mail-root.version>2.0-SNAPSHOT</javax-mail-root.version>
 		<!-- tech -->
+		<java-jaxb-commons.version>1.0-SNAPSHOT</java-jaxb-commons.version>
 		<javax-rs-commons.version>1.0-SNAPSHOT</javax-rs-commons.version>
 		<payara-jersey-extensions.version>1.0-SNAPSHOT</payara-jersey-extensions.version>
 		<payara-hibernate-validation.version>1.0-SNAPSHOT</payara-hibernate-validation.version>
 		<insurance-calculation.version>1.0-SNAPSHOT</insurance-calculation.version>
 		<insurance-facade.version>1.0-SNAPSHOT</insurance-facade.version>
-		<epayment-facade.version>1.0-SNAPSHOT</epayment-facade.version>
 		<!-- oldies -->
 		<insurance-lib.version>2.3-SNAPSHOT</insurance-lib.version>
 	</properties>
@@ -48,14 +47,12 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.javax</groupId>
-				<artifactId>javax-mail-root</artifactId>
-				<version>${javax-mail-root.version}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
 			<!-- tech -->
+			<dependency>
+				<groupId>tech.lapsa.java</groupId>
+				<artifactId>java-jaxb-commons</artifactId>
+				<version>${java-jaxb-commons.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>tech.lapsa.javax</groupId>
 				<artifactId>javax-rs-commons</artifactId>
@@ -82,12 +79,6 @@
 				<type>ejb</type>
 				<version>${insurance-facade.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.epayment</groupId>
-				<artifactId>epayment-facade</artifactId>
-				<type>ejb</type>
-				<version>${epayment-facade.version}</version>
-			</dependency>
 			<!-- oldies-->
 			<dependency>
 				<groupId>com.lapsa.insurance-lib</groupId>
@@ -100,14 +91,8 @@
 	<dependencies>
 		<!-- tech -->
 		<dependency>
-			<groupId>tech.lapsa.javax</groupId>
-			<artifactId>javax-mail-api</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.javax</groupId>
-			<artifactId>javax-mail-impl</artifactId>
+			<groupId>tech.lapsa.java</groupId>
+			<artifactId>java-jaxb-commons</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
@@ -138,13 +123,6 @@
 		<dependency>
 			<groupId>tech.lapsa.insurance</groupId>
 			<artifactId>insurance-facade</artifactId>
-			<type>ejb</type>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.epayment</groupId>
-			<artifactId>epayment-facade</artifactId>
 			<type>ejb</type>
 			<scope>compile</scope>
 			<optional>false</optional>
@@ -236,14 +214,14 @@
 	</build>
 
 	<scm>
-		<connection>scm:git:https://gitlab.lapsa.tech/lapsa/eurasia36/ws.git</connection>
-		<developerConnection>scm:git:https://gitlab.lapsa.tech/lapsa/eurasia36/ws.git</developerConnection>
+		<connection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/ws.git</connection>
+		<developerConnection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/ws.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
 	<issueManagement>
 		<system>gitlab</system>
-		<url>https://gitlab.lapsa.tech/lapsa/eurasia36/ws/issues</url>
+		<url>https://gitlab.lapsa.tech/lapsa/insurance/ws/issues</url>
 	</issueManagement>
 
 

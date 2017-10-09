@@ -1,17 +1,15 @@
-kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyCostValidConstraintValidator.message = Размер премии неверен. Воспользуйтесь сервисом для получения правильного размера премии
+tech.lapsa.eurasia36.ws.jaxb.validator.PolicyCostValidConstraintValidator.message = Размер премии неверен. Воспользуйтесь сервисом для получения правильного размера премии
 
-kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyParametersValid.message = Ошибка параметров полиса
+tech.lapsa.eurasia36.ws.jaxb.validator.PolicyParametersValid.message = Ошибка параметров полиса
 
-kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverAndVehicleCountValid.message = Неверное соотношение количества застрахованных и транспортных средств в одном полисе
+tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverAndVehicleCountValid.message = Неверное соотношение количества застрахованных и транспортных средств в одном полисе
 
-kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message = Неверные параметры застрахованного транспортного средства
-kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryAreaMustUndefined = В случае временного въезда на территорию РК регион регистрации ТС не должен быть задан (area eq UNDEFINED)
-kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMajorCityMustFalse = В случае временного въезда на территорию РК признака города регионального значения быть не должно (majorCity eq false)
-kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.areaMustNotUndefined = Региона регистрации ТС должен быть задан (area ne UNDEFINED)
-kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mustBeMajorCity = Должен быть признак города регионального значения (majorCity eq true)
+tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message = Неверные параметры застрахованного транспортного средства
+tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryAreaMustUndefined = В случае временного въезда на территорию РК регион регистрации ТС не должен быть задан (area eq UNDEFINED)
+tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMajorCityMustFalse = В случае временного въезда на территорию РК признака города регионального значения быть не должно (majorCity eq false)
+tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.areaMustNotUndefined = Региона регистрации ТС должен быть задан (area ne UNDEFINED)
+tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mustBeMajorCity = Должен быть признак города регионального значения (majorCity eq true)
 
-kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message = Неверные параметры застрахованного лица
-kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.invalidInsuranceClass = Неверное значение класса страхования (insuranceClass). Воспользуйтесь сервисом для получения правильного размера премии
-kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message.invalidAgeClass = Неверное значение категории возраста застрахованного (ageClass)
-
-kz.theeurasia.eurasia36.ws.jaxb.validator.EbillValid.message = Электронный счет не найден
+tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message = Неверные параметры застрахованного лица
+tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.invalidInsuranceClass = Неверное значение класса страхования (insuranceClass). Воспользуйтесь сервисом для получения правильного размера премии
+tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message.invalidAgeClass = Неверное значение категории возраста застрахованного (ageClass)

@@ -13,7 +13,7 @@ import org.hibernate.validator.internal.engine.MessageInterpolatorContext;
 import org.junit.Before;
 import org.junit.Test;
 
-import kz.theeurasia.eurasia36.ws.jaxb.validator.ValidationMessages;
+import tech.lapsa.eurasia36.ws.jaxb.validator.ValidationMessages;
 
 public class TestValidationMessages {
 
