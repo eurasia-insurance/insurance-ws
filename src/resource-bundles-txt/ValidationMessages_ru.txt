@@ -13,5 +13,3 @@ kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mus
 kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message = Неверные параметры застрахованного лица
 kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.invalidInsuranceClass = Неверное значение класса страхования (insuranceClass). Воспользуйтесь сервисом для получения правильного размера премии
 kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message.invalidAgeClass = Неверное значение категории возраста застрахованного (ageClass)
-
-kz.theeurasia.eurasia36.ws.jaxb.validator.EbillValid.message = Электронный счет не найден

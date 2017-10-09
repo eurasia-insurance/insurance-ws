@@ -13,5 +13,3 @@ kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mus
 kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message = Сақтандырылған тұлғаның дұрыс емес параметрлері
 kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.invalidInsuranceClass = Сақтандыру класының дұрыс емес мәні (insuranceClass). Сыйақының дұрыс мөлшерін алу үшін сервисті пайдаланыңыз
 kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message.invalidAgeClass = Сақтандырылған тұлғаның жас ерекшелігінің дұрыс емес мәні (ageClass)
-
-kz.theeurasia.eurasia36.ws.jaxb.validator.EbillValid.message = =KAZ= Электронный счет не найден

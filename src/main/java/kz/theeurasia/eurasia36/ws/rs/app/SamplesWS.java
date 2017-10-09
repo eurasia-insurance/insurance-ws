@@ -12,7 +12,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlCallbackRequestInfo;
-import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlEbillInfo;
 import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyDriverInfo;
 import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyInfo;
 import kz.theeurasia.eurasia36.ws.jaxb.entity.XmlPolicyRequestInfo;
@@ -58,12 +57,4 @@ public class SamplesWS extends ALanguageDetectorWS {
 	XmlCallbackRequestInfo sample = callbackRequestSample();
 	return responseOk(sample, getLocaleOrDefault());
     }
-
-    @GET
-    @Path("/ebill")
-    public Response ebillSampleGET() {
-	XmlEbillInfo sample = ebillInfoSample();
-	return responseOk(sample, getLocaleOrDefault());
-    }
-
 }

@@ -15,8 +15,6 @@ public class ValidationMessages {
     public static final String POLICY_DRIVER_SETTINGS_VALID_INVALID_CLASS = "{kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.invalidInsuranceClass}";
     public static final String POLICY_DRIVER_SETTINGS_VALID_INVALID_AGE_CLASS = "{kz.theeurasia.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message.invalidAgeClass}";
 
-    public static final String EBILL_VALID = "{kz.theeurasia.eurasia36.ws.jaxb.validator.EbillValid.message}";
-
     public static final String[] ALL = new String[] {
 	    POLICY_COST_VALID,
 	    POLICY_DRIVER_AND_VEHICLE_COUNT_VALID,
@@ -30,9 +28,7 @@ public class ValidationMessages {
 
 	    POLICY_DRIVER_SETTINGS_VALID,
 	    POLICY_DRIVER_SETTINGS_VALID_INVALID_CLASS,
-	    POLICY_DRIVER_SETTINGS_VALID_INVALID_AGE_CLASS,
-
-	    EBILL_VALID
+	    POLICY_DRIVER_SETTINGS_VALID_INVALID_AGE_CLASS
     };
 
 }

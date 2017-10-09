@@ -27,7 +27,6 @@
 		<payara-hibernate-validation.version>1.0-SNAPSHOT</payara-hibernate-validation.version>
 		<insurance-calculation.version>1.0-SNAPSHOT</insurance-calculation.version>
 		<insurance-facade.version>1.0-SNAPSHOT</insurance-facade.version>
-		<epayment-facade.version>1.0-SNAPSHOT</epayment-facade.version>
 		<!-- oldies -->
 		<insurance-lib.version>2.3-SNAPSHOT</insurance-lib.version>
 	</properties>
@@ -88,12 +87,6 @@
 				<type>ejb</type>
 				<version>${insurance-facade.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.epayment</groupId>
-				<artifactId>epayment-facade</artifactId>
-				<type>ejb</type>
-				<version>${epayment-facade.version}</version>
-			</dependency>
 			<!-- oldies-->
 			<dependency>
 				<groupId>com.lapsa.insurance-lib</groupId>
@@ -150,13 +143,6 @@
 		<dependency>
 			<groupId>tech.lapsa.insurance</groupId>
 			<artifactId>insurance-facade</artifactId>
-			<type>ejb</type>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.epayment</groupId>
-			<artifactId>epayment-facade</artifactId>
 			<type>ejb</type>
 			<scope>compile</scope>
 			<optional>false</optional>

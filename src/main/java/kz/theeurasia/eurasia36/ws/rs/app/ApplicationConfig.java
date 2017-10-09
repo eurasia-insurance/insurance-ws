@@ -46,10 +46,6 @@ public class ApplicationConfig extends Application {
 		// secured
 		.add(CRMWS.class) //
 		.add(PolicyWS.class) //
-		.add(EbillWS.class) //
-
-		// qazkom
-		.add(QazkomWS.class) // ;
 
 		//
 		.build() //
