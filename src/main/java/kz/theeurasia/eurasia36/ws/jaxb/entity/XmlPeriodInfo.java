@@ -17,7 +17,7 @@ import com.lapsa.validation.NotNullValue;
 import com.lapsa.validation.TemporalFuture;
 import com.lapsa.validation.TemporalLeftBeforeRight;
 
-import kz.theeurasia.eurasia36.ws.jaxb.adapter.XmlLocalDateAdapter;
+import tech.lapsa.java.jaxb.adapter.XmlLocalDateAdapter;
 
 @XmlRootElement(name = "period")
 @XmlAccessorType(XmlAccessType.FIELD)

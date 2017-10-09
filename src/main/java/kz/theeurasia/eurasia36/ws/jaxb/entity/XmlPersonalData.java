@@ -14,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.lapsa.validation.TemporalPast;
 import com.lapsa.validation.ValidHumanName;
 
-import kz.theeurasia.eurasia36.ws.jaxb.adapter.XmlLocalDateAdapter;
+import tech.lapsa.java.jaxb.adapter.XmlLocalDateAdapter;
 
 @XmlRootElement(name = "personal")
 @XmlAccessorType(XmlAccessType.FIELD)
