@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.lapsa.maven.pom</groupId>
-		<artifactId>javaee7-app-parent</artifactId>
+		<groupId>tech.lapsa.maven</groupId>
+		<artifactId>maven-general</artifactId>
 		<version>3.0-SNAPSHOT</version>
 	</parent>
 
@@ -17,38 +17,29 @@
 
 	<properties>
 		<!-- BOMS -->
-		<lapsa-bom.version>1.0-SNAPSHOT</lapsa-bom.version>
-		<insurance-bom.version>1.0-SNAPSHOT</insurance-bom.version>
-		<epayment-bom.version>1.0-SNAPSHOT</epayment-bom.version>
-		<payara-bom.version>4.1.2-b1-SNAPSHOT</payara-bom.version>
-		<!-- oldy -->
+		<javax-javaee-bom.version>7.0-SNAPSHOT</javax-javaee-bom.version>
+		<payara-bom.version>4.1.2-1-SNAPSHOT</payara-bom.version>
+		<javax-mail-root.version>2.0-SNAPSHOT</javax-mail-root.version>
+		<!-- tech -->
+		<javax-rs-commons.version>1.0-SNAPSHOT</javax-rs-commons.version>
+		<payara-jersey-extensions.version>1.0-SNAPSHOT</payara-jersey-extensions.version>
+		<payara-hibernate-validation.version>1.0-SNAPSHOT</payara-hibernate-validation.version>
+		<insurance-calculation.version>1.0-SNAPSHOT</insurance-calculation.version>
+		<insurance-facade.version>1.0-SNAPSHOT</insurance-facade.version>
+		<epayment-facade.version>1.0-SNAPSHOT</epayment-facade.version>
+		<!-- oldies -->
 		<insurance-lib.version>2.3-SNAPSHOT</insurance-lib.version>
-		<mail-lib.version>2.0-SNAPSHOT</mail-lib.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
 			<!-- BOMS -->
 			<dependency>
-				<groupId>tech.lapsa.lapsa</groupId>
-				<artifactId>lapsa-bom</artifactId>
-				<version>${lapsa-bom.version}</version>
-				<type>pom</type>
+				<groupId>tech.lapsa.javax</groupId>
+				<artifactId>javax-javaee-bom</artifactId>
+				<version>${javax-javaee-bom.version}</version>
 				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.epayment</groupId>
-				<artifactId>epayment-bom</artifactId>
-				<version>${epayment-bom.version}</version>
 				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.insurance</groupId>
-				<artifactId>insurance-bom</artifactId>
-				<version>${insurance-bom.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>tech.lapsa.payara</groupId>
@@ -57,71 +48,93 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
-			<!-- oldy -->
+			<dependency>
+				<groupId>tech.lapsa.javax</groupId>
+				<artifactId>javax-mail-root</artifactId>
+				<version>${javax-mail-root.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<!-- tech -->
+			<dependency>
+				<groupId>tech.lapsa.javax</groupId>
+				<artifactId>javax-rs-commons</artifactId>
+				<version>${javax-rs-commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.payara</groupId>
+				<artifactId>payara-jersey-extensions</artifactId>
+				<version>${payara-jersey-extensions.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.payara</groupId>
+				<artifactId>payara-hibernate-validation</artifactId>
+				<version>${payara-hibernate-validation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.insurance</groupId>
+				<artifactId>insurance-calculation</artifactId>
+				<version>${insurance-calculation.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.insurance</groupId>
+				<artifactId>insurance-facade</artifactId>
+				<type>ejb</type>
+				<version>${insurance-facade.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.epayment</groupId>
+				<artifactId>epayment-facade</artifactId>
+				<type>ejb</type>
+				<version>${epayment-facade.version}</version>
+			</dependency>
+			<!-- oldies-->
 			<dependency>
 				<groupId>com.lapsa.insurance-lib</groupId>
 				<artifactId>insurance-security</artifactId>
 				<version>${insurance-lib.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>com.lapsa.mail-lib</groupId>
-				<artifactId>mail-lib-api</artifactId>
-				<version>${mail-lib.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.lapsa.mail-lib</groupId>
-				<artifactId>mail-lib-impl</artifactId>
-				<version>${mail-lib.version}</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- oldy -->
-		<dependency>
-			<groupId>com.lapsa.insurance-lib</groupId>
-			<artifactId>insurance-security</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.lapsa.mail-lib</groupId>
-			<artifactId>mail-lib-api</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.lapsa.mail-lib</groupId>
-			<artifactId>mail-lib-impl</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
 		<!-- tech -->
+		<dependency>
+			<groupId>tech.lapsa.javax</groupId>
+			<artifactId>javax-mail-api</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>tech.lapsa.javax</groupId>
+			<artifactId>javax-mail-impl</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>tech.lapsa.javax</groupId>
+			<artifactId>javax-rs-commons</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>tech.lapsa.payara</groupId>
+			<artifactId>payara-jersey-extensions</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>tech.lapsa.payara</groupId>
+			<artifactId>payara-hibernate-validation</artifactId>
+			<scope>runtime</scope>
+			<optional>false</optional>
+		</dependency>
 		<dependency>
 			<groupId>tech.lapsa.insurance</groupId>
 			<artifactId>insurance-calculation</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.lapsa</groupId>
-			<artifactId>lapsa-rs-commons</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.lapsa</groupId>
-			<artifactId>lapsa-jersey-extensions</artifactId>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<dependency>
-			<groupId>tech.lapsa.lapsa</groupId>
-			<artifactId>lapsa-hibernate-validation</artifactId>
-			<scope>runtime</scope>
-			<optional>false</optional>
-		</dependency>
-		<!-- FACADES -->
 		<dependency>
 			<groupId>tech.lapsa.insurance</groupId>
 			<artifactId>insurance-facade</artifactId>
@@ -136,26 +149,12 @@
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
-		<!-- Glassfish -->
+		<!-- oldies -->
 		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-json-jackson</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-server</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<scope>provided</scope>
+			<groupId>com.lapsa.insurance-lib</groupId>
+			<artifactId>insurance-security</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
 		</dependency>
 		<!-- JavaEE -->
 		<dependency>
@@ -181,6 +180,27 @@
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- Glassfish -->
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-server</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<!-- test -->
