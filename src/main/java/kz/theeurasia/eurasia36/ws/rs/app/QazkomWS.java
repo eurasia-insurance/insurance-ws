@@ -34,7 +34,7 @@ public class QazkomWS {
 
     @Inject
     @QAdmin
-    private MailFactory adminNotificationMailFactory;
+    private MailFactory mailFactory;
 
     @POST
     @Path("/" + WSPathNames.WS_QAZKOM_OK)
@@ -51,14 +51,14 @@ public class QazkomWS {
     // PRIVATE
 
     @Inject
-    private EpaymentFacade qazkomFacade;
+    private EpaymentFacade facade;
 
     @Inject
     private InsuranceRequestFacade requestFacade;
 
     private Response postbackPayment(String rawResponse) {
 	try {
-	    Ebill ebill = qazkomFacade.newResponseBuilder() //
+	    Ebill ebill = facade.newResponseBuilder() //
 		    .withXml(rawResponse) //
 		    .build() //
 		    .handle();
@@ -112,8 +112,7 @@ public class QazkomWS {
 
     private void mailAdmin(String subject, Exception e, String rawResponse) {
 	try {
-	    MailMessageBuilder messageBuilder = adminNotificationMailFactory
-		    .newMailBuilder()
+	    MailMessageBuilder messageBuilder = mailFactory.newMailBuilder()
 		    .withDefaultSender()
 		    .withDefaultRecipient()
 		    .withSubject(subject);
