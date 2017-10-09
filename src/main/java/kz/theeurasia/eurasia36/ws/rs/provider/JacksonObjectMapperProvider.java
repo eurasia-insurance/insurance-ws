@@ -14,6 +14,7 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 public class JacksonObjectMapperProvider implements ContextResolver<ObjectMapper> {
     ObjectMapper mapper;
 
+    @SuppressWarnings("deprecation")
     public JacksonObjectMapperProvider() {
 
 	mapper = new ObjectMapper();
