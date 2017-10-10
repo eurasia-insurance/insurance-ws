@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.jaxb.entity;
+package tech.lapsa.insurance.ws.jaxb.entity;
 
 import java.io.Serializable;
 
@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.lapsa.validation.NotNullValue;
 import com.lapsa.validation.NotZeroAmount;
 
-import tech.lapsa.eurasia36.ws.jaxb.validator.PolicyCostValid;
+import tech.lapsa.insurance.ws.jaxb.validator.PolicyCostValid;
 
 @XmlRootElement(name = "policy")
 @XmlAccessorType(XmlAccessType.FIELD)

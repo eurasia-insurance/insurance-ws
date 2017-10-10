@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.jaxb.entity;
+package tech.lapsa.insurance.ws.jaxb.entity;
 
 import java.io.Serializable;
 
@@ -14,8 +14,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.lapsa.validation.NotNullValue;
 
-import tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverAndVehicleCountValid;
-import tech.lapsa.eurasia36.ws.jaxb.validator.PolicyParametersValid;
+import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverAndVehicleCountValid;
+import tech.lapsa.insurance.ws.jaxb.validator.PolicyParametersValid;
 
 @XmlRootElement(name = "policyShort")
 @XmlAccessorType(XmlAccessType.FIELD)

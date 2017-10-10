@@ -1,13 +1,13 @@
-package tech.lapsa.eurasia36.ws.jaxb.validator.constraint;
+package tech.lapsa.insurance.ws.jaxb.validator.constraint;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import com.lapsa.kz.country.KZArea;
 
-import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyVehicleInfo;
-import tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid;
-import tech.lapsa.eurasia36.ws.jaxb.validator.ValidationMessages;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
+import tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid;
+import tech.lapsa.insurance.ws.jaxb.validator.ValidationMessages;
 
 public class PolicyVehicleSettingsValidConstraintValidator
 	implements ConstraintValidator<PolicyVehicleSettingsValid, XmlPolicyVehicleInfo> {

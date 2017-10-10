@@ -1,6 +1,6 @@
-package tech.lapsa.eurasia36.ws.jaxb.validator.constraint;
+package tech.lapsa.insurance.ws.jaxb.validator.constraint;
 
-import static tech.lapsa.eurasia36.ws.rs.app.ConverterUtil.*;
+import static tech.lapsa.insurance.ws.rs.app.ConverterUtil.*;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -9,9 +9,9 @@ import com.lapsa.insurance.calculation.CalculationFailed;
 import com.lapsa.insurance.calculation.PolicyCalculation;
 import com.lapsa.insurance.domain.policy.Policy;
 
-import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyInfo;
-import tech.lapsa.eurasia36.ws.jaxb.validator.PolicyCostValid;
-import tech.lapsa.eurasia36.ws.rs.app.WrongArgumentException;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
+import tech.lapsa.insurance.ws.jaxb.validator.PolicyCostValid;
+import tech.lapsa.insurance.ws.rs.app.WrongArgumentException;
 
 public class PolicyCostValidConstraintValidator implements ConstraintValidator<PolicyCostValid, XmlPolicyInfo> {
 

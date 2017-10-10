@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.rs.app;
+package tech.lapsa.insurance.ws.rs.app;
 
 import java.util.Locale;
 
@@ -7,7 +7,7 @@ import javax.ws.rs.core.HttpHeaders;
 
 import com.lapsa.international.localization.LocalizationLanguage;
 
-import tech.lapsa.eurasia36.ws.rs.entity.LocalizationLanguageWrapped;
+import tech.lapsa.insurance.ws.rs.entity.LocalizationLanguageWrapped;
 
 public abstract class ALanguageDetectorWS {
 

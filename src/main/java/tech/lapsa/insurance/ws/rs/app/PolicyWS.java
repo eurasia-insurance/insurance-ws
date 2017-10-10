@@ -1,7 +1,7 @@
-package tech.lapsa.eurasia36.ws.rs.app;
+package tech.lapsa.insurance.ws.rs.app;
 
 import static com.lapsa.utils.RESTUtils.*;
-import static tech.lapsa.eurasia36.ws.rs.app.ConverterUtil.*;
+import static tech.lapsa.insurance.ws.rs.app.ConverterUtil.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -21,11 +21,11 @@ import com.lapsa.insurance.domain.policy.PolicyDriver;
 import com.lapsa.insurance.security.InsuranceRole;
 import com.lapsa.validation.NotNullValue;
 
-import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyDriverInfo;
-import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyDriverShort;
-import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyInfo;
-import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyShort;
 import tech.lapsa.insurance.facade.PolicyDriverFacade;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverShort;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyShort;
 
 @Path("/policy")
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

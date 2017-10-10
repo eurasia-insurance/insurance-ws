@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.jaxb.entity;
+package tech.lapsa.insurance.ws.jaxb.entity;
 
 public enum EbillMethodType {
     QAZKOM

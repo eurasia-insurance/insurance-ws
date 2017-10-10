@@ -1,15 +1,15 @@
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyCostValidConstraintValidator.message = Сыйақының мөлшері дұрыс емес. Сыйақының дұрыс мөлшерін алу үшін сервисті пайдаланыңыз
+tech.lapsa.insurance.ws.jaxb.validator.PolicyCostValidConstraintValidator.message = Сыйақының мөлшері дұрыс емес. Сыйақының дұрыс мөлшерін алу үшін сервисті пайдаланыңыз
 
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyParametersValid.message = Полис параметрінің қателігі
+tech.lapsa.insurance.ws.jaxb.validator.PolicyParametersValid.message = Полис параметрінің қателігі
 
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverAndVehicleCountValid.message = Бір полистегі сақтандырылғантұлғалардың және көлік құралдарының санының дұрыс емес ара қатынасы 
+tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverAndVehicleCountValid.message = Бір полистегі сақтандырылғантұлғалардың және көлік құралдарының санының дұрыс емес ара қатынасы 
 
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message = Сақтандырылған көлік құралының дұрыс емес параметрлері
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryAreaMustUndefined = ҚР аумағына уақытша кіру кезінде КҚ тіркелген өңірі берілмеуі тиіс (area eq UNDEFINED)
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMajorCityMustFalse = ҚР аумағына уақытша кірген жағдайда өңірлік маңызы бар қаланың белгісі болмауы тиіс (majorCity eq false)
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.areaMustNotUndefined = КҚ тіркеу өңірі берілуі тиіс (area ne UNDEFINED)
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mustBeMajorCity = Өңірлік маңызы бар қаланың белгісі болуы тиіс (majorCity eq true)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message = Сақтандырылған көлік құралының дұрыс емес параметрлері
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryAreaMustUndefined = ҚР аумағына уақытша кіру кезінде КҚ тіркелген өңірі берілмеуі тиіс (area eq UNDEFINED)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMajorCityMustFalse = ҚР аумағына уақытша кірген жағдайда өңірлік маңызы бар қаланың белгісі болмауы тиіс (majorCity eq false)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.areaMustNotUndefined = КҚ тіркеу өңірі берілуі тиіс (area ne UNDEFINED)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mustBeMajorCity = Өңірлік маңызы бар қаланың белгісі болуы тиіс (majorCity eq true)
 
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message = Сақтандырылған тұлғаның дұрыс емес параметрлері
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.invalidInsuranceClass = Сақтандыру класының дұрыс емес мәні (insuranceClass). Сыйақының дұрыс мөлшерін алу үшін сервисті пайдаланыңыз
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message.invalidAgeClass = Сақтандырылған тұлғаның жас ерекшелігінің дұрыс емес мәні (ageClass)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid.message = Сақтандырылған тұлғаның дұрыс емес параметрлері
+tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid.invalidInsuranceClass = Сақтандыру класының дұрыс емес мәні (insuranceClass). Сыйақының дұрыс мөлшерін алу үшін сервисті пайдаланыңыз
+tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid.message.invalidAgeClass = Сақтандырылған тұлғаның жас ерекшелігінің дұрыс емес мәні (ageClass)

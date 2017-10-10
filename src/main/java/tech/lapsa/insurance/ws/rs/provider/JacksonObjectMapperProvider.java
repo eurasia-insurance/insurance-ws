@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.rs.provider;
+package tech.lapsa.insurance.ws.rs.provider;
 
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;

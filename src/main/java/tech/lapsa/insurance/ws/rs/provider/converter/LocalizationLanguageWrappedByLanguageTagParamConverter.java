@@ -1,10 +1,10 @@
-package tech.lapsa.eurasia36.ws.rs.provider.converter;
+package tech.lapsa.insurance.ws.rs.provider.converter;
 
 import javax.ws.rs.ext.ParamConverter;
 
 import com.lapsa.international.localization.LocalizationLanguage;
 
-import tech.lapsa.eurasia36.ws.rs.entity.LocalizationLanguageWrapped;
+import tech.lapsa.insurance.ws.rs.entity.LocalizationLanguageWrapped;
 
 public class LocalizationLanguageWrappedByLanguageTagParamConverter implements ParamConverter<LocalizationLanguageWrapped> {
 

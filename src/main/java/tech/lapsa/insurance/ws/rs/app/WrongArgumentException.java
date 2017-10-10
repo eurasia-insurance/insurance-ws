@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.rs.app;
+package tech.lapsa.insurance.ws.rs.app;
 
 public class WrongArgumentException extends Exception {
     private static final long serialVersionUID = -5521345061525397270L;

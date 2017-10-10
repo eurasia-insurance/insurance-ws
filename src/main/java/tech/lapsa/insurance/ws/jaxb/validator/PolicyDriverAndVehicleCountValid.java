@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.jaxb.validator;
+package tech.lapsa.insurance.ws.jaxb.validator;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import tech.lapsa.eurasia36.ws.jaxb.validator.constraint.PolicyDriverAndVehicleCountValidConstraintValidator;
+import tech.lapsa.insurance.ws.jaxb.validator.constraint.PolicyDriverAndVehicleCountValidConstraintValidator;
 
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE })
 @Retention(RUNTIME)

@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.jaxb.entity;
+package tech.lapsa.insurance.ws.jaxb.entity;
 
 import java.io.Serializable;
 
@@ -17,7 +17,7 @@ import com.lapsa.kz.country.KZArea;
 import com.lapsa.kz.country.validators.ValidKZArea;
 import com.lapsa.validation.NotNullValue;
 
-import tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid;
+import tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid;
 
 @XmlRootElement(name = "policyVehicle")
 @XmlAccessorType(XmlAccessType.FIELD)

@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.jaxb.entity;
+package tech.lapsa.insurance.ws.jaxb.entity;
 
 import java.io.Serializable;
 
@@ -18,7 +18,7 @@ import com.lapsa.insurance.validation.ValidInsuranceClassType;
 import com.lapsa.insurance.validation.ValidInsuranceExpirienceClass;
 import com.lapsa.validation.NotNullValue;
 
-import tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid;
+import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
 
 @XmlRootElement(name = "policyDriver")
 @XmlAccessorType(XmlAccessType.FIELD)

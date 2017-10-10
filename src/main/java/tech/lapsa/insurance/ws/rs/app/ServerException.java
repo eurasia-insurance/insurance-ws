@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.rs.app;
+package tech.lapsa.insurance.ws.rs.app;
 
 public class ServerException extends Exception {
     private static final long serialVersionUID = 6881865736577073076L;

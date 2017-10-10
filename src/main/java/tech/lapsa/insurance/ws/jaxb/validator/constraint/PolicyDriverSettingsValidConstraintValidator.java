@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.jaxb.validator.constraint;
+package tech.lapsa.insurance.ws.jaxb.validator.constraint;
 
 import static com.lapsa.utils.BeanUtils.*;
 
@@ -7,10 +7,10 @@ import javax.validation.ConstraintValidatorContext;
 
 import com.lapsa.insurance.domain.policy.PolicyDriver;
 
-import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyDriverInfo;
-import tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid;
-import tech.lapsa.eurasia36.ws.jaxb.validator.ValidationMessages;
 import tech.lapsa.insurance.facade.PolicyDriverFacade;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
+import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
+import tech.lapsa.insurance.ws.jaxb.validator.ValidationMessages;
 
 public class PolicyDriverSettingsValidConstraintValidator
 	implements ConstraintValidator<PolicyDriverSettingsValid, XmlPolicyDriverInfo> {

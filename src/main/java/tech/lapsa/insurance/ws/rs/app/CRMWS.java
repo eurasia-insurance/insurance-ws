@@ -1,7 +1,7 @@
-package tech.lapsa.eurasia36.ws.rs.app;
+package tech.lapsa.insurance.ws.rs.app;
 
 import static com.lapsa.utils.RESTUtils.*;
-import static tech.lapsa.eurasia36.ws.rs.app.ConverterUtil.*;
+import static tech.lapsa.insurance.ws.rs.app.ConverterUtil.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -20,13 +20,13 @@ import com.lapsa.insurance.elements.PaymentMethod;
 import com.lapsa.insurance.security.InsuranceRole;
 import com.lapsa.validation.NotNullValue;
 
-import tech.lapsa.eurasia36.ws.auth.AuthenticatedUser;
-import tech.lapsa.eurasia36.ws.jaxb.entity.XmlCallbackRequestInfo;
-import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyRequestInfo;
-import tech.lapsa.eurasia36.ws.jaxb.entity.XmlSendRequestResultInfo;
-import tech.lapsa.eurasia36.ws.jaxb.entity.XmlSendRequestResultShort;
 import tech.lapsa.insurance.facade.CallbackRequestFacade;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade;
+import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResultInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResultShort;
 
 @Path("/crm")
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

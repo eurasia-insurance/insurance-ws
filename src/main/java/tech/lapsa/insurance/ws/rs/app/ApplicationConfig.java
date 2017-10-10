@@ -1,4 +1,4 @@
-package tech.lapsa.eurasia36.ws.rs.app;
+package tech.lapsa.insurance.ws.rs.app;
 
 import java.util.Collections;
 import java.util.Map;
@@ -17,8 +17,8 @@ import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import com.lapsa.jerseyExtensions.localization.ValidationMessagesLocalizationProvider;
 import com.lapsa.rs.authorization.AutheniticationFilterProvider;
 
-import tech.lapsa.eurasia36.ws.rs.provider.ApplicationParamConverterProvider;
-import tech.lapsa.eurasia36.ws.rs.provider.JacksonObjectMapperProvider;
+import tech.lapsa.insurance.ws.rs.provider.ApplicationParamConverterProvider;
+import tech.lapsa.insurance.ws.rs.provider.JacksonObjectMapperProvider;
 
 @ApplicationPath("")
 public class ApplicationConfig extends Application {
