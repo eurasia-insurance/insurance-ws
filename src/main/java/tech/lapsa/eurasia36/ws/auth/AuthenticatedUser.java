@@ -6,9 +6,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
-import com.lapsa.eurasia36.facade.UserFacade;
 import com.lapsa.insurance.domain.crm.User;
 import com.lapsa.rs.authorization.QAuthenticatedUser;
+
+import tech.lapsa.insurance.facade.UserFacade;
 
 @RequestScoped
 public class AuthenticatedUser {

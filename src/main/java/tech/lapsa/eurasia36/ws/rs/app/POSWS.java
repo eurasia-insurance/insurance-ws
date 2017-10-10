@@ -20,7 +20,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import com.lapsa.eurasia36.facade.CompanyPointOfSaleFacade;
 import com.lapsa.insurance.domain.CompanyContactEmail;
 import com.lapsa.insurance.domain.CompanyContactPhone;
 import com.lapsa.insurance.domain.CompanyPointOfSale;
@@ -34,6 +33,7 @@ import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPOSCity;
 import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPOSEmail;
 import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPOSPhone;
 import tech.lapsa.eurasia36.ws.rs.entity.LocalizationLanguageWrapped;
+import tech.lapsa.insurance.facade.CompanyPointOfSaleFacade;
 
 @Path("/pos")
 @Produces({ MediaType.APPLICATION_JSON })

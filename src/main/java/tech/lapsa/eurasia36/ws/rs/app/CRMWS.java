@@ -14,13 +14,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.lapsa.eurasia36.facade.CallbackRequestFacade;
-import com.lapsa.eurasia36.facade.InsuranceRequestFacade;
 import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 import com.lapsa.insurance.elements.PaymentMethod;
 import com.lapsa.insurance.security.InsuranceRole;
-import com.lapsa.kkb.services.KKBFactory;
 import com.lapsa.validation.NotNullValue;
 
 import tech.lapsa.eurasia36.ws.auth.AuthenticatedUser;
@@ -28,6 +25,8 @@ import tech.lapsa.eurasia36.ws.jaxb.entity.XmlCallbackRequestInfo;
 import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.eurasia36.ws.jaxb.entity.XmlSendRequestResultInfo;
 import tech.lapsa.eurasia36.ws.jaxb.entity.XmlSendRequestResultShort;
+import tech.lapsa.insurance.facade.CallbackRequestFacade;
+import tech.lapsa.insurance.facade.InsuranceRequestFacade;
 
 @Path("/crm")
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -40,9 +39,6 @@ public class CRMWS extends ALanguageDetectorWS {
 
     @Inject
     private AuthenticatedUser authenticatedUser;
-
-    @Inject
-    private KKBFactory kkbFactory;
 
     @POST
     @Path("/send-policy-request")
@@ -67,7 +63,7 @@ public class CRMWS extends ALanguageDetectorWS {
     private XmlSendRequestResultShort _sendPolicyRequest(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, ServerException {
 	PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	insuranceRequestFacade.acceptAndReply(policy);
+	insuranceRequestFacade.accept(policy);
 	return new XmlSendRequestResultShort(DEFAULT_SUCCESS_MESSAGE);
     }
 
@@ -94,7 +90,7 @@ public class CRMWS extends ALanguageDetectorWS {
 	PolicyRequest saved = insuranceRequestFacade.acceptAndReply(policy);
 	XmlSendRequestResultInfo reply = new XmlSendRequestResultInfo(DEFAULT_SUCCESS_MESSAGE, saved.getId());
 	if (saved.getPayment() != null && saved.getPayment().getMethod() == PaymentMethod.PAYCARD_ONLINE)
-	    reply.setPaymentLink(kkbFactory.generatePaymentPageUrl(saved.getPayment().getExternalId()));
+	    reply.setEbillId(saved.getPayment().getExternalId());
 	return reply;
     }
 

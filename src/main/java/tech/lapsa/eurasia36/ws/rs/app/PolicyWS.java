@@ -14,7 +14,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.lapsa.eurasia36.facade.PolicyDriverFacade;
 import com.lapsa.insurance.calculation.CalculationFailed;
 import com.lapsa.insurance.calculation.PolicyCalculation;
 import com.lapsa.insurance.domain.policy.Policy;
@@ -26,6 +25,7 @@ import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyDriverShort;
 import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyInfo;
 import tech.lapsa.eurasia36.ws.jaxb.entity.XmlPolicyShort;
+import tech.lapsa.insurance.facade.PolicyDriverFacade;
 
 @Path("/policy")
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

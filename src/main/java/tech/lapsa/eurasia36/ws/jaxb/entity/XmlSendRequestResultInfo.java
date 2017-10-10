@@ -1,7 +1,5 @@
 package tech.lapsa.eurasia36.ws.jaxb.entity;
 
-import java.net.URL;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -18,15 +16,15 @@ public class XmlSendRequestResultInfo extends XmlSendRequestResultShort {
     protected Integer requestId;
 
     @XmlAttribute
-    protected URL paymentLink;
+    protected String ebillId;
 
     public XmlSendRequestResultInfo() {
     }
 
-    public XmlSendRequestResultInfo(String message, Integer requestId, URL paymentLink) {
+    public XmlSendRequestResultInfo(String message, Integer requestId, String ebillId) {
 	super(message);
 	this.requestId = requestId;
-	this.paymentLink = paymentLink;
+	this.ebillId = ebillId;
     }
 
     public XmlSendRequestResultInfo(String message, Integer requestId) {
@@ -51,11 +49,11 @@ public class XmlSendRequestResultInfo extends XmlSendRequestResultShort {
 	this.requestId = requestId;
     }
 
-    public URL getPaymentLink() {
-	return paymentLink;
+    public String getEbillId() {
+	return ebillId;
     }
 
-    public void setPaymentLink(URL paymentLink) {
-	this.paymentLink = paymentLink;
+    public void setEbillId(String ebillId) {
+	this.ebillId = ebillId;
     }
 }
