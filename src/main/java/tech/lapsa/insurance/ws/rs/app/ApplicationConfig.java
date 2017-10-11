@@ -15,10 +15,10 @@ import org.glassfish.jersey.server.TracingConfig;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
 import com.lapsa.jerseyExtensions.localization.ValidationMessagesLocalizationProvider;
-import com.lapsa.rs.authorization.AutheniticationFilterProvider;
 
 import tech.lapsa.insurance.ws.rs.provider.ApplicationParamConverterProvider;
 import tech.lapsa.insurance.ws.rs.provider.JacksonObjectMapperProvider;
+import tech.lapsa.javax.rs.security.AutheniticationFilterProvider;
 
 @ApplicationPath("")
 public class ApplicationConfig extends Application {
