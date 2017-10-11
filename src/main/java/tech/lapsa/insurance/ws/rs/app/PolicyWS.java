@@ -14,13 +14,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.lapsa.insurance.calculation.CalculationFailed;
-import com.lapsa.insurance.calculation.PolicyCalculation;
 import com.lapsa.insurance.domain.policy.Policy;
 import com.lapsa.insurance.domain.policy.PolicyDriver;
 import com.lapsa.insurance.security.InsuranceRole;
 import com.lapsa.validation.NotNullValue;
 
+import tech.lapsa.insurance.calculation.CalculationFailed;
+import tech.lapsa.insurance.calculation.PolicyCalculation;
 import tech.lapsa.insurance.facade.PolicyDriverFacade;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverShort;
