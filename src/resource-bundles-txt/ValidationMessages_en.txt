@@ -1,15 +1,15 @@
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyCostValidConstraintValidator.message = The premium amount is incorrect. Please use the service to obtain the correct amount of premium
+tech.lapsa.insurance.ws.jaxb.validator.PolicyCostValidConstraintValidator.message = The premium amount is incorrect. Please use the service to obtain the correct amount of premium
 
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyParametersValid.message = Policy parameter error
+tech.lapsa.insurance.ws.jaxb.validator.PolicyParametersValid.message = Policy parameter error
 
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverAndVehicleCountValid.message = Invalid ratio of the number of insured persons and vehicles in one policy
+tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverAndVehicleCountValid.message = Invalid ratio of the number of insured persons and vehicles in one policy
 
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message = Invalid parameters of the insured vehicle
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryAreaMustUndefined = In the case of a temporary entry into the territory of the Republic of Kazakhstan, the vehicle registration region must not be specified (area eq UNDEFINED)
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMajorCityMustFalse = In the case of temporary entry into the territory of the Republic of Kazakhstan, there should be no regional city characteristic specified (majorCity eq false)
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.areaMustNotUndefined = Vehicle registration region must be specified (area ne UNDEFINED)
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mustBeMajorCity = Regional city characteristic must be specified (majorCity eq true)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message = Invalid parameters of the insured vehicle
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryAreaMustUndefined = In the case of a temporary entry into the territory of the Republic of Kazakhstan, the vehicle registration region must not be specified (area eq UNDEFINED)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMajorCityMustFalse = In the case of temporary entry into the territory of the Republic of Kazakhstan, there should be no regional city characteristic specified (majorCity eq false)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.areaMustNotUndefined = Vehicle registration region must be specified (area ne UNDEFINED)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mustBeMajorCity = Regional city characteristic must be specified (majorCity eq true)
 
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message = Incorrect insured person's parameters
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.invalidInsuranceClass = Invalid insurance class designation (insuranceClass). Please use the service to obtain the correct amount of premium
-tech.lapsa.eurasia36.ws.jaxb.validator.PolicyDriverSettingsValid.message.invalidAgeClass = Invalid age category of the insured person (ageClass)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid.message = Incorrect insured person's parameters
+tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid.invalidInsuranceClass = Invalid insurance class designation (insuranceClass). Please use the service to obtain the correct amount of premium
+tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid.message.invalidAgeClass = Invalid age category of the insured person (ageClass)
