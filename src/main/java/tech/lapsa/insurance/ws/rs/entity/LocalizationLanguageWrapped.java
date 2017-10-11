@@ -1,7 +1,8 @@
 package tech.lapsa.insurance.ws.rs.entity;
 
-import com.lapsa.commons.function.MyObjects;
 import com.lapsa.international.localization.LocalizationLanguage;
+
+import tech.lapsa.java.commons.function.MyObjects;
 
 public final class LocalizationLanguageWrapped {
 

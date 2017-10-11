@@ -16,7 +16,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.lapsa.commons.elements.Localized;
 import com.lapsa.insurance.elements.InsuranceClassType;
 import com.lapsa.insurance.elements.InsuranceRequestType;
 import com.lapsa.insurance.elements.InsuredAgeClass;
@@ -27,6 +26,7 @@ import com.lapsa.insurance.elements.VehicleClass;
 import com.lapsa.international.localization.LocalizationLanguage;
 
 import tech.lapsa.insurance.ws.rs.entity.LocalizationLanguageWrapped;
+import tech.lapsa.java.commons.localization.Localized;
 
 @Path("/dict")
 @Produces({ MediaType.APPLICATION_JSON })
