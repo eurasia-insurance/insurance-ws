@@ -22,6 +22,7 @@ import com.lapsa.validation.NotNullValue;
 
 import tech.lapsa.insurance.facade.CallbackRequestFacade;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade;
+import tech.lapsa.insurance.facade.PaymentsFacade;
 import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
@@ -84,13 +85,19 @@ public class CRMWS extends ALanguageDetectorWS {
 	}
     }
 
+    @Inject
+    private PaymentsFacade payments;
+
     private XmlSendRequestResultInfo _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, ServerException {
 	PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
 	PolicyRequest saved = insuranceRequestFacade.acceptAndReply(policy);
 	XmlSendRequestResultInfo reply = new XmlSendRequestResultInfo(DEFAULT_SUCCESS_MESSAGE, saved.getId());
-	if (saved.getPayment() != null && saved.getPayment().getMethod() == PaymentMethod.PAYCARD_ONLINE)
-	    reply.setEbillId(saved.getPayment().getExternalId());
+	if (saved.getPayment() != null && saved.getPayment().getMethod() == PaymentMethod.PAYCARD_ONLINE) {
+	    String invoiceId = saved.getPayment().getExternalId();
+	    reply.setInvoiceId(invoiceId);
+	    reply.setPaymentLink(payments.getPaymentURI(invoiceId));
+	}
 	return reply;
     }
 
