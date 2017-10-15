@@ -12,12 +12,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.lapsa.validation.LocalDateComparison;
-import com.lapsa.validation.NotNullValue;
-import com.lapsa.validation.TemporalFuture;
-import com.lapsa.validation.TemporalLeftBeforeRight;
-
 import tech.lapsa.java.jaxb.adapter.XmlLocalDateAdapter;
+import tech.lapsa.javax.validation.LocalDateComparison;
+import tech.lapsa.javax.validation.NotNullValue;
+import tech.lapsa.javax.validation.TemporalFuture;
+import tech.lapsa.javax.validation.TemporalLeftBeforeRight;
 
 @XmlRootElement(name = "period")
 @XmlAccessorType(XmlAccessType.FIELD)

@@ -13,7 +13,8 @@ import com.lapsa.international.internet.validators.ValidEmail;
 import com.lapsa.international.localization.LocalizationLanguage;
 import com.lapsa.international.phone.PhoneNumber;
 import com.lapsa.international.phone.validators.ValidPhoneNumber;
-import com.lapsa.validation.NotNullValue;
+
+import tech.lapsa.javax.validation.NotNullValue;
 
 @XmlRootElement(name = "requester")
 @XmlAccessorType(XmlAccessType.FIELD)

@@ -11,7 +11,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.lapsa.insurance.elements.InsuranceRequestType;
 import com.lapsa.insurance.validation.ValidInsuranceRequestType;
-import com.lapsa.validation.NotNullValue;
+
+import tech.lapsa.javax.validation.NotNullValue;
 
 @XmlRootElement(name = "policyRequest")
 @XmlAccessorType(XmlAccessType.FIELD)

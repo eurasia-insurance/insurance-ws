@@ -22,6 +22,7 @@
 		<!-- tech -->
 		<java-jaxb-commons.version>1.0-SNAPSHOT</java-jaxb-commons.version>
 		<javax-rs-commons.version>1.0-SNAPSHOT</javax-rs-commons.version>
+		<javax-validation-commons.version>1.0-SNAPSHOT</javax-validation-commons.version>
 		<payara-jersey-extensions.version>1.0-SNAPSHOT</payara-jersey-extensions.version>
 		<payara-hibernate-validation.version>1.0-SNAPSHOT</payara-hibernate-validation.version>
 		<insurance-calculation.version>1.0-SNAPSHOT</insurance-calculation.version>
@@ -66,6 +67,11 @@
 				<version>${javax-rs-commons.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>tech.lapsa.javax</groupId>
+				<artifactId>javax-validation-commons</artifactId>
+				<version>${javax-validation-commons.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>tech.lapsa.payara</groupId>
 				<artifactId>payara-jersey-extensions</artifactId>
 				<version>${payara-jersey-extensions.version}</version>
@@ -80,7 +86,7 @@
 				<artifactId>insurance-calculation</artifactId>
 				<version>${insurance-calculation.version}</version>
 			</dependency>
-			<!-- oldies-->
+			<!-- oldies -->
 			<dependency>
 				<groupId>com.lapsa.insurance-lib</groupId>
 				<artifactId>insurance-root</artifactId>
@@ -102,6 +108,12 @@
 		<dependency>
 			<groupId>tech.lapsa.javax</groupId>
 			<artifactId>javax-rs-commons</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>tech.lapsa.javax</groupId>
+			<artifactId>javax-validation-commons</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>

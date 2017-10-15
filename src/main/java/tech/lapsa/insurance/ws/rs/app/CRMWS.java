@@ -18,7 +18,6 @@ import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 import com.lapsa.insurance.elements.PaymentMethod;
 import com.lapsa.insurance.security.InsuranceRole;
-import com.lapsa.validation.NotNullValue;
 
 import tech.lapsa.insurance.facade.CallbackRequestFacade;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade;
@@ -28,6 +27,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResultInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResultShort;
+import tech.lapsa.javax.validation.NotNullValue;
 
 @Path("/crm")
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

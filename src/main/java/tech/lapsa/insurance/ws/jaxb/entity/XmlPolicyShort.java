@@ -12,10 +12,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.lapsa.validation.NotNullValue;
-
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverAndVehicleCountValid;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyParametersValid;
+import tech.lapsa.javax.validation.NotNullValue;
 
 @XmlRootElement(name = "policyShort")
 @XmlAccessorType(XmlAccessType.FIELD)

@@ -25,7 +25,6 @@ import com.lapsa.insurance.domain.CompanyContactPhone;
 import com.lapsa.insurance.domain.CompanyPointOfSale;
 import com.lapsa.international.localization.LocalizationLanguage;
 import com.lapsa.kz.country.KZCity;
-import com.lapsa.validation.NotNullValue;
 
 import tech.lapsa.insurance.facade.CompanyPointOfSaleFacade;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlGeo;
@@ -34,6 +33,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPOSCity;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPOSEmail;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPOSPhone;
 import tech.lapsa.insurance.ws.rs.entity.LocalizationLanguageWrapped;
+import tech.lapsa.javax.validation.NotNullValue;
 
 @Path("/pos")
 @Produces({ MediaType.APPLICATION_JSON })

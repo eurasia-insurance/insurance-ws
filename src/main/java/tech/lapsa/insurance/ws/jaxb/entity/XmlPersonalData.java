@@ -11,10 +11,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.lapsa.validation.TemporalPast;
-import com.lapsa.validation.ValidHumanName;
-
 import tech.lapsa.java.jaxb.adapter.XmlLocalDateAdapter;
+import tech.lapsa.javax.validation.TemporalPast;
+import tech.lapsa.javax.validation.ValidHumanName;
 
 @XmlRootElement(name = "personal")
 @XmlAccessorType(XmlAccessType.FIELD)
