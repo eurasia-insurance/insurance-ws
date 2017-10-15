@@ -15,9 +15,9 @@ import com.lapsa.insurance.validation.ValidPolicyVehicleAgeClass;
 import com.lapsa.insurance.validation.ValidPolicyVehicleClass;
 import com.lapsa.kz.country.KZArea;
 import com.lapsa.kz.country.validators.ValidKZArea;
-import com.lapsa.validation.NotNullValue;
 
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid;
+import tech.lapsa.javax.validation.NotNullValue;
 
 @XmlRootElement(name = "policyVehicle")
 @XmlAccessorType(XmlAccessType.FIELD)

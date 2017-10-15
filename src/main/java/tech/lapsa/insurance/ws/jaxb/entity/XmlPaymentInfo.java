@@ -11,7 +11,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.lapsa.insurance.elements.PaymentMethod;
 import com.lapsa.insurance.validation.ValidPaymentMethod;
-import com.lapsa.validation.NotNullValue;
+
+import tech.lapsa.javax.validation.NotNullValue;
 
 @XmlRootElement(name = "payment")
 @XmlAccessorType(XmlAccessType.FIELD)

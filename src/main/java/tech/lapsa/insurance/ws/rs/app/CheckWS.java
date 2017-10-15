@@ -19,7 +19,8 @@ import com.lapsa.international.phone.PhoneFormatException;
 import com.lapsa.international.phone.PhoneNumber;
 import com.lapsa.international.phone.validators.ValidPhoneNumber;
 import com.lapsa.kz.idnumber.validators.ValidIdNumber;
-import com.lapsa.validation.NotNullValue;
+
+import tech.lapsa.javax.validation.NotNullValue;
 
 @Path("/check")
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

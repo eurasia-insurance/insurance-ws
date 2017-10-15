@@ -16,9 +16,9 @@ import com.lapsa.insurance.elements.InsuredExpirienceClass;
 import com.lapsa.insurance.validation.ValidInsuranceAgeClass;
 import com.lapsa.insurance.validation.ValidInsuranceClassType;
 import com.lapsa.insurance.validation.ValidInsuranceExpirienceClass;
-import com.lapsa.validation.NotNullValue;
 
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
+import tech.lapsa.javax.validation.NotNullValue;
 
 @XmlRootElement(name = "policyDriver")
 @XmlAccessorType(XmlAccessType.FIELD)
