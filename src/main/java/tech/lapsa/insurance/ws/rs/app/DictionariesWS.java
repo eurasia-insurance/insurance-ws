@@ -184,10 +184,10 @@ public class DictionariesWS extends ALanguageDetectorWS {
 
     private <T extends Localized> Object convertToResult(final LocalizationLanguage lang,
 	    @SuppressWarnings("unchecked") final T... values) {
-	Function<? super T, ? extends Map<Localized.DisplayNameVariant, String>> valueMapper = //
-		t -> Stream.of(Localized.DisplayNameVariant.values()) //
-			.collect(Collectors.toMap(Function.identity(), x -> t.displayName(x, lang.getLocale())));
-	Map<T, Map<Localized.DisplayNameVariant, String>> entries = //
+	Function<? super T, ? extends Map<Localized.LocalizationVariant, String>> valueMapper = //
+		t -> Stream.of(Localized.LocalizationVariant.values()) //
+			.collect(Collectors.toMap(Function.identity(), x -> t.localized(x, lang.getLocale())));
+	Map<T, Map<Localized.LocalizationVariant, String>> entries = //
 		Stream.of(values) //
 			.collect(Collectors.toMap(Function.identity(), valueMapper));
 	return entries;
