@@ -24,6 +24,7 @@ import com.lapsa.insurance.elements.PaymentMethod;
 import com.lapsa.insurance.elements.VehicleAgeClass;
 import com.lapsa.insurance.elements.VehicleClass;
 import com.lapsa.international.localization.LocalizationLanguage;
+import com.lapsa.kz.country.KZArea;
 
 import tech.lapsa.insurance.ws.rs.entity.LocalizationLanguageWrapped;
 import tech.lapsa.java.commons.localization.Localized;
@@ -86,14 +87,14 @@ public class DictionariesWS extends ALanguageDetectorWS {
     @Path("/kz-area")
     public Response kzAreaSelectableGET(@QueryParam("lang") LocalizationLanguageWrapped queryLangWrapped) {
 	LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, LocalizationLanguage.selectableValues()), lang.getLocale());
+	return responseOk(convertToResult(lang, KZArea.selectableValues()), lang.getLocale());
     }
 
     @GET
     @Path("/kz-area/all")
     public Response kzAreaAllGET(@QueryParam("lang") LocalizationLanguageWrapped queryLangWrapped) {
 	LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, LocalizationLanguage.values()), lang.getLocale());
+	return responseOk(convertToResult(lang, KZArea.values()), lang.getLocale());
     }
 
     //
