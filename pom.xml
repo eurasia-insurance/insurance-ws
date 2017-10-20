@@ -22,6 +22,7 @@
 		<!-- tech -->
 		<java-jaxb-commons.version>1.0-SNAPSHOT</java-jaxb-commons.version>
 		<javax-rs-commons.version>1.0-SNAPSHOT</javax-rs-commons.version>
+		<javax-cdi-commons.version>1.0-SNAPSHOT</javax-cdi-commons.version>
 		<javax-validation-commons.version>1.0-SNAPSHOT</javax-validation-commons.version>
 		<payara-jersey-extensions.version>1.0-SNAPSHOT</payara-jersey-extensions.version>
 		<payara-hibernate-validation.version>1.0-SNAPSHOT</payara-hibernate-validation.version>
@@ -68,6 +69,11 @@
 			</dependency>
 			<dependency>
 				<groupId>tech.lapsa.javax</groupId>
+				<artifactId>javax-cdi-commons</artifactId>
+				<version>${javax-cdi-commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.javax</groupId>
 				<artifactId>javax-validation-commons</artifactId>
 				<version>${javax-validation-commons.version}</version>
 			</dependency>
@@ -108,6 +114,12 @@
 		<dependency>
 			<groupId>tech.lapsa.javax</groupId>
 			<artifactId>javax-rs-commons</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>tech.lapsa.javax</groupId>
+			<artifactId>javax-cdi-commons</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>

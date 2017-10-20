@@ -5,12 +5,12 @@ import javax.validation.ConstraintValidatorContext;
 import javax.validation.ValidationException;
 
 import com.lapsa.insurance.domain.policy.PolicyDriver;
-import com.lapsa.utils.BeanUtils;
 
 import tech.lapsa.insurance.facade.PolicyDriverFacade;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
 import tech.lapsa.insurance.ws.jaxb.validator.ValidationMessages;
+import tech.lapsa.javax.cdi.utility.BeanUtils;
 
 public class PolicyDriverSettingsValidConstraintValidator
 	implements ConstraintValidator<PolicyDriverSettingsValid, XmlPolicyDriverInfo> {
