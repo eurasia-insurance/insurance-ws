@@ -12,10 +12,10 @@ public final class InsuranceSecurity {
     private InsuranceSecurity() {
     }
 
-    public static final String ROLE_ADMIN = "admin";
-    public static final String ROLE_SPECIALIST = "specialist";
-    public static final String ROLE_REPORTER = "reporter";
-    public static final String ROLE_AGENT = "agent";
+    public static final String ROLE_ADMIN = "role-admin";
+    public static final String ROLE_SPECIALIST = "role-specialist";
+    public static final String ROLE_REPORTER = "role-reporter";
+    public static final String ROLE_AGENT = "role-agent";
 
     public static final Set<String> ALL = MySets.of(ROLE_ADMIN, ROLE_SPECIALIST, ROLE_REPORTER, ROLE_AGENT);
 
