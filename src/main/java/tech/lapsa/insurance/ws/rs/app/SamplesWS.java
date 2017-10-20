@@ -1,7 +1,7 @@
 package tech.lapsa.insurance.ws.rs.app;
 
-import static com.lapsa.utils.RESTUtils.*;
 import static tech.lapsa.insurance.ws.rs.app.SamplesUtil.*;
+import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Singleton;

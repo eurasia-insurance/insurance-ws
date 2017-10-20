@@ -1,7 +1,7 @@
 package tech.lapsa.insurance.ws.rs.app;
 
-import static com.lapsa.utils.RESTUtils.*;
 import static tech.lapsa.insurance.ws.rs.app.ConverterUtil.*;
+import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
