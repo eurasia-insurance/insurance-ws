@@ -6,7 +6,9 @@ import com.lapsa.utils.security.SecurityRole;
 
 public final class InsuranceRoles {
 
-    private InsuranceRoles() {
+public final class InsuranceSecurity {
+
+    private InsuranceSecurity() {
     }
 
     public static final String ADMIN = "admin";

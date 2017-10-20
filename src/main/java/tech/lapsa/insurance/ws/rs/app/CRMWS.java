@@ -22,7 +22,7 @@ import tech.lapsa.insurance.facade.CallbackRequestFacade;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade;
 import tech.lapsa.insurance.facade.PaymentsFacade;
 import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
-import tech.lapsa.insurance.ws.auth.InsuranceRoles;
+import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResultInfo;
@@ -32,7 +32,7 @@ import tech.lapsa.javax.validation.NotNullValue;
 @Path("/crm")
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-@RolesAllowed({ InsuranceRoles.ADMIN, InsuranceRoles.AGENT })
+@RolesAllowed({ InsuranceSecurity.ROLE_ADMIN, InsuranceSecurity.ROLE_AGENT })
 @Singleton
 public class CRMWS extends ALanguageDetectorWS {
 

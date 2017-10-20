@@ -20,7 +20,7 @@ import com.lapsa.insurance.domain.policy.PolicyDriver;
 import tech.lapsa.insurance.calculation.CalculationFailed;
 import tech.lapsa.insurance.calculation.PolicyCalculation;
 import tech.lapsa.insurance.facade.PolicyDriverFacade;
-import tech.lapsa.insurance.ws.auth.InsuranceRoles;
+import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverShort;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
@@ -30,7 +30,7 @@ import tech.lapsa.javax.validation.NotNullValue;
 @Path("/policy")
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-@RolesAllowed({ InsuranceRoles.ADMIN, InsuranceRoles.AGENT })
+@RolesAllowed({ InsuranceSecurity.ROLE_ADMIN, InsuranceSecurity.ROLE_AGENT })
 @Singleton
 public class PolicyWS extends ALanguageDetectorWS {
 
