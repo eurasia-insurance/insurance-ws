@@ -1,31 +1,30 @@
 package tech.lapsa.insurance.ws.auth;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import com.lapsa.utils.security.SecurityRole;
 
-public final class InsuranceRoles {
+import tech.lapsa.java.commons.function.MySets;
 
 public final class InsuranceSecurity {
 
     private InsuranceSecurity() {
     }
 
-    public static final String ADMIN = "admin";
-    public static final String SPECIALIST = "specialist";
-    public static final String REPORTER = "reporter";
-    public static final String AGENT = "agent";
+    public static final String ROLE_ADMIN = "admin";
+    public static final String ROLE_SPECIALIST = "specialist";
+    public static final String ROLE_REPORTER = "reporter";
+    public static final String ROLE_AGENT = "agent";
 
-    public static String[] values() {
-	return new String[] { ADMIN, SPECIALIST, REPORTER, AGENT };
-    }
+    public static final Set<String> ALL = MySets.of(ROLE_ADMIN, ROLE_SPECIALIST, ROLE_REPORTER, ROLE_AGENT);
 
     public static enum Role implements SecurityRole {
 
-	ADMIN(InsuranceRoles.ADMIN),
-	SPECIALIST(InsuranceRoles.SPECIALIST),
-	REPORTER(InsuranceRoles.REPORTER),
-	AGENT(InsuranceRoles.AGENT);
+	ADMIN(InsuranceSecurity.ROLE_ADMIN),
+	SPECIALIST(InsuranceSecurity.ROLE_SPECIALIST),
+	REPORTER(InsuranceSecurity.ROLE_REPORTER),
+	AGENT(InsuranceSecurity.ROLE_AGENT);
 
 	private final String roleName;
 
