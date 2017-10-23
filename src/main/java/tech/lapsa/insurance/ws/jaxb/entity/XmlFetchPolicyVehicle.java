@@ -11,19 +11,19 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import tech.lapsa.javax.validation.NotNullValue;
 
-@XmlRootElement(name = "policyVehicleShort")
+@XmlRootElement(name = "fetchPolicyVehicle")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlPolicyVehicleShort implements Serializable {
+public class XmlFetchPolicyVehicle implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @XmlAttribute
     @NotNullValue
     protected String regNumber;
 
-    public XmlPolicyVehicleShort() {
+    public XmlFetchPolicyVehicle() {
     }
 
-    public XmlPolicyVehicleShort(String regNumber) {
+    public XmlFetchPolicyVehicle(String regNumber) {
 	this.regNumber = regNumber;
     }
 

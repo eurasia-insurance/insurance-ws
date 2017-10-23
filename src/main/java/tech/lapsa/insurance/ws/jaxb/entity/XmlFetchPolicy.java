@@ -16,11 +16,11 @@ import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverAndVehicleCountValid;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyParametersValid;
 import tech.lapsa.javax.validation.NotNullValue;
 
-@XmlRootElement(name = "policyShort")
+@XmlRootElement(name = "fetchPolicy")
 @XmlAccessorType(XmlAccessType.FIELD)
 @PolicyParametersValid
 @PolicyDriverAndVehicleCountValid
-public class XmlPolicyShort implements Serializable {
+public class XmlFetchPolicy implements Serializable {
     private static final long serialVersionUID = -4203799236492537107L;
 
     @XmlElementWrapper
@@ -40,10 +40,10 @@ public class XmlPolicyShort implements Serializable {
     @Valid
     protected XmlPeriodInfo period;
 
-    public XmlPolicyShort() {
+    public XmlFetchPolicy() {
     }
 
-    public XmlPolicyShort(XmlPolicyDriverInfo[] drivers, XmlPolicyVehicleInfo[] vehicles, XmlPeriodInfo period) {
+    public XmlFetchPolicy(XmlPolicyDriverInfo[] drivers, XmlPolicyVehicleInfo[] vehicles, XmlPeriodInfo period) {
 	this.drivers = drivers;
 	this.vehicles = vehicles;
 	this.period = period;

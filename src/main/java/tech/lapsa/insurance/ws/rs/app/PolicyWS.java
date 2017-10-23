@@ -26,11 +26,11 @@ import tech.lapsa.insurance.facade.PolicyDriverFacade;
 import tech.lapsa.insurance.facade.PolicyVehicleFacade;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverShort;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicyDriver;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyShort;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleShort;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicyVehicle;
 import tech.lapsa.javax.validation.NotNullValue;
 
 @Path("/policy")
@@ -42,11 +42,11 @@ public class PolicyWS extends ALanguageDetectorWS {
 
     @POST
     @Path("/fetch-driver")
-    public Response fetchDriverPOST(@NotNullValue @Valid XmlPolicyDriverShort request) {
+    public Response fetchDriverPOST(@NotNullValue @Valid XmlFetchPolicyDriver request) {
 	return fetchDriver(request);
     }
 
-    private Response fetchDriver(XmlPolicyDriverShort request) {
+    private Response fetchDriver(XmlFetchPolicyDriver request) {
 	try {
 	    XmlPolicyDriverInfo reply = _fetchDriver(request);
 	    return responseOk(reply, getLocaleOrDefault());
@@ -60,7 +60,7 @@ public class PolicyWS extends ALanguageDetectorWS {
     @Inject
     private PolicyDriverFacade driverFacade;
 
-    private XmlPolicyDriverInfo _fetchDriver(XmlPolicyDriverShort request)
+    private XmlPolicyDriverInfo _fetchDriver(XmlFetchPolicyDriver request)
 	    throws WrongArgumentException, ServerException {
 	PolicyDriver driver = driverFacade.fetchByIdNumber(request.getIdNumber());
 	XmlPolicyDriverInfo response = ConverterUtil.convertXmlPolicyDriver(driver);
@@ -69,11 +69,11 @@ public class PolicyWS extends ALanguageDetectorWS {
 
     @POST
     @Path("/fetch-vehicle")
-    public Response fetchVehiclePOST(@NotNullValue @Valid XmlPolicyVehicleShort request) {
+    public Response fetchVehiclePOST(@NotNullValue @Valid XmlFetchPolicyVehicle request) {
 	return fetchVehicle(request);
     }
 
-    private Response fetchVehicle(XmlPolicyVehicleShort request) {
+    private Response fetchVehicle(XmlFetchPolicyVehicle request) {
 	try {
 	    XmlPolicyVehicleInfo reply = _fetchVehicle(request);
 	    return responseOk(reply, getLocaleOrDefault());
@@ -87,7 +87,7 @@ public class PolicyWS extends ALanguageDetectorWS {
     @Inject
     private PolicyVehicleFacade vehicleFacade;
 
-    private XmlPolicyVehicleInfo _fetchVehicle(XmlPolicyVehicleShort request)
+    private XmlPolicyVehicleInfo _fetchVehicle(XmlFetchPolicyVehicle request)
 	    throws WrongArgumentException, ServerException {
 	try {
 	    PolicyVehicle vehicle = vehicleFacade.fetchByRegNumber(request.getRegNumber()).iterator().next();
@@ -100,11 +100,11 @@ public class PolicyWS extends ALanguageDetectorWS {
 
     @POST
     @Path("/fetch-policy")
-    public Response fetchPolicyPOST(@NotNullValue @Valid XmlPolicyShort request) {
+    public Response fetchPolicyPOST(@NotNullValue @Valid XmlFetchPolicy request) {
 	return fetchPolicy(request);
     }
 
-    private Response fetchPolicy(XmlPolicyShort request) {
+    private Response fetchPolicy(XmlFetchPolicy request) {
 	try {
 	    XmlPolicyInfo reply = _fetchPolicy(request);
 	    return responseOk(reply, getLocaleOrDefault());
@@ -115,7 +115,7 @@ public class PolicyWS extends ALanguageDetectorWS {
 	}
     }
 
-    private XmlPolicyInfo _fetchPolicy(XmlPolicyShort request)
+    private XmlPolicyInfo _fetchPolicy(XmlFetchPolicy request)
 	    throws WrongArgumentException, ServerException {
 	if (request == null)
 	    throw new WrongArgumentException("Request data is empty");

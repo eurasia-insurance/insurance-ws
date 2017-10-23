@@ -16,7 +16,7 @@ import tech.lapsa.javax.validation.NotZeroAmount;
 @XmlRootElement(name = "policy")
 @XmlAccessorType(XmlAccessType.FIELD)
 @PolicyCostValid
-public class XmlPolicyInfo extends XmlPolicyShort implements Serializable {
+public class XmlPolicyInfo extends XmlFetchPolicy implements Serializable {
     private static final long serialVersionUID = -7828937206472435703L;
 
     @XmlAttribute

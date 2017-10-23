@@ -11,19 +11,19 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.lapsa.kz.idnumber.validators.ValidIdNumber;
 
-@XmlRootElement(name = "policyDriverShort")
+@XmlRootElement(name = "fetchPolicyDriver")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlPolicyDriverShort implements Serializable {
+public class XmlFetchPolicyDriver implements Serializable {
     private static final long serialVersionUID = 5729187347066360575L;
 
     @XmlAttribute
     @ValidIdNumber
     protected String idNumber;
 
-    public XmlPolicyDriverShort() {
+    public XmlFetchPolicyDriver() {
     }
 
-    public XmlPolicyDriverShort(String idNumber) {
+    public XmlFetchPolicyDriver(String idNumber) {
 	this.idNumber = idNumber;
     }
 

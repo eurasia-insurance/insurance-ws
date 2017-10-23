@@ -9,18 +9,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-@XmlRootElement(name = "sendRequestResultShort")
+@XmlRootElement(name = "sendRequestResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlSendRequestResultShort implements Serializable {
+public class XmlSendRequestResponse implements Serializable {
     private static final long serialVersionUID = 4876311519054938134L;
 
     @XmlAttribute
     protected String message;
 
-    public XmlSendRequestResultShort() {
+    public XmlSendRequestResponse() {
     }
 
-    public XmlSendRequestResultShort(String message) {
+    public XmlSendRequestResponse(String message) {
 	this.message = message;
     }
 
