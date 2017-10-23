@@ -22,7 +22,7 @@ import tech.lapsa.javax.validation.NotNullValue;
 @XmlRootElement(name = "policyVehicle")
 @XmlAccessorType(XmlAccessType.FIELD)
 @PolicyVehicleSettingsValid
-public class XmlPolicyVehicleInfo extends XmlPolicyVehicleShort implements Serializable {
+public class XmlPolicyVehicleInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @XmlAttribute
@@ -48,13 +48,24 @@ public class XmlPolicyVehicleInfo extends XmlPolicyVehicleShort implements Seria
     @NotNullValue
     protected Boolean temporaryEntry;
 
+    @XmlAttribute
+    protected String regNumber;
+
+    @XmlAttribute
+    protected String name;
+
+    @XmlAttribute
+    protected Integer year;
+
+    @XmlAttribute
+    protected String vin;
+
     public XmlPolicyVehicleInfo() {
     }
 
-    public XmlPolicyVehicleInfo(String regNumber, KZArea area, Boolean majorCity, VehicleClass typeClass,
+    public XmlPolicyVehicleInfo(KZArea area, Boolean majorCity, VehicleClass typeClass,
 	    VehicleAgeClass ageClass,
 	    Boolean temporaryEntry) {
-	super(regNumber);
 	this.area = area;
 	this.majorCity = majorCity;
 	this.typeClass = typeClass;
@@ -63,7 +74,7 @@ public class XmlPolicyVehicleInfo extends XmlPolicyVehicleShort implements Seria
     }
 
     public XmlPolicyVehicleInfo(String regNumber) {
-	super(regNumber);
+	this.regNumber = regNumber;
     }
 
     @Override
@@ -111,4 +122,37 @@ public class XmlPolicyVehicleInfo extends XmlPolicyVehicleShort implements Seria
 	this.temporaryEntry = temporaryEntry;
     }
 
+    // infos
+
+    public String getRegNumber() {
+	return regNumber;
+    }
+
+    public void setRegNumber(String regNumber) {
+	this.regNumber = regNumber;
+    }
+
+    public String getName() {
+	return name;
+    }
+
+    public void setName(String name) {
+	this.name = name;
+    }
+
+    public Integer getYear() {
+	return year;
+    }
+
+    public void setYear(Integer year) {
+	this.year = year;
+    }
+
+    public void setVin(String vin) {
+	this.vin = vin;
+    }
+
+    public String getVin() {
+	return vin;
+    }
 }
