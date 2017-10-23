@@ -11,6 +11,7 @@ import com.lapsa.insurance.domain.PaymentData;
 import com.lapsa.insurance.domain.PersonalData;
 import com.lapsa.insurance.domain.Request;
 import com.lapsa.insurance.domain.RequesterData;
+import com.lapsa.insurance.domain.VehicleCertificateData;
 import com.lapsa.insurance.domain.crm.UTMData;
 import com.lapsa.insurance.domain.crm.User;
 import com.lapsa.insurance.domain.policy.Policy;
@@ -20,6 +21,7 @@ import com.lapsa.insurance.domain.policy.PolicyVehicle;
 import com.lapsa.insurance.elements.PaymentStatus;
 import com.lapsa.insurance.elements.RequestSource;
 import com.lapsa.kz.country.KZArea;
+import com.lapsa.kz.country.KZCity;
 
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPaymentInfo;
@@ -34,6 +36,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequesterInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlUTMInfo;
+import tech.lapsa.java.commons.function.MyOptionals;
 
 public class ConverterUtil {
 
@@ -133,6 +136,13 @@ public class ConverterUtil {
 	XmlPolicyDriverInfo response = new XmlPolicyDriverInfo();
 	processConversionXmlPolicyDriverShort(request, response);
 	processConversionXmlPolicyDriverInfo(request, response);
+	return response;
+    }
+
+    public static XmlPolicyVehicleInfo convertXmlPolicyVehicle(PolicyVehicle request) {
+	XmlPolicyVehicleInfo response = new XmlPolicyVehicleInfo();
+	processConversionXmlPolicyVehicleShort(request, response);
+	processConversionXmlPolicyVehicleInfo(request, response);
 	return response;
     }
 
@@ -237,6 +247,31 @@ public class ConverterUtil {
 	    throws WrongArgumentException {
 	Policy policy = convertPolicy(request.getPolicy());
 	response.setPolicy(policy);
+    }
+
+    private static void processConversionXmlPolicyVehicleInfo(PolicyVehicle request, XmlPolicyVehicleInfo response) {
+	response.setAgeClass(request.getVehicleAgeClass());
+	response.setArea(response.getArea());
+	response.setTypeClass(request.getVehicleClass());
+
+	MyOptionals.of(request.getFullName()) //
+		.ifPresent(response::setName);
+
+	MyOptionals.of(request.getYearOfManufacture()) //
+		.ifPresent(response::setYear);
+
+	MyOptionals.of(request.getVinCode()) //
+		.ifPresent(response::setVin);
+
+	MyOptionals.of(request.getCity()) //
+		.map(KZCity::isRegional) //
+		.ifPresent(response::setMajorCity);
+    }
+
+    private static void processConversionXmlPolicyVehicleShort(PolicyVehicle request, XmlPolicyVehicleInfo response) {
+	MyOptionals.of(request.getCertificateData()) //
+		.map(VehicleCertificateData::getRegistrationNumber) //
+		.ifPresent(response::setRegNumber);
     }
 
     private static void processConversionXmlPolicyDriverInfo(PolicyDriver request, XmlPolicyDriverInfo response) {

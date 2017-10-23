@@ -23,7 +23,7 @@ import tech.lapsa.javax.validation.NotNullValue;
 @XmlAccessorType(XmlAccessType.FIELD)
 @PolicyVehicleSettingsValid
 public class XmlPolicyVehicleInfo implements Serializable {
-    private static final long serialVersionUID = -6882618705945025909L;
+    private static final long serialVersionUID = 1L;
 
     @XmlAttribute
     @NotNullValue
@@ -48,16 +48,33 @@ public class XmlPolicyVehicleInfo implements Serializable {
     @NotNullValue
     protected Boolean temporaryEntry;
 
+    @XmlAttribute
+    protected String regNumber;
+
+    @XmlAttribute
+    protected String name;
+
+    @XmlAttribute
+    protected Integer year;
+
+    @XmlAttribute
+    protected String vin;
+
     public XmlPolicyVehicleInfo() {
     }
 
-    public XmlPolicyVehicleInfo(KZArea area, Boolean majorCity, VehicleClass typeClass, VehicleAgeClass ageClass,
+    public XmlPolicyVehicleInfo(KZArea area, Boolean majorCity, VehicleClass typeClass,
+	    VehicleAgeClass ageClass,
 	    Boolean temporaryEntry) {
 	this.area = area;
 	this.majorCity = majorCity;
 	this.typeClass = typeClass;
 	this.ageClass = ageClass;
 	this.temporaryEntry = temporaryEntry;
+    }
+
+    public XmlPolicyVehicleInfo(String regNumber) {
+	this.regNumber = regNumber;
     }
 
     @Override
@@ -105,4 +122,37 @@ public class XmlPolicyVehicleInfo implements Serializable {
 	this.temporaryEntry = temporaryEntry;
     }
 
+    // infos
+
+    public String getRegNumber() {
+	return regNumber;
+    }
+
+    public void setRegNumber(String regNumber) {
+	this.regNumber = regNumber;
+    }
+
+    public String getName() {
+	return name;
+    }
+
+    public void setName(String name) {
+	this.name = name;
+    }
+
+    public Integer getYear() {
+	return year;
+    }
+
+    public void setYear(Integer year) {
+	this.year = year;
+    }
+
+    public void setVin(String vin) {
+	this.vin = vin;
+    }
+
+    public String getVin() {
+	return vin;
+    }
 }
