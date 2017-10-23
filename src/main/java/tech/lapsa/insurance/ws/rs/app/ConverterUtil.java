@@ -136,6 +136,13 @@ public class ConverterUtil {
 	return response;
     }
 
+    public static XmlPolicyVehicleInfo convertXmlPolicyVehicle(PolicyVehicle request) {
+	XmlPolicyVehicleInfo response = new XmlPolicyVehicleInfo();
+	processConversionXmlPolicyVehicleShort(request, response);
+	processConversionXmlPolicyVehicleInfo(request, response);
+	return response;
+    }
+
     // PRIVATE
 
     private static void processConversionRequester(XmlRequesterInfo request, RequesterData response) {
@@ -237,6 +244,17 @@ public class ConverterUtil {
 	    throws WrongArgumentException {
 	Policy policy = convertPolicy(request.getPolicy());
 	response.setPolicy(policy);
+    }
+
+    private static void processConversionXmlPolicyVehicleInfo(PolicyVehicle request, XmlPolicyVehicleInfo response) {
+	response.setAgeClass(request.getVehicleAgeClass());
+	response.setArea(response.getArea());
+	response.setTypeClass(request.getVehicleClass());
+	response.setMajorCity(request.getCity().isRegional());
+    }
+
+    private static void processConversionXmlPolicyVehicleShort(PolicyVehicle request, XmlPolicyVehicleInfo response) {
+	response.setRegNumber(request.getCertificateData().getRegistrationNumber());
     }
 
     private static void processConversionXmlPolicyDriverInfo(PolicyDriver request, XmlPolicyDriverInfo response) {

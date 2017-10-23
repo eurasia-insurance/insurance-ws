@@ -3,6 +3,8 @@ package tech.lapsa.insurance.ws.rs.app;
 import static tech.lapsa.insurance.ws.rs.app.ConverterUtil.*;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
+import java.util.NoSuchElementException;
+
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -16,15 +18,19 @@ import javax.ws.rs.core.Response;
 
 import com.lapsa.insurance.domain.policy.Policy;
 import com.lapsa.insurance.domain.policy.PolicyDriver;
+import com.lapsa.insurance.domain.policy.PolicyVehicle;
 
 import tech.lapsa.insurance.calculation.CalculationFailed;
 import tech.lapsa.insurance.calculation.PolicyCalculation;
 import tech.lapsa.insurance.facade.PolicyDriverFacade;
+import tech.lapsa.insurance.facade.PolicyVehicleFacade;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverShort;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyShort;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleShort;
 import tech.lapsa.javax.validation.NotNullValue;
 
 @Path("/policy")
@@ -52,13 +58,44 @@ public class PolicyWS extends ALanguageDetectorWS {
     }
 
     @Inject
-    private PolicyDriverFacade facade;
+    private PolicyDriverFacade driverFacade;
 
     private XmlPolicyDriverInfo _fetchDriver(XmlPolicyDriverShort request)
 	    throws WrongArgumentException, ServerException {
-	PolicyDriver driver = facade.fetchByIdNumber(request.getIdNumber());
+	PolicyDriver driver = driverFacade.fetchByIdNumber(request.getIdNumber());
 	XmlPolicyDriverInfo response = ConverterUtil.convertXmlPolicyDriver(driver);
 	return response;
+    }
+
+    @POST
+    @Path("/fetch-vehicle")
+    public Response fetchVehiclePOST(@NotNullValue @Valid XmlPolicyVehicleShort request) {
+	return fetchVehicle(request);
+    }
+
+    private Response fetchVehicle(XmlPolicyVehicleShort request) {
+	try {
+	    XmlPolicyVehicleInfo reply = _fetchVehicle(request);
+	    return responseOk(reply, getLocaleOrDefault());
+	} catch (WrongArgumentException e) {
+	    return responseBadRequest(e.getMessage(), getLocaleOrDefault());
+	} catch (ServerException e) {
+	    return responseServerError(e.getMessage(), getLocaleOrDefault());
+	}
+    }
+
+    @Inject
+    private PolicyVehicleFacade vehicleFacade;
+
+    private XmlPolicyVehicleInfo _fetchVehicle(XmlPolicyVehicleShort request)
+	    throws WrongArgumentException, ServerException {
+	try {
+	    PolicyVehicle vehicle = vehicleFacade.fetchByRegNumber(request.getRegNumber()).iterator().next();
+	    XmlPolicyVehicleInfo response = ConverterUtil.convertXmlPolicyVehicle(vehicle);
+	    return response;
+	} catch (NoSuchElementException e) {
+	    return new XmlPolicyVehicleInfo(request.getRegNumber());
+	}
     }
 
     @POST

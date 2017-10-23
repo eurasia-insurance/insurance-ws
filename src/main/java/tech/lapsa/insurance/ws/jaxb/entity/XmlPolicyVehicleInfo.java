@@ -22,8 +22,8 @@ import tech.lapsa.javax.validation.NotNullValue;
 @XmlRootElement(name = "policyVehicle")
 @XmlAccessorType(XmlAccessType.FIELD)
 @PolicyVehicleSettingsValid
-public class XmlPolicyVehicleInfo implements Serializable {
-    private static final long serialVersionUID = -6882618705945025909L;
+public class XmlPolicyVehicleInfo extends XmlPolicyVehicleShort implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @XmlAttribute
     @NotNullValue
@@ -51,13 +51,19 @@ public class XmlPolicyVehicleInfo implements Serializable {
     public XmlPolicyVehicleInfo() {
     }
 
-    public XmlPolicyVehicleInfo(KZArea area, Boolean majorCity, VehicleClass typeClass, VehicleAgeClass ageClass,
+    public XmlPolicyVehicleInfo(String regNumber, KZArea area, Boolean majorCity, VehicleClass typeClass,
+	    VehicleAgeClass ageClass,
 	    Boolean temporaryEntry) {
+	super(regNumber);
 	this.area = area;
 	this.majorCity = majorCity;
 	this.typeClass = typeClass;
 	this.ageClass = ageClass;
 	this.temporaryEntry = temporaryEntry;
+    }
+
+    public XmlPolicyVehicleInfo(String regNumber) {
+	super(regNumber);
     }
 
     @Override

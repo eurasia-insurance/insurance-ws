@@ -34,7 +34,7 @@ public class SamplesUtil {
     }
 
     public static XmlPolicyVehicleInfo vehicleSample() {
-	XmlPolicyVehicleInfo sample = new XmlPolicyVehicleInfo(KZArea.GALM, true, VehicleClass.CAR,
+	XmlPolicyVehicleInfo sample = new XmlPolicyVehicleInfo("М263АР152", KZArea.GALM, true, VehicleClass.CAR,
 		VehicleAgeClass.UNDER7, false);
 	return sample;
     }
