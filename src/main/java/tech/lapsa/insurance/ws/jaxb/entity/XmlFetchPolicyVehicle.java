@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import tech.lapsa.javax.validation.NotNullValue;
+import tech.lapsa.kz.vehicle.validators.ValidVehicleRegNumber;
 
 @XmlRootElement(name = "fetchPolicyVehicle")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -18,6 +19,7 @@ public class XmlFetchPolicyVehicle implements Serializable {
 
     @XmlAttribute
     @NotNullValue
+    @ValidVehicleRegNumber
     protected String regNumber;
 
     public XmlFetchPolicyVehicle() {

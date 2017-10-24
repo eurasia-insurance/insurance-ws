@@ -24,18 +24,19 @@ import com.lapsa.kz.country.KZArea;
 import com.lapsa.kz.country.KZCity;
 
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPaymentInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPeriodInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPersonalData;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequesterInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlUTMInfo;
 import tech.lapsa.java.commons.function.MyOptionals;
+import tech.lapsa.kz.vehicle.VehicleRegNumber;
 
 public class ConverterUtil {
 
@@ -250,6 +251,7 @@ public class ConverterUtil {
 
 	MyOptionals.of(request.getCertificateData()) //
 		.map(VehicleCertificateData::getRegistrationNumber) //
+		.map(VehicleRegNumber::getNumber) //
 		.ifPresent(response::setRegNumber);
 
 	MyOptionals.of(request.getVehicleAgeClass()) //
@@ -273,6 +275,10 @@ public class ConverterUtil {
 	MyOptionals.of(request.getCity()) //
 		.map(KZCity::isRegional) //
 		.ifPresent(response::setMajorCity);
+
+	MyOptionals.of(response.getArea())
+		.filter(x -> x.equals(KZArea.GALM) || x.equals(KZArea.GAST)) //
+		.ifPresent(x -> response.setMajorCity(true));
     }
 
     private static void processConversionXmlPolicyDriverInfo(PolicyDriver request, XmlPolicyDriverInfo response) {
