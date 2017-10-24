@@ -9,22 +9,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.lapsa.kz.idnumber.validators.ValidIdNumber;
-
-@XmlRootElement(name = "policyDriverShort")
+@XmlRootElement(name = "sendRequestResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlPolicyDriverShort implements Serializable {
-    private static final long serialVersionUID = 5729187347066360575L;
+public class XmlSendRequestResponse implements Serializable {
+    private static final long serialVersionUID = 4876311519054938134L;
 
     @XmlAttribute
-    @ValidIdNumber
-    protected String idNumber;
+    protected String message;
 
-    public XmlPolicyDriverShort() {
+    public XmlSendRequestResponse() {
     }
 
-    public XmlPolicyDriverShort(String idNumber) {
-	this.idNumber = idNumber;
+    public XmlSendRequestResponse(String message) {
+	this.message = message;
     }
 
     @Override
@@ -32,12 +29,12 @@ public class XmlPolicyDriverShort implements Serializable {
 	return ToStringBuilder.reflectionToString(this, Constants.DEFAULT_TO_STRING_STYLE);
     }
 
-    public String getIdNumber() {
-	return idNumber;
+    public String getMessage() {
+	return message;
     }
 
-    public void setIdNumber(String idNumber) {
-	this.idNumber = idNumber;
+    public void setMessage(String message) {
+	this.message = message;
     }
 
 }

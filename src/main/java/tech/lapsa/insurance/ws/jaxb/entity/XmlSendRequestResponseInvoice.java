@@ -12,13 +12,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import tech.lapsa.java.jaxb.adapter.XmlURIAdapter;
 
-@XmlRootElement(name = "sendRequestResult")
+@XmlRootElement(name = "sendRequestResponseInvoice")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlSendRequestResultInfo extends XmlSendRequestResultShort {
-    private static final long serialVersionUID = -5641687980684467014L;
-
-    @XmlAttribute
-    protected Integer requestId;
+public class XmlSendRequestResponseInvoice extends XmlSendRequestResponseFull {
+    private static final long serialVersionUID = 1L;
 
     @XmlAttribute
     protected String invoiceId;
@@ -27,36 +24,26 @@ public class XmlSendRequestResultInfo extends XmlSendRequestResultShort {
     @XmlJavaTypeAdapter(XmlURIAdapter.class)
     protected URI paymentLink;
 
-    public XmlSendRequestResultInfo() {
+    public XmlSendRequestResponseInvoice() {
     }
 
-    public XmlSendRequestResultInfo(String message, Integer requestId, String ebillId, URI paymentLink) {
+    public XmlSendRequestResponseInvoice(String message) {
 	super(message);
-	this.requestId = requestId;
+    }
+
+    public XmlSendRequestResponseInvoice(String message, Integer requestId) {
+	super(message, requestId);
+    }
+
+    public XmlSendRequestResponseInvoice(String message, Integer requestId, String ebillId, URI paymentLink) {
+	super(message, requestId);
 	this.invoiceId = ebillId;
 	this.paymentLink = paymentLink;
-    }
-
-    public XmlSendRequestResultInfo(String message, Integer requestId) {
-	super(message);
-	this.requestId = requestId;
-    }
-
-    public XmlSendRequestResultInfo(String message) {
-	super(message);
     }
 
     @Override
     public String toString() {
 	return ToStringBuilder.reflectionToString(this, Constants.DEFAULT_TO_STRING_STYLE);
-    }
-
-    public Integer getRequestId() {
-	return requestId;
-    }
-
-    public void setRequestId(Integer requestId) {
-	this.requestId = requestId;
     }
 
     public String getInvoiceId() {

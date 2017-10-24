@@ -16,6 +16,7 @@ import com.lapsa.insurance.elements.InsuredExpirienceClass;
 import com.lapsa.insurance.validation.ValidInsuranceAgeClass;
 import com.lapsa.insurance.validation.ValidInsuranceClassType;
 import com.lapsa.insurance.validation.ValidInsuranceExpirienceClass;
+import com.lapsa.kz.idnumber.validators.ValidIdNumber;
 
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
 import tech.lapsa.javax.validation.NotNullValue;
@@ -23,8 +24,12 @@ import tech.lapsa.javax.validation.NotNullValue;
 @XmlRootElement(name = "policyDriver")
 @XmlAccessorType(XmlAccessType.FIELD)
 @PolicyDriverSettingsValid
-public class XmlPolicyDriverInfo extends XmlPolicyDriverShort implements Serializable {
+public class XmlPolicyDriverInfo implements Serializable {
     private static final long serialVersionUID = -87503763058281542L;
+
+    @XmlAttribute
+    @ValidIdNumber
+    protected String idNumber;
 
     @XmlAttribute
     @NotNullValue
@@ -52,18 +57,18 @@ public class XmlPolicyDriverInfo extends XmlPolicyDriverShort implements Seriali
     }
 
     public XmlPolicyDriverInfo(String idNumber) {
-	super(idNumber);
+	this.idNumber = idNumber;
     }
 
     public XmlPolicyDriverInfo(String idNumber, InsuranceClassType insuranceClass, XmlPersonalData personal) {
-	super(idNumber);
+	this(idNumber);
 	this.insuranceClass = insuranceClass;
 	this.personal = personal;
     }
 
     public XmlPolicyDriverInfo(String idNumber, InsuranceClassType insuranceClass, InsuredAgeClass ageClass,
 	    InsuredExpirienceClass expirienceClass, Boolean privileger, XmlPersonalData personal) {
-	super(idNumber);
+	this(idNumber);
 	this.insuranceClass = insuranceClass;
 	this.ageClass = ageClass;
 	this.expirienceClass = expirienceClass;
@@ -114,5 +119,13 @@ public class XmlPolicyDriverInfo extends XmlPolicyDriverShort implements Seriali
 
     public void setPrivileger(Boolean privileger) {
 	this.privileger = privileger;
+    }
+
+    public String getIdNumber() {
+	return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+	this.idNumber = idNumber;
     }
 }

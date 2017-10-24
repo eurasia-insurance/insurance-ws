@@ -9,19 +9,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-@XmlRootElement(name = "sendRequestResultShort")
+import com.lapsa.kz.idnumber.validators.ValidIdNumber;
+
+@XmlRootElement(name = "fetchPolicyDriver")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlSendRequestResultShort implements Serializable {
-    private static final long serialVersionUID = 4876311519054938134L;
+public class XmlFetchPolicyDriver implements Serializable {
+    private static final long serialVersionUID = 5729187347066360575L;
 
     @XmlAttribute
-    protected String message;
+    @ValidIdNumber
+    protected String idNumber;
 
-    public XmlSendRequestResultShort() {
+    public XmlFetchPolicyDriver() {
     }
 
-    public XmlSendRequestResultShort(String message) {
-	this.message = message;
+    public XmlFetchPolicyDriver(String idNumber) {
+	this.idNumber = idNumber;
     }
 
     @Override
@@ -29,12 +32,12 @@ public class XmlSendRequestResultShort implements Serializable {
 	return ToStringBuilder.reflectionToString(this, Constants.DEFAULT_TO_STRING_STYLE);
     }
 
-    public String getMessage() {
-	return message;
+    public String getIdNumber() {
+	return idNumber;
     }
 
-    public void setMessage(String message) {
-	this.message = message;
+    public void setIdNumber(String idNumber) {
+	this.idNumber = idNumber;
     }
 
 }

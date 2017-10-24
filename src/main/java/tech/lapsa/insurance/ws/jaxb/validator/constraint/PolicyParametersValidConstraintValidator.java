@@ -9,19 +9,19 @@ import com.lapsa.insurance.domain.policy.Policy;
 
 import tech.lapsa.insurance.calculation.CalculationFailed;
 import tech.lapsa.insurance.calculation.PolicyCalculation;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyShort;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyParametersValid;
 import tech.lapsa.insurance.ws.rs.app.WrongArgumentException;
 
 public class PolicyParametersValidConstraintValidator
-	implements ConstraintValidator<PolicyParametersValid, XmlPolicyShort> {
+	implements ConstraintValidator<PolicyParametersValid, XmlFetchPolicy> {
 
     @Override
     public void initialize(PolicyParametersValid constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(XmlPolicyShort value, ConstraintValidatorContext context) {
+    public boolean isValid(XmlFetchPolicy value, ConstraintValidatorContext context) {
 	if (value == null)
 	    return true;
 

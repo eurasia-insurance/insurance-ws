@@ -28,10 +28,9 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPaymentInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPeriodInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPersonalData;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverShort;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyShort;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequesterInfo;
@@ -79,14 +78,14 @@ public class ConverterUtil {
 	return response;
     }
 
-    public static XmlPolicyInfo convertPolicyShortToFull(XmlPolicyShort request) {
+    public static XmlPolicyInfo convertPolicyShortToFull(XmlFetchPolicy request) {
 	XmlPolicyInfo response = new XmlPolicyInfo(Arrays.copyOf(request.getDrivers(), request.getDrivers().length),
 		Arrays.copyOf(request.getVehicles(), request.getVehicles().length), request.getPeriod(),
 		null);
 	return response;
     }
 
-    public static Policy convertPolicyShort(XmlPolicyShort request) throws WrongArgumentException {
+    public static Policy convertPolicyShort(XmlFetchPolicy request) throws WrongArgumentException {
 	Policy response = new Policy();
 	processConversionPolicyShort(request, response);
 	return response;
@@ -134,14 +133,12 @@ public class ConverterUtil {
 
     public static XmlPolicyDriverInfo convertXmlPolicyDriver(PolicyDriver request) {
 	XmlPolicyDriverInfo response = new XmlPolicyDriverInfo();
-	processConversionXmlPolicyDriverShort(request, response);
 	processConversionXmlPolicyDriverInfo(request, response);
 	return response;
     }
 
     public static XmlPolicyVehicleInfo convertXmlPolicyVehicle(PolicyVehicle request) {
 	XmlPolicyVehicleInfo response = new XmlPolicyVehicleInfo();
-	processConversionXmlPolicyVehicleShort(request, response);
 	processConversionXmlPolicyVehicleInfo(request, response);
 	return response;
     }
@@ -211,7 +208,7 @@ public class ConverterUtil {
 	response.getCalculation().setPremiumCurrency(FinCurrency.KZT);
     }
 
-    private static void processConversionPolicyShort(XmlPolicyShort request, Policy response)
+    private static void processConversionPolicyShort(XmlFetchPolicy request, Policy response)
 	    throws WrongArgumentException {
 	for (XmlPolicyDriverInfo driver : request.getDrivers())
 	    response.addDriver(convertDriver(driver));
@@ -250,9 +247,19 @@ public class ConverterUtil {
     }
 
     private static void processConversionXmlPolicyVehicleInfo(PolicyVehicle request, XmlPolicyVehicleInfo response) {
-	response.setAgeClass(request.getVehicleAgeClass());
-	response.setArea(response.getArea());
-	response.setTypeClass(request.getVehicleClass());
+
+	MyOptionals.of(request.getCertificateData()) //
+		.map(VehicleCertificateData::getRegistrationNumber) //
+		.ifPresent(response::setRegNumber);
+
+	MyOptionals.of(request.getVehicleAgeClass()) //
+		.ifPresent(response::setAgeClass);
+
+	MyOptionals.of(request.getVehicleClass()) //
+		.ifPresent(response::setTypeClass);
+
+	MyOptionals.of(request.getArea()) //
+		.ifPresent(response::setArea);
 
 	MyOptionals.of(request.getFullName()) //
 		.ifPresent(response::setName);
@@ -268,22 +275,13 @@ public class ConverterUtil {
 		.ifPresent(response::setMajorCity);
     }
 
-    private static void processConversionXmlPolicyVehicleShort(PolicyVehicle request, XmlPolicyVehicleInfo response) {
-	MyOptionals.of(request.getCertificateData()) //
-		.map(VehicleCertificateData::getRegistrationNumber) //
-		.ifPresent(response::setRegNumber);
-    }
-
     private static void processConversionXmlPolicyDriverInfo(PolicyDriver request, XmlPolicyDriverInfo response) {
+	response.setIdNumber(request.getIdNumber());
 	response.setAgeClass(request.getAgeClass());
 	response.setExpirienceClass(request.getExpirienceClass());
 	response.setInsuranceClass(request.getInsuranceClassType());
 	XmlPersonalData personalData = convertXmlPersonalData(request.getPersonalData());
 	response.setPersonal(personalData);
 	response.setPrivileger(request.isHasAnyPrivilege());
-    }
-
-    private static void processConversionXmlPolicyDriverShort(Driver request, XmlPolicyDriverShort response) {
-	response.setIdNumber(request.getIdNumber());
     }
 }

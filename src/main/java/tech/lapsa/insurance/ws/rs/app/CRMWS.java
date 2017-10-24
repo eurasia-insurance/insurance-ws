@@ -25,8 +25,9 @@ import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResultInfo;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResultShort;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponseFull;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponseInvoice;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponse;
 import tech.lapsa.javax.validation.NotNullValue;
 
 @Path("/crm")
@@ -49,7 +50,7 @@ public class CRMWS extends ALanguageDetectorWS {
 
     private Response sendPolicyRequest(XmlPolicyRequestInfo request) {
 	try {
-	    XmlSendRequestResultShort reply = _sendPolicyRequest(request);
+	    XmlSendRequestResponse reply = _sendPolicyRequest(request);
 	    return responseOk(reply, getLocaleOrDefault());
 	} catch (WrongArgumentException e) {
 	    return responseBadRequest(e.getMessage(), getLocaleOrDefault());
@@ -61,11 +62,11 @@ public class CRMWS extends ALanguageDetectorWS {
     @Inject
     private InsuranceRequestFacade insuranceRequestFacade;
 
-    private XmlSendRequestResultShort _sendPolicyRequest(XmlPolicyRequestInfo request)
+    private XmlSendRequestResponse _sendPolicyRequest(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, ServerException {
 	PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
 	insuranceRequestFacade.accept(policy);
-	return new XmlSendRequestResultShort(DEFAULT_SUCCESS_MESSAGE);
+	return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
     }
 
     @POST
@@ -76,7 +77,7 @@ public class CRMWS extends ALanguageDetectorWS {
 
     private Response sendPolicyRequestAndReply(XmlPolicyRequestInfo request) {
 	try {
-	    XmlSendRequestResultInfo reply = _sendPolicyRequestAndReply(request);
+	    XmlSendRequestResponseFull reply = _sendPolicyRequestAndReply(request);
 	    return responseOk(reply, getLocaleOrDefault());
 	} catch (WrongArgumentException e) {
 	    return responseBadRequest(e.getMessage(), getLocaleOrDefault());
@@ -88,15 +89,19 @@ public class CRMWS extends ALanguageDetectorWS {
     @Inject
     private PaymentsFacade payments;
 
-    private XmlSendRequestResultInfo _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
+    private XmlSendRequestResponseFull _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, ServerException {
 	PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
 	PolicyRequest saved = insuranceRequestFacade.acceptAndReply(policy);
-	XmlSendRequestResultInfo reply = new XmlSendRequestResultInfo(DEFAULT_SUCCESS_MESSAGE, saved.getId());
+
+	XmlSendRequestResponseFull reply;
 	if (saved.getPayment() != null && saved.getPayment().getMethod() == PaymentMethod.PAYCARD_ONLINE) {
 	    String invoiceId = saved.getPayment().getExternalId();
-	    reply.setInvoiceId(invoiceId);
-	    reply.setPaymentLink(payments.getPaymentURI(invoiceId));
+	    reply = new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE, saved.getId(), invoiceId,
+		    payments.getPaymentURI(invoiceId));
+	} else {
+	    reply = new XmlSendRequestResponseFull(DEFAULT_SUCCESS_MESSAGE, saved.getId());
+
 	}
 	return reply;
     }
@@ -109,7 +114,7 @@ public class CRMWS extends ALanguageDetectorWS {
 
     private Response sendCallbackRequest(XmlCallbackRequestInfo request) {
 	try {
-	    XmlSendRequestResultShort reply = _sendCallbackRequest(request);
+	    XmlSendRequestResponse reply = _sendCallbackRequest(request);
 	    return responseOk(reply, getLocaleOrDefault());
 	} catch (WrongArgumentException e) {
 	    return responseBadRequest(e.getMessage(), getLocaleOrDefault());
@@ -121,11 +126,11 @@ public class CRMWS extends ALanguageDetectorWS {
     @Inject
     private CallbackRequestFacade callbackRequestFacade;
 
-    private XmlSendRequestResultShort _sendCallbackRequest(XmlCallbackRequestInfo request)
+    private XmlSendRequestResponse _sendCallbackRequest(XmlCallbackRequestInfo request)
 	    throws WrongArgumentException, ServerException {
 	CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
 	callbackRequestFacade.accept(callback);
-	return new XmlSendRequestResultShort(DEFAULT_SUCCESS_MESSAGE);
+	return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
     }
 
     @POST
@@ -136,7 +141,7 @@ public class CRMWS extends ALanguageDetectorWS {
 
     private Response sendCallbackRequestSync(XmlCallbackRequestInfo request) {
 	try {
-	    XmlSendRequestResultInfo reply = _sendCallbackRequestAndReply(request);
+	    XmlSendRequestResponseFull reply = _sendCallbackRequestAndReply(request);
 	    return responseOk(reply, getLocaleOrDefault());
 	} catch (WrongArgumentException e) {
 	    return responseBadRequest(e.getMessage(), getLocaleOrDefault());
@@ -145,10 +150,10 @@ public class CRMWS extends ALanguageDetectorWS {
 	}
     }
 
-    private XmlSendRequestResultInfo _sendCallbackRequestAndReply(XmlCallbackRequestInfo request)
+    private XmlSendRequestResponseFull _sendCallbackRequestAndReply(XmlCallbackRequestInfo request)
 	    throws WrongArgumentException, ServerException {
 	CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
 	CallbackRequest reply = callbackRequestFacade.acceptAndReply(callback);
-	return new XmlSendRequestResultInfo(DEFAULT_SUCCESS_MESSAGE, reply.getId());
+	return new XmlSendRequestResponseFull(DEFAULT_SUCCESS_MESSAGE, reply.getId());
     }
 }

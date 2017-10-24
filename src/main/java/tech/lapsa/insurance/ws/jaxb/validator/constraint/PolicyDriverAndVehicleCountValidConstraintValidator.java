@@ -3,18 +3,18 @@ package tech.lapsa.insurance.ws.jaxb.validator.constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyShort;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverAndVehicleCountValid;
 
 public class PolicyDriverAndVehicleCountValidConstraintValidator
-	implements ConstraintValidator<PolicyDriverAndVehicleCountValid, XmlPolicyShort> {
+	implements ConstraintValidator<PolicyDriverAndVehicleCountValid, XmlFetchPolicy> {
 
     @Override
     public void initialize(PolicyDriverAndVehicleCountValid constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(XmlPolicyShort value, ConstraintValidatorContext context) {
+    public boolean isValid(XmlFetchPolicy value, ConstraintValidatorContext context) {
 	if (value == null)
 	    return true;
 
