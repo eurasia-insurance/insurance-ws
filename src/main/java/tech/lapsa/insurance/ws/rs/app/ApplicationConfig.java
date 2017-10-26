@@ -14,8 +14,8 @@ import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.server.TracingConfig;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
-import tech.lapsa.insurance.ws.rs.provider.ApplicationParamConverterProvider;
 import tech.lapsa.insurance.ws.rs.provider.JacksonObjectMapperProvider;
+import tech.lapsa.javax.rs.params.ApplicationParamConverterProvider;
 import tech.lapsa.javax.rs.security.AutheniticationFilterProvider;
 import tech.lapsa.payara.jersey.localization.ValidationMessagesLocalizationProvider;
 
@@ -31,10 +31,12 @@ public class ApplicationConfig extends Application {
 	classes = Stream.<Class<?>> builder() //
 		.add(JacksonFeature.class) //
 		.add(JacksonObjectMapperProvider.class) //
+		.add(RolesAllowedDynamicFeature.class) //
+
+		.add(ValidationMessagesLocalizationProvider.class) //
+
 		.add(ApplicationParamConverterProvider.class) //
 		.add(AutheniticationFilterProvider.class) //
-		.add(RolesAllowedDynamicFeature.class) //
-		.add(ValidationMessagesLocalizationProvider.class) //
 
 		// permitted
 		.add(SamplesWS.class) //
