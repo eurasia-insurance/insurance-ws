@@ -26,7 +26,10 @@ public class PolicyDriverSettingsValidConstraintValidator
 
 	PolicyDriver fetched = BeanUtils.lookup(PolicyDriverFacade.class) //
 		.orElseThrow(() -> new ValidationException("Cannot find an instance of " + PolicyDriverFacade.class)) //
-		.fetchByIdNumber(value.getIdNumber());
+		.fetchByIdNumber(value.getIdNumber()).orElse(null);
+
+	if (fetched == null)
+	    return false;
 
 	if (value.getInsuranceClass() != null && value.getInsuranceClass() != fetched.getInsuranceClassType())
 	    return invalid(context, ValidationMessages.POLICY_DRIVER_SETTINGS_VALID_INVALID_CLASS);
