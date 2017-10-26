@@ -6,10 +6,14 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.lapsa.kz.idnumber.validators.ValidIdNumber;
+import tech.lapsa.javax.validation.NotNullValue;
+import tech.lapsa.kz.taxpayer.TaxpayerNumber;
+import tech.lapsa.kz.taxpayer.converter.jaxb.XmlTaxpayerNumberAdapter;
+import tech.lapsa.kz.taxpayer.validators.ValidTaxpayerNumber;
 
 @XmlRootElement(name = "fetchPolicyDriver")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -17,13 +21,15 @@ public class XmlFetchPolicyDriver implements Serializable {
     private static final long serialVersionUID = 5729187347066360575L;
 
     @XmlAttribute
-    @ValidIdNumber
-    protected String idNumber;
+    @XmlJavaTypeAdapter(XmlTaxpayerNumberAdapter.class)
+    @NotNullValue
+    @ValidTaxpayerNumber
+    protected TaxpayerNumber idNumber;
 
     public XmlFetchPolicyDriver() {
     }
 
-    public XmlFetchPolicyDriver(String idNumber) {
+    public XmlFetchPolicyDriver(TaxpayerNumber idNumber) {
 	this.idNumber = idNumber;
     }
 
@@ -32,11 +38,11 @@ public class XmlFetchPolicyDriver implements Serializable {
 	return ToStringBuilder.reflectionToString(this, Constants.DEFAULT_TO_STRING_STYLE);
     }
 
-    public String getIdNumber() {
+    public TaxpayerNumber getIdNumber() {
 	return idNumber;
     }
 
-    public void setIdNumber(String idNumber) {
+    public void setIdNumber(TaxpayerNumber idNumber) {
 	this.idNumber = idNumber;
     }
 

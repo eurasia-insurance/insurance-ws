@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -16,10 +17,12 @@ import com.lapsa.insurance.elements.InsuredExpirienceClass;
 import com.lapsa.insurance.validation.ValidInsuranceAgeClass;
 import com.lapsa.insurance.validation.ValidInsuranceClassType;
 import com.lapsa.insurance.validation.ValidInsuranceExpirienceClass;
-import com.lapsa.kz.idnumber.validators.ValidIdNumber;
 
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
 import tech.lapsa.javax.validation.NotNullValue;
+import tech.lapsa.kz.taxpayer.TaxpayerNumber;
+import tech.lapsa.kz.taxpayer.converter.jaxb.XmlTaxpayerNumberAdapter;
+import tech.lapsa.kz.taxpayer.validators.ValidTaxpayerNumber;
 
 @XmlRootElement(name = "policyDriver")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -28,8 +31,9 @@ public class XmlPolicyDriverInfo implements Serializable {
     private static final long serialVersionUID = -87503763058281542L;
 
     @XmlAttribute
-    @ValidIdNumber
-    protected String idNumber;
+    @XmlJavaTypeAdapter(XmlTaxpayerNumberAdapter.class)
+    @ValidTaxpayerNumber
+    protected TaxpayerNumber idNumber;
 
     @XmlAttribute
     @NotNullValue
@@ -56,17 +60,17 @@ public class XmlPolicyDriverInfo implements Serializable {
     public XmlPolicyDriverInfo() {
     }
 
-    public XmlPolicyDriverInfo(String idNumber) {
+    public XmlPolicyDriverInfo(TaxpayerNumber idNumber) {
 	this.idNumber = idNumber;
     }
 
-    public XmlPolicyDriverInfo(String idNumber, InsuranceClassType insuranceClass, XmlPersonalData personal) {
+    public XmlPolicyDriverInfo(TaxpayerNumber idNumber, InsuranceClassType insuranceClass, XmlPersonalData personal) {
 	this(idNumber);
 	this.insuranceClass = insuranceClass;
 	this.personal = personal;
     }
 
-    public XmlPolicyDriverInfo(String idNumber, InsuranceClassType insuranceClass, InsuredAgeClass ageClass,
+    public XmlPolicyDriverInfo(TaxpayerNumber idNumber, InsuranceClassType insuranceClass, InsuredAgeClass ageClass,
 	    InsuredExpirienceClass expirienceClass, Boolean privileger, XmlPersonalData personal) {
 	this(idNumber);
 	this.insuranceClass = insuranceClass;
@@ -121,11 +125,11 @@ public class XmlPolicyDriverInfo implements Serializable {
 	this.privileger = privileger;
     }
 
-    public String getIdNumber() {
+    public TaxpayerNumber getIdNumber() {
 	return idNumber;
     }
 
-    public void setIdNumber(String idNumber) {
+    public void setIdNumber(TaxpayerNumber idNumber) {
 	this.idNumber = idNumber;
     }
 }

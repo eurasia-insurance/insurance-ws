@@ -24,10 +24,12 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequesterInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlUTMInfo;
+import tech.lapsa.kz.taxpayer.TaxpayerNumber;
 
 public class SamplesUtil {
     public static XmlPolicyDriverInfo driverSample() {
-	XmlPolicyDriverInfo sample = new XmlPolicyDriverInfo("811203400953", InsuranceClassType.CLASS_10,
+	XmlPolicyDriverInfo sample = new XmlPolicyDriverInfo(TaxpayerNumber.of("811203400953"),
+		InsuranceClassType.CLASS_10,
 		InsuredAgeClass.OVER25, InsuredExpirienceClass.LESS2, false,
 		new XmlPersonalData("Иван", "Иванов", "Иванович", LocalDate.of(1976, 4, 1)));
 	return sample;
