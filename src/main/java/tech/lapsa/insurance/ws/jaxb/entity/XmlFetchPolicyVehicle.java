@@ -6,10 +6,13 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import tech.lapsa.javax.validation.NotNullValue;
+import tech.lapsa.kz.vehicle.VehicleRegNumber;
+import tech.lapsa.kz.vehicle.converter.jaxb.XmlVehicleRegNumberAdapter;
 import tech.lapsa.kz.vehicle.validators.ValidVehicleRegNumber;
 
 @XmlRootElement(name = "fetchPolicyVehicle")
@@ -19,13 +22,14 @@ public class XmlFetchPolicyVehicle implements Serializable {
 
     @XmlAttribute
     @NotNullValue
+    @XmlJavaTypeAdapter(XmlVehicleRegNumberAdapter.class)
     @ValidVehicleRegNumber
-    protected String regNumber;
+    protected VehicleRegNumber regNumber;
 
     public XmlFetchPolicyVehicle() {
     }
 
-    public XmlFetchPolicyVehicle(String regNumber) {
+    public XmlFetchPolicyVehicle(VehicleRegNumber regNumber) {
 	this.regNumber = regNumber;
     }
 
@@ -34,11 +38,11 @@ public class XmlFetchPolicyVehicle implements Serializable {
 	return ToStringBuilder.reflectionToString(this, Constants.DEFAULT_TO_STRING_STYLE);
     }
 
-    public String getRegNumber() {
+    public VehicleRegNumber getRegNumber() {
 	return regNumber;
     }
 
-    public void setRegNumber(String regNumber) {
+    public void setRegNumber(VehicleRegNumber regNumber) {
 	this.regNumber = regNumber;
     }
 }

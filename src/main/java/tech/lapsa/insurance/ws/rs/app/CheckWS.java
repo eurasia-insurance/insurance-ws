@@ -18,9 +18,12 @@ import com.lapsa.international.internet.validators.ValidEmail;
 import com.lapsa.international.phone.PhoneFormatException;
 import com.lapsa.international.phone.PhoneNumber;
 import com.lapsa.international.phone.validators.ValidPhoneNumber;
-import com.lapsa.kz.idnumber.validators.ValidIdNumber;
 
 import tech.lapsa.javax.validation.NotNullValue;
+import tech.lapsa.kz.taxpayer.TaxpayerNumber;
+import tech.lapsa.kz.taxpayer.validators.ValidTaxpayerNumber;
+import tech.lapsa.kz.vehicle.VehicleRegNumber;
+import tech.lapsa.kz.vehicle.validators.ValidVehicleRegNumber;
 
 @Path("/check")
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -28,27 +31,53 @@ import tech.lapsa.javax.validation.NotNullValue;
 @Singleton
 public class CheckWS extends ALanguageDetectorWS {
 
+    @Deprecated
     @GET
-    @Path("/phone/{phone}")
+    @Path("/phone/{phoneNumber}")
     public Response testPhoneGET(
-	    @NotNullValue @ValidPhoneNumber @PathParam("phone") PhoneNumber phone) {
-	return _testPhone(phone);
-    }
-
-    private Response _testPhone(PhoneNumber phone) {
-	return responseOk(phone, getLocaleOrDefault());
+	    @NotNullValue @ValidPhoneNumber @PathParam("phoneNumber") PhoneNumber phoneNumber) {
+	return _testPhoneNumber(phoneNumber);
     }
 
     @GET
-    @Path("/idNumber/{idNumber}")
-    public Response testIdNumberGET(@NotNullValue @ValidIdNumber @PathParam("idNumber") String idNumber) {
-	return _testIdNumber(idNumber);
+    @Path("/phoneNumber/{phoneNumber}")
+    public Response testPhoneNumberGET(
+	    @NotNullValue @ValidPhoneNumber @PathParam("phoneNumber") PhoneNumber phoneNumber) {
+	return _testPhoneNumber(phoneNumber);
     }
 
-    protected Response _testIdNumber(String idNumber) {
-	Map<String, Object> response = new HashMap<>();
-	response.put("idNumber", idNumber);
-	return responseOk(response, getLocaleOrDefault());
+    private Response _testPhoneNumber(PhoneNumber phoneNumber) {
+	return responseOk(phoneNumber, getLocaleOrDefault());
+    }
+
+    @Deprecated
+    @GET
+    @Path("/idNumber/{taxpayerNumber}")
+    public Response testIdNumberGET(
+	    @NotNullValue @ValidTaxpayerNumber @PathParam("taxpayerNumber") TaxpayerNumber taxpayerNumber) {
+	return _testTaxpayerNumber(taxpayerNumber);
+    }
+
+    @GET
+    @Path("/taxpayerNumber/{taxpayerNumber}")
+    public Response checkTaxpayerNumberGET(
+	    @NotNullValue @ValidTaxpayerNumber @PathParam("taxpayerNumber") TaxpayerNumber taxpayerNumber) {
+	return _testTaxpayerNumber(taxpayerNumber);
+    }
+
+    protected Response _testTaxpayerNumber(TaxpayerNumber taxpayerNumber) {
+	return responseOk(taxpayerNumber, getLocaleOrDefault());
+    }
+
+    @GET
+    @Path("/vehicleRegNumber/{vehicleRegNumber}")
+    public Response checkTaxpayerNumberGET(
+	    @NotNullValue @ValidVehicleRegNumber @PathParam("vehicleRegNumber") VehicleRegNumber vehicleRegNumber) {
+	return _testVehicleRegNumber(vehicleRegNumber);
+    }
+
+    protected Response _testVehicleRegNumber(VehicleRegNumber vehicleRegNumber) {
+	return responseOk(vehicleRegNumber, getLocaleOrDefault());
     }
 
     @GET

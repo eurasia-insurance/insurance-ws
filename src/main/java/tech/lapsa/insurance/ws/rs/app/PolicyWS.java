@@ -3,8 +3,6 @@ package tech.lapsa.insurance.ws.rs.app;
 import static tech.lapsa.insurance.ws.rs.app.ConverterUtil.*;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
-import java.util.NoSuchElementException;
-
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -25,12 +23,12 @@ import tech.lapsa.insurance.calculation.PolicyCalculation;
 import tech.lapsa.insurance.facade.PolicyDriverFacade;
 import tech.lapsa.insurance.facade.PolicyVehicleFacade;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicyDriver;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicyDriver;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicyVehicle;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
 import tech.lapsa.javax.validation.NotNullValue;
 
 @Path("/policy")
@@ -62,7 +60,7 @@ public class PolicyWS extends ALanguageDetectorWS {
 
     private XmlPolicyDriverInfo _fetchDriver(XmlFetchPolicyDriver request)
 	    throws WrongArgumentException, ServerException {
-	PolicyDriver driver = driverFacade.fetchByIdNumber(request.getIdNumber());
+	PolicyDriver driver = driverFacade.getByTaxpayerNumberOrDefault(request.getIdNumber());
 	XmlPolicyDriverInfo response = ConverterUtil.convertXmlPolicyDriver(driver);
 	return response;
     }
@@ -89,13 +87,9 @@ public class PolicyWS extends ALanguageDetectorWS {
 
     private XmlPolicyVehicleInfo _fetchVehicle(XmlFetchPolicyVehicle request)
 	    throws WrongArgumentException, ServerException {
-	try {
-	    PolicyVehicle vehicle = vehicleFacade.fetchByRegNumber(request.getRegNumber()).iterator().next();
-	    XmlPolicyVehicleInfo response = ConverterUtil.convertXmlPolicyVehicle(vehicle);
-	    return response;
-	} catch (NoSuchElementException e) {
-	    return new XmlPolicyVehicleInfo(request.getRegNumber());
-	}
+	PolicyVehicle vehicle = vehicleFacade.getByRegNumberOrDefault(request.getRegNumber());
+	XmlPolicyVehicleInfo response = ConverterUtil.convertXmlPolicyVehicle(vehicle);
+	return response;
     }
 
     @POST

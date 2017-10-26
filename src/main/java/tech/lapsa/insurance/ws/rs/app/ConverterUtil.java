@@ -36,7 +36,6 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequesterInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlUTMInfo;
 import tech.lapsa.java.commons.function.MyOptionals;
-import tech.lapsa.kz.vehicle.VehicleRegNumber;
 
 public class ConverterUtil {
 
@@ -251,7 +250,6 @@ public class ConverterUtil {
 
 	MyOptionals.of(request.getCertificateData()) //
 		.map(VehicleCertificateData::getRegistrationNumber) //
-		.map(VehicleRegNumber::getNumber) //
 		.ifPresent(response::setRegNumber);
 
 	MyOptionals.of(request.getVehicleAgeClass()) //
@@ -282,7 +280,8 @@ public class ConverterUtil {
     }
 
     private static void processConversionXmlPolicyDriverInfo(PolicyDriver request, XmlPolicyDriverInfo response) {
-	response.setIdNumber(request.getIdNumber());
+	MyOptionals.of(request.getIdNumber())
+		.ifPresent(response::setIdNumber);
 	response.setAgeClass(request.getAgeClass());
 	response.setExpirienceClass(request.getExpirienceClass());
 	response.setInsuranceClass(request.getInsuranceClassType());
