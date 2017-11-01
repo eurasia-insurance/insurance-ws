@@ -17,10 +17,10 @@ import com.lapsa.insurance.validation.ValidPolicyVehicleClass;
 import com.lapsa.kz.country.KZArea;
 import com.lapsa.kz.country.validators.ValidKZArea;
 
+import tech.lapsa.insurance.ws.jaxb.adapter.XmlVehicleRegNumberAdapter;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid;
 import tech.lapsa.javax.validation.NotNullValue;
 import tech.lapsa.kz.vehicle.VehicleRegNumber;
-import tech.lapsa.kz.vehicle.converter.jaxb.XmlVehicleRegNumberAdapter;
 import tech.lapsa.kz.vehicle.validators.ValidVehicleRegNumber;
 
 @XmlRootElement(name = "policyVehicle")
