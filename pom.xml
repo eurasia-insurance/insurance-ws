@@ -33,6 +33,14 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- oldies -->
+			<dependency>
+				<groupId>com.lapsa.insurance-lib</groupId>
+				<artifactId>insurance-root</artifactId>
+				<version>${insurance-lib.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<!-- BOMS -->
 			<dependency>
 				<groupId>tech.lapsa.javax</groupId>
@@ -91,14 +99,6 @@
 				<artifactId>insurance-calculation</artifactId>
 				<version>${insurance-calculation.version}</version>
 			</dependency>
-			<!-- oldies -->
-			<dependency>
-				<groupId>com.lapsa.insurance-lib</groupId>
-				<artifactId>insurance-root</artifactId>
-				<version>${insurance-lib.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -156,9 +156,21 @@
 		<dependency>
 			<groupId>com.lapsa.insurance-lib</groupId>
 			<artifactId>insurance-domain</artifactId>
+			<!-- patching >> -->
+			<version>2.3.1</version>
+			<!-- << patching -->
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
+		<!-- patching >> -->
+		<dependency>
+			<groupId>com.lapsa.kz-lib</groupId>
+			<artifactId>kz-core</artifactId>
+			<version>3.1.1</version>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<!-- << patching -->
 		<!-- JavaEE -->
 		<dependency>
 			<groupId>javax.enterprise</groupId>

@@ -81,7 +81,7 @@ public class POSWS extends ALanguageDetectorWS {
 	for (KZCity kzc : order) {
 	    XmlPOSCity city = new XmlPOSCity();
 	    result.add(city);
-	    city.setName(kzc.regular(language.getLocale()));
+	    city.setName(kzc.few(language.getLocale()));
 
 	    {
 		List<XmlPOS> list1 = new ArrayList<>();
@@ -90,7 +90,7 @@ public class POSWS extends ALanguageDetectorWS {
 		    list1.add(pos);
 		    pos.setId(cpos.getId());
 		    pos.setName(cpos.few(language.getLocale()));
-		    pos.setAddress(cpos.regular(language.getLocale()));
+		    pos.setAddress(cpos.getAddress().few(language.getLocale()));
 		    pos.setDeliveryServiceEnable(cpos.isDeliveryServicesAvailable());
 		    pos.setPickupServiceAvailable(cpos.isPickupAvailable());
 
