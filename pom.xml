@@ -28,11 +28,19 @@
 		<insurance-calculation.version>1.0</insurance-calculation.version>
 		<insurance-facade.version>1.0</insurance-facade.version>
 		<!-- oldies -->
-		<insurance-lib.version>2.3</insurance-lib.version>
+		<insurance-lib.version>2.3.1-SNAPSHOT</insurance-lib.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- oldies -->
+			<dependency>
+				<groupId>com.lapsa.insurance-lib</groupId>
+				<artifactId>insurance-root</artifactId>
+				<version>${insurance-lib.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<!-- BOMS -->
 			<dependency>
 				<groupId>tech.lapsa.javax</groupId>
@@ -90,14 +98,6 @@
 				<groupId>tech.lapsa.insurance</groupId>
 				<artifactId>insurance-calculation</artifactId>
 				<version>${insurance-calculation.version}</version>
-			</dependency>
-			<!-- oldies -->
-			<dependency>
-				<groupId>com.lapsa.insurance-lib</groupId>
-				<artifactId>insurance-root</artifactId>
-				<version>${insurance-lib.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
