@@ -25,10 +25,10 @@
 		<javax-validation-commons.version>1.0</javax-validation-commons.version>
 		<payara-jersey-extensions.version>1.0</payara-jersey-extensions.version>
 		<payara-hibernate-validation.version>1.0</payara-hibernate-validation.version>
-		<insurance-calculation.version>1.0</insurance-calculation.version>
-		<insurance-facade.version>1.0</insurance-facade.version>
+		<insurance-calculation.version>1.1-SNAPSHOT</insurance-calculation.version>
+		<insurance-facade.version>1.1-SNAPSHOT</insurance-facade.version>
 		<!-- oldies -->
-		<insurance-lib.version>2.3</insurance-lib.version>
+		<insurance-lib.version>2.4-SNAPSHOT</insurance-lib.version>
 	</properties>
 
 	<dependencyManagement>
@@ -153,24 +153,6 @@
 			<optional>false</optional>
 		</dependency>
 		<!-- oldies -->
-		<dependency>
-			<groupId>com.lapsa.insurance-lib</groupId>
-			<artifactId>insurance-domain</artifactId>
-			<!-- patching >> -->
-			<version>2.3.1</version>
-			<!-- << patching -->
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<!-- patching >> -->
-		<dependency>
-			<groupId>com.lapsa.kz-lib</groupId>
-			<artifactId>kz-core</artifactId>
-			<version>3.1.1</version>
-			<scope>compile</scope>
-			<optional>false</optional>
-		</dependency>
-		<!-- << patching -->
 		<!-- JavaEE -->
 		<dependency>
 			<groupId>javax.enterprise</groupId>
