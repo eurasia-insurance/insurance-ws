@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -20,7 +19,6 @@ import com.lapsa.kz.country.validators.ValidKZArea;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid;
 import tech.lapsa.javax.validation.NotNullValue;
 import tech.lapsa.kz.vehicle.VehicleRegNumber;
-import tech.lapsa.kz.vehicle.converter.jaxb.XmlVehicleRegNumberAdapter;
 import tech.lapsa.kz.vehicle.validators.ValidVehicleRegNumber;
 
 @XmlRootElement(name = "policyVehicle")
@@ -53,7 +51,6 @@ public class XmlPolicyVehicleInfo implements Serializable {
     protected Boolean temporaryEntry;
 
     @XmlAttribute
-    @XmlJavaTypeAdapter(XmlVehicleRegNumberAdapter.class)
     @ValidVehicleRegNumber
     protected VehicleRegNumber regNumber;
 
