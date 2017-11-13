@@ -60,12 +60,12 @@ public class CRMWS extends ALanguageDetectorWS {
     }
 
     @Inject
-    private InsuranceRequestFacade insuranceRequestFacade;
+    private InsuranceRequestFacade insuranceRequests;
 
     private XmlSendRequestResponse _sendPolicyRequest(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, ServerException {
 	PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	insuranceRequestFacade.accept(policy);
+	insuranceRequests.accept(policy);
 	return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
     }
 
@@ -92,7 +92,7 @@ public class CRMWS extends ALanguageDetectorWS {
     private XmlSendRequestResponseFull _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, ServerException {
 	PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	PolicyRequest saved = insuranceRequestFacade.acceptAndReply(policy);
+	PolicyRequest saved = insuranceRequests.acceptAndReply(policy);
 
 	XmlSendRequestResponseFull reply;
 	if (saved.getPayment() != null && saved.getPayment().getMethod() == PaymentMethod.PAYCARD_ONLINE) {
