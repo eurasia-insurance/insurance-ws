@@ -11,7 +11,7 @@ import tech.lapsa.insurance.calculation.CalculationFailed;
 import tech.lapsa.insurance.calculation.PolicyCalculation;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyCostValid;
-import tech.lapsa.insurance.ws.rs.app.WrongArgumentException;
+import tech.lapsa.javax.rs.utility.WrongArgumentException;
 
 public class PolicyCostValidConstraintValidator implements ConstraintValidator<PolicyCostValid, XmlPolicyInfo> {
 
