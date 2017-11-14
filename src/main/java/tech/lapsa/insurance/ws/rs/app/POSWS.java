@@ -1,5 +1,6 @@
 package tech.lapsa.insurance.ws.rs.app;
 
+import static tech.lapsa.java.commons.function.MyExceptions.*;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class POSWS extends ALanguageDetectorWS {
 
     private Object all(LocalizationLanguage language) {
 
-	final List<CompanyPointOfSale> poses = posFacade.findAllOwnOffices();
+	final List<CompanyPointOfSale> poses = reThrowAsUnchecked(() -> posFacade.findAllOwnOffices());
 
 	List<KZCity> order = new ArrayList<>();
 	Map<KZCity, List<CompanyPointOfSale>> cityMap = new HashMap<>();
