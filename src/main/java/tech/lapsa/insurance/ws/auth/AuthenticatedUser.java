@@ -1,5 +1,7 @@
 package tech.lapsa.insurance.ws.auth;
 
+import static tech.lapsa.java.commons.function.MyExceptions.*;
+
 import java.security.Principal;
 
 import javax.enterprise.context.RequestScoped;
@@ -25,12 +27,12 @@ public class AuthenticatedUser {
 
     public void handleAuthenticationEvent(@Observes @QAuthenticatedUser String principalName) {
 	if (user == null)
-	    user = userFacade.findOrCreate(principalName);
+	    user = reThrowAsUnchecked(() -> userFacade.findOrCreate(principalName));
     }
 
     public void handleAuthenticationEvent(@Observes @QAuthenticatedUser Principal principal) {
 	if (user == null)
-	    user = userFacade.findOrCreate(principal);
+	    user = reThrowAsUnchecked(() -> userFacade.findOrCreate(principal));
     }
 
 }

@@ -1,5 +1,6 @@
 package tech.lapsa.insurance.ws.jaxb.validator.constraint;
 
+import static tech.lapsa.java.commons.function.MyExceptions.*;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.ValidationException;
@@ -24,9 +25,9 @@ public class PolicyDriverSettingsValidConstraintValidator
 	if (value == null)
 	    return true;
 
-	PolicyDriver fetched = BeanUtils.lookup(PolicyDriverFacade.class) //
+	PolicyDriver fetched = reThrowAsUnchecked(() -> BeanUtils.lookup(PolicyDriverFacade.class) //
 		.orElseThrow(() -> new ValidationException("Cannot find an instance of " + PolicyDriverFacade.class)) //
-		.fetchByIdNumber(value.getIdNumber()).orElse(null);
+		.fetchByIdNumber(value.getIdNumber()).orElse(null));
 
 	if (fetched == null)
 	    return false;
