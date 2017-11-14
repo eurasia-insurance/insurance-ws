@@ -36,6 +36,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequesterInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlUTMInfo;
 import tech.lapsa.java.commons.function.MyOptionals;
+import tech.lapsa.javax.rs.utility.WrongArgumentException;
 
 public class ConverterUtil {
 

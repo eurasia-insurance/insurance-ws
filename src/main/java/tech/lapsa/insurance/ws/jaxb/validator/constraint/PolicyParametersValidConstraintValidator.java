@@ -11,7 +11,7 @@ import tech.lapsa.insurance.calculation.CalculationFailed;
 import tech.lapsa.insurance.calculation.PolicyCalculation;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyParametersValid;
-import tech.lapsa.insurance.ws.rs.app.WrongArgumentException;
+import tech.lapsa.javax.rs.utility.WrongArgumentException;
 
 public class PolicyParametersValidConstraintValidator
 	implements ConstraintValidator<PolicyParametersValid, XmlFetchPolicy> {
@@ -42,8 +42,9 @@ public class PolicyParametersValidConstraintValidator
     }
 
     protected void exception(ConstraintValidatorContext context, Exception e) {
-//	context.disableDefaultConstraintViolation();
-//	context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate() + e.getLocalizedMessage())
-//		.addConstraintViolation();
+	// context.disableDefaultConstraintViolation();
+	// context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate()
+	// + e.getLocalizedMessage())
+	// .addConstraintViolation();
     }
 }

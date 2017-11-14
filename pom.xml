@@ -16,11 +16,12 @@
 
 	<properties>
 		<!-- BOMS -->
+		<java-commons.version>1.1-SNAPSHOT</java-commons.version>
 		<javax-javaee-bom.version>7.0</javax-javaee-bom.version>
 		<payara-bom.version>4.1.2-1</payara-bom.version>
 		<!-- tech -->
 		<java-jaxb-commons.version>1.0</java-jaxb-commons.version>
-		<javax-rs-commons.version>1.0</javax-rs-commons.version>
+		<javax-rs-commons.version>1.1-SNAPSHOT</javax-rs-commons.version>
 		<javax-cdi-commons.version>1.0</javax-cdi-commons.version>
 		<javax-validation-commons.version>1.0</javax-validation-commons.version>
 		<payara-jersey-extensions.version>1.0</payara-jersey-extensions.version>
@@ -33,11 +34,11 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- oldies -->
+			<!-- BOMS -->
 			<dependency>
-				<groupId>com.lapsa.insurance-lib</groupId>
-				<artifactId>insurance-root</artifactId>
-				<version>${insurance-lib.version}</version>
+				<groupId>tech.lapsa.java</groupId>
+				<artifactId>java-commons-root</artifactId>
+				<version>${java-commons.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -94,6 +95,15 @@
 				<artifactId>payara-hibernate-validation</artifactId>
 				<version>${payara-hibernate-validation.version}</version>
 			</dependency>
+			<!-- oldies -->
+			<dependency>
+				<groupId>com.lapsa.insurance-lib</groupId>
+				<artifactId>insurance-root</artifactId>
+				<version>${insurance-lib.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- tech -->
 			<dependency>
 				<groupId>tech.lapsa.insurance</groupId>
 				<artifactId>insurance-calculation</artifactId>
@@ -140,6 +150,14 @@
 			<scope>runtime</scope>
 			<optional>false</optional>
 		</dependency>
+		<!-- oldies -->
+		<dependency>
+			<groupId>com.lapsa.insurance-lib</groupId>
+			<artifactId>insurance-domain</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<!-- tech #2 -->
 		<dependency>
 			<groupId>tech.lapsa.insurance</groupId>
 			<artifactId>insurance-calculation</artifactId>
@@ -152,7 +170,6 @@
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
-		<!-- oldies -->
 		<!-- JavaEE -->
 		<dependency>
 			<groupId>javax.enterprise</groupId>
