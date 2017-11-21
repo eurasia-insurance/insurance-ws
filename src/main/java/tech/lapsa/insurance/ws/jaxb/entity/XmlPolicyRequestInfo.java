@@ -23,7 +23,6 @@ public class XmlPolicyRequestInfo extends XmlRequestInfo implements Serializable
     @Valid
     protected XmlPolicyInfo policy;
 
-    @Valid
     protected XmlPaymentInfo payment;
 
     @NotNullValue
