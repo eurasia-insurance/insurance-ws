@@ -17,7 +17,6 @@ import javax.ws.rs.core.Response;
 
 import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
-import com.lapsa.insurance.elements.PaymentMethod;
 
 import tech.lapsa.insurance.facade.CallbackRequestFacade;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade;
@@ -101,19 +100,12 @@ public class CRMWS extends ALanguageDetectorWS {
     private XmlSendRequestResponseFull _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	    PolicyRequest saved = reThrowAsUnchecked(() -> insuranceRequests.acceptAndReply(policy));
-
-	    XmlSendRequestResponseFull reply;
-	    if (saved.getPayment() != null && saved.getPayment().getMethod() == PaymentMethod.PAYCARD_ONLINE) {
-		String invoiceId = saved.getPayment().getExternalId();
-		reply = reThrowAsUnchecked(
-			() -> new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE, saved.getId(), invoiceId,
-				payments.getPaymentURI(invoiceId)));
-	    } else {
-		reply = new XmlSendRequestResponseFull(DEFAULT_SUCCESS_MESSAGE, saved.getId());
-
-	    }
+	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
+	    final PolicyRequest saved = reThrowAsUnchecked(() -> insuranceRequests.acceptAndReply(policy));
+	    final String invoiceId = saved.getPayment().getExternalId();
+	    final XmlSendRequestResponseFull reply = reThrowAsUnchecked(
+		    () -> new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE, saved.getId(), invoiceId,
+			    payments.getPaymentURI(invoiceId)));
 	    return reply;
 	} catch (IllegalArgumentException e) {
 	    throw new WrongArgumentException(e);

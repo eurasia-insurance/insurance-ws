@@ -9,20 +9,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.lapsa.insurance.elements.PaymentMethod;
-import com.lapsa.insurance.validation.ValidPaymentMethod;
-
-import tech.lapsa.javax.validation.NotNullValue;
-
 @XmlRootElement(name = "payment")
 @XmlAccessorType(XmlAccessType.FIELD)
+@Deprecated
+// TODO REFACT : Exclude XmlPaymentInfo from API
 public class XmlPaymentInfo implements Serializable {
     private static final long serialVersionUID = -7070033829293894103L;
 
     @XmlAttribute
-    @NotNullValue
-    @ValidPaymentMethod(denied = PaymentMethod.UNDEFINED)
-    protected PaymentMethod method;
+    protected String method;
 
     public XmlPaymentInfo() {
     }
@@ -32,15 +27,18 @@ public class XmlPaymentInfo implements Serializable {
 	return ToStringBuilder.reflectionToString(this, Constants.DEFAULT_TO_STRING_STYLE);
     }
 
-    public XmlPaymentInfo(PaymentMethod method) {
+    @Deprecated
+    public XmlPaymentInfo(String method) {
 	this.method = method;
     }
 
-    public PaymentMethod getMethod() {
+    @Deprecated
+    public String getMethod() {
 	return method;
     }
 
-    public void setMethod(PaymentMethod method) {
+    @Deprecated
+    public void setMethod(String method) {
 	this.method = method;
     }
 }

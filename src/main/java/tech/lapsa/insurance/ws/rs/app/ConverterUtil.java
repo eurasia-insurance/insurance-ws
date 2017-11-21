@@ -162,7 +162,6 @@ public class ConverterUtil {
     }
 
     private static void processConversionPayment(XmlPaymentInfo request, PaymentData response) {
-	response.setMethod(request.getMethod());
 	response.setStatus(PaymentStatus.PENDING);
     }
 

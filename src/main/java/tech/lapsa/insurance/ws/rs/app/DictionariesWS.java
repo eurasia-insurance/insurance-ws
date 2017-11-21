@@ -20,7 +20,6 @@ import com.lapsa.insurance.elements.InsuranceClassType;
 import com.lapsa.insurance.elements.InsuranceRequestType;
 import com.lapsa.insurance.elements.InsuredAgeClass;
 import com.lapsa.insurance.elements.InsuredExpirienceClass;
-import com.lapsa.insurance.elements.PaymentMethod;
 import com.lapsa.insurance.elements.VehicleAgeClass;
 import com.lapsa.insurance.elements.VehicleClass;
 import com.lapsa.international.localization.LocalizationLanguage;
@@ -144,22 +143,6 @@ public class DictionariesWS extends ALanguageDetectorWS {
     public Response localizationLanguageAllGET(@QueryParam("lang") LocalizationLanguageWrapped queryLangWrapped) {
 	LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
 	return responseOk(convertToResult(lang, LocalizationLanguage.values()), lang.getLocale());
-    }
-
-    //
-
-    @GET
-    @Path("/payment-method")
-    public Response paymentMethodSelectableGET(@QueryParam("lang") LocalizationLanguageWrapped queryLangWrapped) {
-	LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, PaymentMethod.selectableValues()), lang.getLocale());
-    }
-
-    @GET
-    @Path("/payment-method/all")
-    public Response paymentMethodAllGET(@QueryParam("lang") LocalizationLanguageWrapped queryLangWrapped) {
-	LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, PaymentMethod.values()), lang.getLocale());
     }
 
     //

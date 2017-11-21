@@ -6,7 +6,6 @@ import com.lapsa.insurance.elements.InsuranceClassType;
 import com.lapsa.insurance.elements.InsuranceRequestType;
 import com.lapsa.insurance.elements.InsuredAgeClass;
 import com.lapsa.insurance.elements.InsuredExpirienceClass;
-import com.lapsa.insurance.elements.PaymentMethod;
 import com.lapsa.insurance.elements.VehicleAgeClass;
 import com.lapsa.insurance.elements.VehicleClass;
 import com.lapsa.international.localization.LocalizationLanguage;
@@ -68,7 +67,7 @@ public class SamplesUtil {
     }
 
     public static XmlPaymentInfo paymentSample() {
-	return new XmlPaymentInfo(PaymentMethod.PAYCARD_ONLINE);
+	return new XmlPaymentInfo();
     }
 
     public static XmlCallbackRequestInfo callbackRequestSample() {
