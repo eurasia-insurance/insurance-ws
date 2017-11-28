@@ -9,12 +9,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.lapsa.international.internet.validators.ValidEmail;
 import com.lapsa.international.localization.LocalizationLanguage;
 import com.lapsa.international.phone.PhoneNumber;
 import com.lapsa.international.phone.validators.ValidPhoneNumber;
 
 import tech.lapsa.javax.validation.NotNullValue;
+import tech.lapsa.javax.validation.ValidEmail;
 
 @XmlRootElement(name = "requester")
 @XmlAccessorType(XmlAccessType.FIELD)

@@ -14,12 +14,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.lapsa.international.internet.validators.ValidEmail;
 import com.lapsa.international.phone.PhoneFormatException;
 import com.lapsa.international.phone.PhoneNumber;
 import com.lapsa.international.phone.validators.ValidPhoneNumber;
 
 import tech.lapsa.javax.validation.NotNullValue;
+import tech.lapsa.javax.validation.ValidEmail;
 import tech.lapsa.kz.taxpayer.TaxpayerNumber;
 import tech.lapsa.kz.taxpayer.validators.ValidTaxpayerNumber;
 import tech.lapsa.kz.vehicle.VehicleRegNumber;
