@@ -1,6 +1,7 @@
 package tech.lapsa.insurance.ws.jaxb.validator.constraint;
 
 import static tech.lapsa.java.commons.function.MyExceptions.*;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.ValidationException;
@@ -11,7 +12,8 @@ import tech.lapsa.insurance.facade.PolicyDriverFacade;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
 import tech.lapsa.insurance.ws.jaxb.validator.ValidationMessages;
-import tech.lapsa.javax.cdi.utility.BeanUtils;
+import tech.lapsa.javax.cdi.commons.MyBeans;
+import tech.lapsa.javax.cdi.qualifiers.QDelegateToEJB;
 
 public class PolicyDriverSettingsValidConstraintValidator
 	implements ConstraintValidator<PolicyDriverSettingsValid, XmlPolicyDriverInfo> {
@@ -25,9 +27,11 @@ public class PolicyDriverSettingsValidConstraintValidator
 	if (value == null)
 	    return true;
 
-	PolicyDriver fetched = reThrowAsUnchecked(() -> BeanUtils.lookup(PolicyDriverFacade.class) //
-		.orElseThrow(() -> new ValidationException("Cannot find an instance of " + PolicyDriverFacade.class)) //
-		.fetchByIdNumber(value.getIdNumber()).orElse(null));
+	PolicyDriver fetched = reThrowAsUnchecked(
+		() -> MyBeans.lookupCDI(PolicyDriverFacade.class, QDelegateToEJB.DEFAULT_INSTANCE) //
+			.orElseThrow(
+				() -> new ValidationException("Cannot find an instance of " + PolicyDriverFacade.class)) //
+			.fetchByIdNumber(value.getIdNumber()).orElse(null));
 
 	if (fetched == null)
 	    return false;
