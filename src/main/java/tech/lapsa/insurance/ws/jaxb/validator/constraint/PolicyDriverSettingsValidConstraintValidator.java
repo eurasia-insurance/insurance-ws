@@ -13,7 +13,6 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
 import tech.lapsa.insurance.ws.jaxb.validator.ValidationMessages;
 import tech.lapsa.javax.cdi.commons.MyBeans;
-import tech.lapsa.javax.cdi.qualifiers.QDelegateToEJB;
 
 public class PolicyDriverSettingsValidConstraintValidator
 	implements ConstraintValidator<PolicyDriverSettingsValid, XmlPolicyDriverInfo> {
@@ -28,7 +27,7 @@ public class PolicyDriverSettingsValidConstraintValidator
 	    return true;
 
 	PolicyDriver fetched = reThrowAsUnchecked(
-		() -> MyBeans.lookupCDI(PolicyDriverFacade.class, QDelegateToEJB.DEFAULT_INSTANCE) //
+		() -> MyBeans.lookup(PolicyDriverFacade.class) //
 			.orElseThrow(
 				() -> new ValidationException("Cannot find an instance of " + PolicyDriverFacade.class)) //
 			.fetchByIdNumber(value.getIdNumber()).orElse(null));
