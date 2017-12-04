@@ -102,10 +102,10 @@ public class CRMWS extends ALanguageDetectorWS {
 	try {
 	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
 	    final PolicyRequest saved = reThrowAsUnchecked(() -> insuranceRequests.acceptAndReply(policy));
-	    final String invoiceId = saved.getPayment().getExternalId();
+	    final String invoiceNumber = saved.getPayment().getInvoiceNumber();
 	    final XmlSendRequestResponseFull reply = reThrowAsUnchecked(
-		    () -> new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE, saved.getId(), invoiceId,
-			    payments.getPaymentURI(invoiceId)));
+		    () -> new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE, saved.getId(), invoiceNumber,
+			    payments.getPaymentURI(invoiceNumber)));
 	    return reply;
 	} catch (IllegalArgumentException e) {
 	    throw new WrongArgumentException(e);
