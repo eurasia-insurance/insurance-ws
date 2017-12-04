@@ -17,6 +17,8 @@ import tech.lapsa.java.jaxb.adapter.XmlURIAdapter;
 public class XmlSendRequestResponseInvoice extends XmlSendRequestResponseFull {
     private static final long serialVersionUID = 1L;
 
+    // TODO REFACT : Rename to invoiceNumber
+    @Deprecated
     @XmlAttribute
     protected String invoiceId;
 
@@ -46,10 +48,12 @@ public class XmlSendRequestResponseInvoice extends XmlSendRequestResponseFull {
 	return ToStringBuilder.reflectionToString(this, Constants.DEFAULT_TO_STRING_STYLE);
     }
 
+    @Deprecated
     public String getInvoiceId() {
 	return invoiceId;
     }
 
+    @Deprecated
     public void setInvoiceId(String invoiceId) {
 	this.invoiceId = invoiceId;
     }
