@@ -20,7 +20,7 @@ import com.lapsa.insurance.domain.policy.PolicyRequest;
 
 import tech.lapsa.insurance.facade.CallbackRequestFacade;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade;
-import tech.lapsa.insurance.facade.ToEpaymentFacade;
+import tech.lapsa.insurance.facade.EpaymentConnectionFacade;
 import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
@@ -95,7 +95,7 @@ public class CRMWS extends ALanguageDetectorWS {
     }
 
     @Inject
-    private ToEpaymentFacade toEpayments;
+    private EpaymentConnectionFacade toEpayments;
 
     private XmlSendRequestResponseFull _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
