@@ -30,7 +30,7 @@ public class PolicyDriverSettingsValidConstraintValidator
 		() -> MyBeans.lookup(PolicyDriverFacade.class) //
 			.orElseThrow(
 				() -> new ValidationException("Cannot find an instance of " + PolicyDriverFacade.class)) //
-			.fetchByIdNumber(value.getIdNumber()).orElse(null));
+			.getByTaxpayerNumber(value.getIdNumber()));
 
 	if (fetched == null)
 	    return false;
