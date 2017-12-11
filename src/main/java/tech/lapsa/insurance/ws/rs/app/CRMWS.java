@@ -19,8 +19,8 @@ import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 
 import tech.lapsa.insurance.facade.CallbackRequestFacade;
-import tech.lapsa.insurance.facade.InsuranceRequestFacade;
 import tech.lapsa.insurance.facade.EpaymentConnectionFacade;
+import tech.lapsa.insurance.facade.InsuranceRequestFacade;
 import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
@@ -28,6 +28,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponse;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponseFull;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponseInvoice;
+import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.rs.utility.InternalServerErrorException;
 import tech.lapsa.javax.rs.utility.WrongArgumentException;
 import tech.lapsa.javax.validation.NotNullValue;
@@ -40,9 +41,6 @@ import tech.lapsa.javax.validation.NotNullValue;
 public class CRMWS extends ALanguageDetectorWS {
 
     private static final String DEFAULT_SUCCESS_MESSAGE = "Success";
-
-    @Inject
-    private AuthenticatedUser authenticatedUser;
 
     @POST
     @Path("/send-policy-request")
@@ -58,22 +56,6 @@ public class CRMWS extends ALanguageDetectorWS {
 	    return responseWrongArgument(e, getLocaleOrDefault());
 	} catch (InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
-	}
-    }
-
-    @Inject
-    private InsuranceRequestFacade insuranceRequests;
-
-    private XmlSendRequestResponse _sendPolicyRequest(XmlPolicyRequestInfo request)
-	    throws WrongArgumentException, InternalServerErrorException {
-	try {
-	    PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	    reThrowAsUnchecked(() -> insuranceRequests.accept(policy));
-	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
-	} catch (IllegalArgumentException e) {
-	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
-	    throw new InternalServerErrorException(e);
 	}
     }
 
@@ -94,26 +76,6 @@ public class CRMWS extends ALanguageDetectorWS {
 	}
     }
 
-    @Inject
-    private EpaymentConnectionFacade toEpayments;
-
-    private XmlSendRequestResponseFull _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
-	    throws WrongArgumentException, InternalServerErrorException {
-	try {
-	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	    final PolicyRequest saved = reThrowAsUnchecked(() -> insuranceRequests.acceptAndReply(policy));
-	    final String invoiceNumber = saved.getPayment().getInvoiceNumber();
-	    final XmlSendRequestResponseFull reply = reThrowAsUnchecked(
-		    () -> new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE, saved.getId(), invoiceNumber,
-			    toEpayments.getPaymentURI(invoiceNumber)));
-	    return reply;
-	} catch (IllegalArgumentException e) {
-	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
-	    throw new InternalServerErrorException(e);
-	}
-    }
-
     @POST
     @Path("/send-callback-request")
     public Response sendCallbackRequestPOST(@NotNullValue @Valid XmlCallbackRequestInfo request) {
@@ -128,22 +90,6 @@ public class CRMWS extends ALanguageDetectorWS {
 	    return responseWrongArgument(e, getLocaleOrDefault());
 	} catch (InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
-	}
-    }
-
-    @Inject
-    private CallbackRequestFacade callbackRequestFacade;
-
-    private XmlSendRequestResponse _sendCallbackRequest(XmlCallbackRequestInfo request)
-	    throws WrongArgumentException, InternalServerErrorException {
-	try {
-	    CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
-	    reThrowAsUnchecked(() -> callbackRequestFacade.accept(callback));
-	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
-	} catch (IllegalArgumentException e) {
-	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
-	    throw new InternalServerErrorException(e);
 	}
     }
 
@@ -164,15 +110,88 @@ public class CRMWS extends ALanguageDetectorWS {
 	}
     }
 
+    // PRIVATE
+
+    private final MyLogger logger = MyLogger.newBuilder() //
+	    .withNameOf(PolicyWS.class) //
+	    .build();
+
+    @Inject
+    private AuthenticatedUser authenticatedUser;
+
+    @Inject
+    private InsuranceRequestFacade insuranceRequests;
+
+    private XmlSendRequestResponse _sendPolicyRequest(XmlPolicyRequestInfo request)
+	    throws WrongArgumentException, InternalServerErrorException {
+	try {
+	    PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
+	    reThrowAsUnchecked(() ->
+	    //
+	    insuranceRequests.accept(policy)
+	    //
+	    );
+	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
+	} catch (IllegalArgumentException | IllegalStateException e) {
+	    logger.DEBUG.log(e);
+	    throw new WrongArgumentException(e);
+	} catch (RuntimeException e) {
+	    logger.SEVERE.log(e);
+	    throw new InternalServerErrorException(e);
+	}
+    }
+
+    @Inject
+    private EpaymentConnectionFacade toEpayments;
+
+    private XmlSendRequestResponseFull _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
+	    throws WrongArgumentException, InternalServerErrorException {
+	try {
+	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
+	    final PolicyRequest saved = reThrowAsUnchecked(() -> insuranceRequests.acceptAndReply(policy));
+	    final String invoiceNumber = saved.getPayment().getInvoiceNumber();
+	    final XmlSendRequestResponseFull reply = reThrowAsUnchecked(
+		    () -> new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE, saved.getId(), invoiceNumber,
+			    toEpayments.getPaymentURI(invoiceNumber)));
+	    return reply;
+	} catch (IllegalArgumentException | IllegalStateException e) {
+	    logger.DEBUG.log(e);
+	    throw new WrongArgumentException(e);
+	} catch (RuntimeException e) {
+	    logger.SEVERE.log(e);
+	    throw new InternalServerErrorException(e);
+	}
+    }
+
+    @Inject
+    private CallbackRequestFacade callbackRequestFacade;
+
+    private XmlSendRequestResponse _sendCallbackRequest(XmlCallbackRequestInfo request)
+	    throws WrongArgumentException, InternalServerErrorException {
+	try {
+	    CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
+	    reThrowAsUnchecked(() -> callbackRequestFacade.accept(callback));
+	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
+	} catch (IllegalArgumentException | IllegalStateException e) {
+	    logger.DEBUG.log(e);
+	    throw new WrongArgumentException(e);
+	} catch (RuntimeException e) {
+	    logger.SEVERE.log(e);
+	    throw new InternalServerErrorException(e);
+	}
+    }
+
     private XmlSendRequestResponseFull _sendCallbackRequestAndReply(XmlCallbackRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
 	    CallbackRequest reply = reThrowAsUnchecked(() -> callbackRequestFacade.acceptAndReply(callback));
 	    return new XmlSendRequestResponseFull(DEFAULT_SUCCESS_MESSAGE, reply.getId());
-	} catch (IllegalArgumentException e) {
+	} catch (IllegalArgumentException | IllegalStateException e) {
+	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
 	} catch (RuntimeException e) {
+	    logger.SEVERE.log(e);
 	    throw new InternalServerErrorException(e);
 	}
     }

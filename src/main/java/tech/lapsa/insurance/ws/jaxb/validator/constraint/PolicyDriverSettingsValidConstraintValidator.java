@@ -26,11 +26,13 @@ public class PolicyDriverSettingsValidConstraintValidator
 	if (value == null)
 	    return true;
 
-	PolicyDriver fetched = reThrowAsUnchecked(
-		() -> MyBeans.lookup(PolicyDriverFacade.class) //
-			.orElseThrow(
-				() -> new ValidationException("Cannot find an instance of " + PolicyDriverFacade.class)) //
-			.fetchByIdNumber(value.getIdNumber()).orElse(null));
+	PolicyDriver fetched = reThrowAsUnchecked(() ->
+	//
+	MyBeans.lookup(PolicyDriverFacade.class) //
+		.orElseThrow(() -> new ValidationException("Cannot find an instance of " + PolicyDriverFacade.class)) //
+		.getByTaxpayerNumber(value.getIdNumber())
+	//
+	);
 
 	if (fetched == null)
 	    return false;
