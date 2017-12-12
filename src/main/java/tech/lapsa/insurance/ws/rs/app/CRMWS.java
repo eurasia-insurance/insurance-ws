@@ -1,7 +1,6 @@
 package tech.lapsa.insurance.ws.rs.app;
 
 import static tech.lapsa.insurance.ws.rs.app.ConverterUtil.*;
-import static tech.lapsa.java.commons.function.MyExceptions.*;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -23,6 +22,7 @@ import tech.lapsa.insurance.facade.EpaymentConnectionFacade;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade;
 import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
+import tech.lapsa.insurance.ws.ejbProducer.EJBViaCDI;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponse;
@@ -120,17 +120,14 @@ public class CRMWS extends ALanguageDetectorWS {
     private AuthenticatedUser authenticatedUser;
 
     @Inject
+    @EJBViaCDI
     private InsuranceRequestFacade insuranceRequests;
 
     private XmlSendRequestResponse _sendPolicyRequest(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	    reThrowAsUnchecked(() ->
-	    //
-	    insuranceRequests.accept(policy)
-	    //
-	    );
+	    insuranceRequests.accept(policy);
 	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
 	} catch (IllegalArgumentException | IllegalStateException e) {
 	    logger.DEBUG.log(e);
@@ -142,17 +139,17 @@ public class CRMWS extends ALanguageDetectorWS {
     }
 
     @Inject
+    @EJBViaCDI
     private EpaymentConnectionFacade toEpayments;
 
     private XmlSendRequestResponseFull _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	    final PolicyRequest saved = reThrowAsUnchecked(() -> insuranceRequests.acceptAndReply(policy));
+	    final PolicyRequest saved = insuranceRequests.acceptAndReply(policy);
 	    final String invoiceNumber = saved.getPayment().getInvoiceNumber();
-	    final XmlSendRequestResponseFull reply = reThrowAsUnchecked(
-		    () -> new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE, saved.getId(), invoiceNumber,
-			    toEpayments.getPaymentURI(invoiceNumber)));
+	    final XmlSendRequestResponseFull reply = new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE,
+		    saved.getId(), invoiceNumber, toEpayments.getPaymentURI(invoiceNumber));
 	    return reply;
 	} catch (IllegalArgumentException | IllegalStateException e) {
 	    logger.DEBUG.log(e);
@@ -164,13 +161,14 @@ public class CRMWS extends ALanguageDetectorWS {
     }
 
     @Inject
+    @EJBViaCDI
     private CallbackRequestFacade callbackRequestFacade;
 
     private XmlSendRequestResponse _sendCallbackRequest(XmlCallbackRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
-	    reThrowAsUnchecked(() -> callbackRequestFacade.accept(callback));
+	    callbackRequestFacade.accept(callback);
 	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
 	} catch (IllegalArgumentException | IllegalStateException e) {
 	    logger.DEBUG.log(e);
@@ -185,7 +183,7 @@ public class CRMWS extends ALanguageDetectorWS {
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
-	    CallbackRequest reply = reThrowAsUnchecked(() -> callbackRequestFacade.acceptAndReply(callback));
+	    CallbackRequest reply = callbackRequestFacade.acceptAndReply(callback);
 	    return new XmlSendRequestResponseFull(DEFAULT_SUCCESS_MESSAGE, reply.getId());
 	} catch (IllegalArgumentException | IllegalStateException e) {
 	    logger.DEBUG.log(e);

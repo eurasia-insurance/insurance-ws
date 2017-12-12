@@ -1,7 +1,5 @@
 package tech.lapsa.insurance.ws.jaxb.validator.constraint;
 
-import static tech.lapsa.java.commons.function.MyExceptions.*;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.ValidationException;
@@ -9,6 +7,7 @@ import javax.validation.ValidationException;
 import com.lapsa.insurance.domain.policy.PolicyDriver;
 
 import tech.lapsa.insurance.facade.PolicyDriverFacade;
+import tech.lapsa.insurance.ws.ejbProducer.EJBViaCDI;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
 import tech.lapsa.insurance.ws.jaxb.validator.ValidationMessages;
@@ -26,13 +25,9 @@ public class PolicyDriverSettingsValidConstraintValidator
 	if (value == null)
 	    return true;
 
-	PolicyDriver fetched = reThrowAsUnchecked(() ->
-	//
-	MyBeans.lookup(PolicyDriverFacade.class) //
+	final PolicyDriver fetched = MyBeans.lookupCDI(PolicyDriverFacade.class, EJBViaCDI.INSTANCE) //
 		.orElseThrow(() -> new ValidationException("Cannot find an instance of " + PolicyDriverFacade.class)) //
-		.getByTaxpayerNumber(value.getIdNumber())
-	//
-	);
+		.getByTaxpayerNumber(value.getIdNumber());
 
 	if (fetched == null)
 	    return false;

@@ -1,7 +1,6 @@
 package tech.lapsa.insurance.ws.rs.app;
 
 import static tech.lapsa.insurance.ws.rs.app.ConverterUtil.*;
-import static tech.lapsa.java.commons.function.MyExceptions.*;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -24,12 +23,14 @@ import tech.lapsa.insurance.calculation.PolicyCalculation;
 import tech.lapsa.insurance.facade.PolicyDriverFacade;
 import tech.lapsa.insurance.facade.PolicyVehicleFacade;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
+import tech.lapsa.insurance.ws.ejbProducer.EJBViaCDI;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicyDriver;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicyVehicle;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
+import tech.lapsa.java.commons.function.MyObjects;
 import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.rs.utility.InternalServerErrorException;
 import tech.lapsa.javax.rs.utility.WrongArgumentException;
@@ -100,16 +101,13 @@ public class PolicyWS extends ALanguageDetectorWS {
 	    .build();
 
     @Inject
+    @EJBViaCDI
     private PolicyDriverFacade driverFacade;
 
     private XmlPolicyDriverInfo _fetchDriver(XmlFetchPolicyDriver request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    PolicyDriver driver = reThrowAsUnchecked(() ->
-	    //
-	    driverFacade.getByTaxpayerNumberOrDefault(request.getIdNumber())
-	    //
-	    );
+	    PolicyDriver driver = driverFacade.getByTaxpayerNumberOrDefault(request.getIdNumber());
 	    XmlPolicyDriverInfo response = ConverterUtil.convertXmlPolicyDriver(driver);
 	    return response;
 	} catch (IllegalArgumentException | IllegalStateException e) {
@@ -124,16 +122,13 @@ public class PolicyWS extends ALanguageDetectorWS {
     //
 
     @Inject
+    @EJBViaCDI
     private PolicyVehicleFacade policyVehicles;
 
     private XmlPolicyVehicleInfo _fetchVehicle(XmlFetchPolicyVehicle request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    PolicyVehicle vehicle = reThrowAsUnchecked(() ->
-	    //
-	    policyVehicles.getByRegNumberOrDefault(request.getRegNumber())
-	    //
-	    );
+	    PolicyVehicle vehicle = policyVehicles.getByRegNumberOrDefault(request.getRegNumber());
 	    XmlPolicyVehicleInfo response = ConverterUtil.convertXmlPolicyVehicle(vehicle);
 	    return response;
 	} catch (IllegalArgumentException | IllegalStateException e) {
@@ -148,8 +143,7 @@ public class PolicyWS extends ALanguageDetectorWS {
     private XmlPolicyInfo _fetchPolicy(XmlFetchPolicy request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    if (request == null)
-		throw new WrongArgumentException("Request data is empty");
+	    MyObjects.requireNonNull(request, "request");
 
 	    Policy policy = convertPolicyShort(request);
 

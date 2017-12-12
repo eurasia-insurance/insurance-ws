@@ -28,6 +28,7 @@ import com.lapsa.international.localization.LocalizationLanguage;
 import com.lapsa.kz.country.KZCity;
 
 import tech.lapsa.insurance.facade.CompanyPointOfSaleFacade;
+import tech.lapsa.insurance.ws.ejbProducer.EJBViaCDI;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlGeo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPOS;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPOSCity;
@@ -46,6 +47,7 @@ public class POSWS extends ALanguageDetectorWS {
     private UriInfo uriInfo;
 
     @Inject
+    @EJBViaCDI
     private CompanyPointOfSaleFacade posFacade;
 
     @GET
