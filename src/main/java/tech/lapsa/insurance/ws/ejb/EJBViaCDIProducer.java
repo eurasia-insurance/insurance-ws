@@ -12,12 +12,15 @@ import tech.lapsa.insurance.facade.EpaymentConnectionFacade;
 import tech.lapsa.insurance.facade.EpaymentConnectionFacade.EpaymentConnectionFacadeRemote;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade.InsuranceRequestFacadeRemote;
+import tech.lapsa.insurance.facade.PolicyDriverFacade;
 import tech.lapsa.insurance.facade.PolicyDriverFacade.PolicyDriverFacadeRemote;
+import tech.lapsa.insurance.facade.PolicyVehicleFacade;
 import tech.lapsa.insurance.facade.PolicyVehicleFacade.PolicyVehicleFacadeRemote;
+import tech.lapsa.insurance.facade.UserFacade;
 import tech.lapsa.insurance.facade.UserFacade.UserFacadeRemote;
 
 @Dependent
-public class InsuranceFacadeEJBProducer {
+public class EJBViaCDIProducer {
 
     @EJB
     private PolicyDriverFacadeRemote policyDriverFacade;
@@ -42,7 +45,7 @@ public class InsuranceFacadeEJBProducer {
 
     @Produces
     @EJBViaCDI
-    public PolicyDriverFacadeRemote getPolicyDriverFacade() {
+    public PolicyDriverFacade getPolicyDriverFacade() {
 	return policyDriverFacade;
     }
 
@@ -66,7 +69,7 @@ public class InsuranceFacadeEJBProducer {
 
     @Produces
     @EJBViaCDI
-    public PolicyVehicleFacadeRemote getPolicyVehicleFacade() {
+    public PolicyVehicleFacade getPolicyVehicleFacade() {
 	return policyVehicleFacade;
     }
 
@@ -78,7 +81,7 @@ public class InsuranceFacadeEJBProducer {
 
     @Produces
     @EJBViaCDI
-    public UserFacadeRemote getUserFacade() {
+    public UserFacade getUserFacade() {
 	return userFacade;
     }
 }
