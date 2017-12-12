@@ -18,11 +18,11 @@ import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 
 import tech.lapsa.insurance.facade.CallbackRequestFacade;
+import tech.lapsa.insurance.facade.EJBViaCDI;
 import tech.lapsa.insurance.facade.EpaymentConnectionFacade;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade;
 import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
-import tech.lapsa.insurance.ws.ejb.EJBViaCDI;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponse;

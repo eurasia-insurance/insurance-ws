@@ -20,10 +20,10 @@ import com.lapsa.insurance.domain.policy.PolicyVehicle;
 
 import tech.lapsa.insurance.calculation.CalculationFailed;
 import tech.lapsa.insurance.calculation.PolicyCalculation;
+import tech.lapsa.insurance.facade.EJBViaCDI;
 import tech.lapsa.insurance.facade.PolicyDriverFacade;
 import tech.lapsa.insurance.facade.PolicyVehicleFacade;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
-import tech.lapsa.insurance.ws.ejb.EJBViaCDI;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicyDriver;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicyVehicle;
