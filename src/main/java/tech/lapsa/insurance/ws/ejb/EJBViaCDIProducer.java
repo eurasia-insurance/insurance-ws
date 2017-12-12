@@ -22,6 +22,8 @@ import tech.lapsa.insurance.facade.UserFacade.UserFacadeRemote;
 @Dependent
 public class EJBViaCDIProducer {
 
+    // insurance-facade (remote)
+
     @EJB
     private PolicyDriverFacadeRemote policyDriverFacade;
 
@@ -42,6 +44,8 @@ public class EJBViaCDIProducer {
 
     @EJB
     private UserFacadeRemote userFacade;
+
+    // geters
 
     @Produces
     @EJBViaCDI
