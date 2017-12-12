@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import com.lapsa.insurance.domain.crm.User;
 
 import tech.lapsa.insurance.facade.UserFacade;
-import tech.lapsa.insurance.ws.ejbProducer.EJBViaCDI;
+import tech.lapsa.insurance.ws.ejb.EJBViaCDI;
 import tech.lapsa.javax.rs.security.QAuthenticatedUser;
 
 @RequestScoped

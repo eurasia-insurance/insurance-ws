@@ -1,4 +1,4 @@
-package tech.lapsa.insurance.ws.ejbProducer;
+package tech.lapsa.insurance.ws.ejb;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.Dependent;

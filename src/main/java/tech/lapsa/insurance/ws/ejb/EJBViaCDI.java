@@ -1,4 +1,4 @@
-package tech.lapsa.insurance.ws.ejbProducer;
+package tech.lapsa.insurance.ws.ejb;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
