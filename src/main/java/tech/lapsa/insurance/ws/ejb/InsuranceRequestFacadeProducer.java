@@ -8,7 +8,7 @@ import tech.lapsa.insurance.facade.InsuranceRequestFacade;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade.InsuranceRequestFacadeRemote;
 
 @Dependent
-public class InsuranceRequestFacadeCDIProducer {
+public class InsuranceRequestFacadeProducer {
 
     @EJB
     private InsuranceRequestFacadeRemote ejb;
@@ -18,5 +18,4 @@ public class InsuranceRequestFacadeCDIProducer {
     public InsuranceRequestFacade getEjb() {
 	return ejb;
     }
-
 }

@@ -8,7 +8,7 @@ import tech.lapsa.insurance.facade.EpaymentConnectionFacade;
 import tech.lapsa.insurance.facade.EpaymentConnectionFacade.EpaymentConnectionFacadeRemote;
 
 @Dependent
-public class EpaymentConnectionFacadeCDIProducer {
+public class EpaymentConnectionFacadeProducer {
 
     @EJB
     private EpaymentConnectionFacadeRemote ejb;

@@ -8,7 +8,7 @@ import tech.lapsa.insurance.facade.CallbackRequestFacade;
 import tech.lapsa.insurance.facade.CallbackRequestFacade.CallbackRequestFacadeRemote;
 
 @Dependent
-public class CallbackRequestFacadeCDIProducer {
+public class CallbackRequestFacadeProducer {
 
     @EJB
     private CallbackRequestFacadeRemote ejb;

@@ -8,7 +8,7 @@ import tech.lapsa.insurance.facade.PolicyVehicleFacade;
 import tech.lapsa.insurance.facade.PolicyVehicleFacade.PolicyVehicleFacadeRemote;
 
 @Dependent
-public class PolicyVehicleFacadeCDIProducer {
+public class PolicyVehicleFacadeProducer {
 
     @EJB
     private PolicyVehicleFacadeRemote ejb;

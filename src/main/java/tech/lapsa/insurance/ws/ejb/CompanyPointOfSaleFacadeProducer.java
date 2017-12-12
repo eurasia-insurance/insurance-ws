@@ -8,7 +8,7 @@ import tech.lapsa.insurance.facade.CompanyPointOfSaleFacade;
 import tech.lapsa.insurance.facade.CompanyPointOfSaleFacade.CompanyPointOfSaleFacadeRemote;
 
 @Dependent
-public class CompanyPointOfSaleFacadeCDIProducer {
+public class CompanyPointOfSaleFacadeProducer {
 
     @EJB
     private CompanyPointOfSaleFacadeRemote ejb;
