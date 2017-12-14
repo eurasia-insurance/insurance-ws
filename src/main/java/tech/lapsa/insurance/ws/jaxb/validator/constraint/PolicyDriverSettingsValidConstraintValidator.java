@@ -6,12 +6,15 @@ import javax.validation.ValidationException;
 
 import com.lapsa.insurance.domain.policy.PolicyDriver;
 
-import tech.lapsa.insurance.facade.EJBViaCDI;
 import tech.lapsa.insurance.facade.PolicyDriverFacade;
+import tech.lapsa.insurance.facade.PolicyDriverNotFound;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
 import tech.lapsa.insurance.ws.jaxb.validator.ValidationMessages;
+import tech.lapsa.java.commons.exceptions.IllegalArgument;
+import tech.lapsa.java.commons.function.MyExceptions;
 import tech.lapsa.javax.cdi.commons.MyBeans;
+import tech.lapsa.javax.cdi.qualifiers.QDelegateToEJB;
 
 public class PolicyDriverSettingsValidConstraintValidator
 	implements ConstraintValidator<PolicyDriverSettingsValid, XmlPolicyDriverInfo> {
@@ -25,12 +28,17 @@ public class PolicyDriverSettingsValidConstraintValidator
 	if (value == null)
 	    return true;
 
-	final PolicyDriver fetched = MyBeans.lookupCDI(PolicyDriverFacade.class, EJBViaCDI.INSTANCE) //
-		.orElseThrow(() -> new ValidationException("Cannot find an instance of " + PolicyDriverFacade.class)) //
-		.getByTaxpayerNumber(value.getIdNumber());
-
-	if (fetched == null)
+	final PolicyDriver fetched;
+	try {
+	    fetched = MyBeans.lookupCDI(PolicyDriverFacade.class, QDelegateToEJB.DEFAULT_INSTANCE) //
+		    .orElseThrow(MyExceptions.supplier(ValidationException::new, "Cannot find an instance of '%1$s'",
+			    PolicyDriverFacade.class)) //
+		    .getByTaxpayerNumber(value.getIdNumber());
+	} catch (IllegalArgument e) {
 	    return false;
+	} catch (PolicyDriverNotFound e) {
+	    return false;
+	}
 
 	if (value.getInsuranceClass() != null && value.getInsuranceClass() != fetched.getInsuranceClassType())
 	    return invalid(context, ValidationMessages.POLICY_DRIVER_SETTINGS_VALID_INVALID_CLASS);

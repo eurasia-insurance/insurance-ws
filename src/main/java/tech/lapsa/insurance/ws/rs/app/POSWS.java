@@ -1,6 +1,5 @@
 package tech.lapsa.insurance.ws.rs.app;
 
-import static tech.lapsa.java.commons.function.MyExceptions.*;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.security.PermitAll;
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -27,8 +26,7 @@ import com.lapsa.insurance.domain.CompanyPointOfSale;
 import com.lapsa.international.localization.LocalizationLanguage;
 import com.lapsa.kz.country.KZCity;
 
-import tech.lapsa.insurance.facade.CompanyPointOfSaleFacade;
-import tech.lapsa.insurance.facade.EJBViaCDI;
+import tech.lapsa.insurance.facade.CompanyPointOfSaleFacade.CompanyPointOfSaleFacadeRemote;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlGeo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPOS;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPOSCity;
@@ -46,9 +44,8 @@ public class POSWS extends ALanguageDetectorWS {
     @Context
     private UriInfo uriInfo;
 
-    @Inject
-    @EJBViaCDI
-    private CompanyPointOfSaleFacade posFacade;
+    @EJB
+    private CompanyPointOfSaleFacadeRemote posFacade;
 
     @GET
     @Path("/all/{lang}")
@@ -68,7 +65,7 @@ public class POSWS extends ALanguageDetectorWS {
 
     private Object all(LocalizationLanguage language) {
 
-	final List<CompanyPointOfSale> poses = reThrowAsUnchecked(() -> posFacade.findAllOwnOffices());
+	final List<CompanyPointOfSale> poses = posFacade.findAllOwnOffices();
 
 	List<KZCity> order = new ArrayList<>();
 	Map<KZCity, List<CompanyPointOfSale>> cityMap = new HashMap<>();

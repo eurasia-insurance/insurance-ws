@@ -4,6 +4,7 @@ import static tech.lapsa.insurance.ws.rs.app.ConverterUtil.*;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.validation.Valid;
@@ -17,10 +18,9 @@ import javax.ws.rs.core.Response;
 import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 
-import tech.lapsa.insurance.facade.CallbackRequestFacade;
-import tech.lapsa.insurance.facade.EJBViaCDI;
-import tech.lapsa.insurance.facade.EpaymentConnectionFacade;
-import tech.lapsa.insurance.facade.InsuranceRequestFacade;
+import tech.lapsa.insurance.facade.CallbackRequestFacade.CallbackRequestFacadeRemote;
+import tech.lapsa.insurance.facade.EpaymentConnectionFacade.EpaymentConnectionFacadeRemote;
+import tech.lapsa.insurance.facade.InsuranceRequestFacade.InsuranceRequestFacadeRemote;
 import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
@@ -28,6 +28,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponse;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponseFull;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponseInvoice;
+import tech.lapsa.java.commons.exceptions.IllegalArgument;
 import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.rs.utility.InternalServerErrorException;
 import tech.lapsa.javax.rs.utility.WrongArgumentException;
@@ -119,17 +120,16 @@ public class CRMWS extends ALanguageDetectorWS {
     @Inject
     private AuthenticatedUser authenticatedUser;
 
-    @Inject
-    @EJBViaCDI
-    private InsuranceRequestFacade insuranceRequests;
+    @EJB
+    private InsuranceRequestFacadeRemote insuranceRequests;
 
     private XmlSendRequestResponse _sendPolicyRequest(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	    insuranceRequests.accept(policy);
+	    insuranceRequests.acceptAndReply(policy);
 	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
-	} catch (IllegalArgumentException | IllegalStateException e) {
+	} catch (IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
 	} catch (RuntimeException e) {
@@ -138,9 +138,8 @@ public class CRMWS extends ALanguageDetectorWS {
 	}
     }
 
-    @Inject
-    @EJBViaCDI
-    private EpaymentConnectionFacade toEpayments;
+    @EJB
+    private EpaymentConnectionFacadeRemote toEpayments;
 
     private XmlSendRequestResponseFull _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
@@ -151,7 +150,7 @@ public class CRMWS extends ALanguageDetectorWS {
 	    final XmlSendRequestResponseFull reply = new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE,
 		    saved.getId(), invoiceNumber, toEpayments.getPaymentURI(invoiceNumber));
 	    return reply;
-	} catch (IllegalArgumentException | IllegalStateException e) {
+	} catch (IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
 	} catch (RuntimeException e) {
@@ -160,17 +159,16 @@ public class CRMWS extends ALanguageDetectorWS {
 	}
     }
 
-    @Inject
-    @EJBViaCDI
-    private CallbackRequestFacade callbackRequestFacade;
+    @EJB
+    private CallbackRequestFacadeRemote callbackRequestFacade;
 
     private XmlSendRequestResponse _sendCallbackRequest(XmlCallbackRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
-	    callbackRequestFacade.accept(callback);
+	    callbackRequestFacade.acceptAndReply(callback);
 	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
-	} catch (IllegalArgumentException | IllegalStateException e) {
+	} catch (IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
 	} catch (RuntimeException e) {
@@ -185,7 +183,7 @@ public class CRMWS extends ALanguageDetectorWS {
 	    CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
 	    CallbackRequest reply = callbackRequestFacade.acceptAndReply(callback);
 	    return new XmlSendRequestResponseFull(DEFAULT_SUCCESS_MESSAGE, reply.getId());
-	} catch (IllegalArgumentException | IllegalStateException e) {
+	} catch (IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
 	} catch (RuntimeException e) {

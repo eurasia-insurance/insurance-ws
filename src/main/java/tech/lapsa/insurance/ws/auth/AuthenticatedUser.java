@@ -4,22 +4,20 @@ import static tech.lapsa.java.commons.function.MyExceptions.*;
 
 import java.security.Principal;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
-import javax.inject.Inject;
 
 import com.lapsa.insurance.domain.crm.User;
 
-import tech.lapsa.insurance.facade.EJBViaCDI;
-import tech.lapsa.insurance.facade.UserFacade;
+import tech.lapsa.insurance.facade.UserFacade.UserFacadeRemote;
 import tech.lapsa.javax.rs.security.QAuthenticatedUser;
 
 @RequestScoped
 public class AuthenticatedUser {
 
-    @Inject
-    @EJBViaCDI
-    private UserFacade userFacade;
+    @EJB
+    private UserFacadeRemote userFacade;
 
     public User getUser() {
 	return user;
