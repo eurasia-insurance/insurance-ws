@@ -13,7 +13,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
 import tech.lapsa.insurance.ws.jaxb.validator.ValidationMessages;
 import tech.lapsa.java.commons.exceptions.IllegalArgument;
-import tech.lapsa.javax.cdi.commons.MyBeans;
+import tech.lapsa.java.commons.naming.MyNaming;
 
 public class PolicyDriverSettingsValidConstraintValidator
 	implements ConstraintValidator<PolicyDriverSettingsValid, XmlPolicyDriverInfo> {
@@ -23,11 +23,12 @@ public class PolicyDriverSettingsValidConstraintValidator
     }
 
     @Override
-    public boolean isValid(final XmlPolicyDriverInfo value, final ConstraintValidatorContext context) throws ValidationException {
+    public boolean isValid(final XmlPolicyDriverInfo value, final ConstraintValidatorContext context)
+	    throws ValidationException {
 	if (value == null)
 	    return true;
 
-	final PolicyDriverFacade policyDrivers = MyBeans.lookupEJB(ValidationException::new,
+	final PolicyDriverFacade policyDrivers = MyNaming.lookupEJB(ValidationException::new,
 		PolicyDriverFacade.APPLICATION_NAME,
 		PolicyDriverFacade.MODULE_NAME,
 		PolicyDriverFacadeRemote.class,
