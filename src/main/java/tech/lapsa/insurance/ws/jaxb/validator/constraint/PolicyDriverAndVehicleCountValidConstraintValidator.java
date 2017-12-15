@@ -10,11 +10,11 @@ public class PolicyDriverAndVehicleCountValidConstraintValidator
 	implements ConstraintValidator<PolicyDriverAndVehicleCountValid, XmlFetchPolicy> {
 
     @Override
-    public void initialize(PolicyDriverAndVehicleCountValid constraintAnnotation) {
+    public void initialize(final PolicyDriverAndVehicleCountValid constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(XmlFetchPolicy value, ConstraintValidatorContext context) {
+    public boolean isValid(final XmlFetchPolicy value, final ConstraintValidatorContext context) {
 	if (value == null)
 	    return true;
 
@@ -27,8 +27,8 @@ public class PolicyDriverAndVehicleCountValidConstraintValidator
 	if (value.getDrivers().length == 0 || value.getVehicles().length == 0)
 	    return true;
 
-	return (value.getDrivers().length == 1 && value.getVehicles().length >= 1)
-		|| (value.getVehicles().length == 1 && value.getDrivers().length >= 1);
+	return value.getDrivers().length == 1 && value.getVehicles().length >= 1
+		|| value.getVehicles().length == 1 && value.getDrivers().length >= 1;
     }
 
 }

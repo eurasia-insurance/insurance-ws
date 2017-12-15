@@ -14,7 +14,7 @@ public abstract class ALanguageDetectorWS {
     @Context
     private HttpHeaders headers;
 
-    protected LocalizationLanguage getLanguageOrDefault(LocalizationLanguageWrapped langWrapped) {
+    protected LocalizationLanguage getLanguageOrDefault(final LocalizationLanguageWrapped langWrapped) {
 	if (langWrapped != null)
 	    return langWrapped.getLanguage();
 	return getLanguageOrDefault();
@@ -28,7 +28,7 @@ public abstract class ALanguageDetectorWS {
 	return getLanguageOrDefault().getLocale();
     }
 
-    protected Locale getLocaleOrDefault(LocalizationLanguageWrapped langWrapped) {
+    protected Locale getLocaleOrDefault(final LocalizationLanguageWrapped langWrapped) {
 	if (langWrapped != null)
 	    return langWrapped.getLanguage().getLocale();
 	return getLocaleOrDefault();

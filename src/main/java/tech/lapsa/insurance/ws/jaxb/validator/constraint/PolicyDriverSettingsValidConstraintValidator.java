@@ -20,11 +20,11 @@ public class PolicyDriverSettingsValidConstraintValidator
 	implements ConstraintValidator<PolicyDriverSettingsValid, XmlPolicyDriverInfo> {
 
     @Override
-    public void initialize(PolicyDriverSettingsValid constraintAnnotation) {
+    public void initialize(final PolicyDriverSettingsValid constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(XmlPolicyDriverInfo value, ConstraintValidatorContext context) {
+    public boolean isValid(final XmlPolicyDriverInfo value, final ConstraintValidatorContext context) {
 	if (value == null)
 	    return true;
 
@@ -34,9 +34,9 @@ public class PolicyDriverSettingsValidConstraintValidator
 		    .orElseThrow(MyExceptions.supplier(ValidationException::new, "Cannot find an instance of '%1$s'",
 			    PolicyDriverFacade.class)) //
 		    .getByTaxpayerNumber(value.getIdNumber());
-	} catch (IllegalArgument e) {
+	} catch (final IllegalArgument e) {
 	    return false;
-	} catch (PolicyDriverNotFound e) {
+	} catch (final PolicyDriverNotFound e) {
 	    return false;
 	}
 
@@ -50,7 +50,7 @@ public class PolicyDriverSettingsValidConstraintValidator
 	return true;
     }
 
-    private boolean invalid(ConstraintValidatorContext context, String string) {
+    private boolean invalid(final ConstraintValidatorContext context, final String string) {
 	context.disableDefaultConstraintViolation();
 	context.buildConstraintViolationWithTemplate(string).addConstraintViolation();
 	return false;

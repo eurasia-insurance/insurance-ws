@@ -32,8 +32,8 @@ public class XmlPolicyRequestInfo extends XmlRequestInfo implements Serializable
     public XmlPolicyRequestInfo() {
     }
 
-    public XmlPolicyRequestInfo(XmlRequesterInfo requester, XmlUTMInfo utm, XmlPolicyInfo policy,
-	    XmlPaymentInfo payment, InsuranceRequestType type) {
+    public XmlPolicyRequestInfo(final XmlRequesterInfo requester, final XmlUTMInfo utm, final XmlPolicyInfo policy,
+	    final XmlPaymentInfo payment, final InsuranceRequestType type) {
 	super(requester, utm);
 	this.policy = policy;
 	this.payment = payment;
@@ -49,7 +49,7 @@ public class XmlPolicyRequestInfo extends XmlRequestInfo implements Serializable
 	return policy;
     }
 
-    public void setPolicy(XmlPolicyInfo policy) {
+    public void setPolicy(final XmlPolicyInfo policy) {
 	this.policy = policy;
     }
 
@@ -57,7 +57,7 @@ public class XmlPolicyRequestInfo extends XmlRequestInfo implements Serializable
 	return payment;
     }
 
-    public void setPayment(XmlPaymentInfo payment) {
+    public void setPayment(final XmlPaymentInfo payment) {
 	this.payment = payment;
     }
 
@@ -65,7 +65,7 @@ public class XmlPolicyRequestInfo extends XmlRequestInfo implements Serializable
 	return type;
     }
 
-    public void setType(InsuranceRequestType type) {
+    public void setType(final InsuranceRequestType type) {
 	this.type = type;
     }
 }

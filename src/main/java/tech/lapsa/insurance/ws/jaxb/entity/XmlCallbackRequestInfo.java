@@ -18,7 +18,7 @@ public class XmlCallbackRequestInfo extends XmlRequestInfo {
     public XmlCallbackRequestInfo() {
     }
 
-    public XmlCallbackRequestInfo(XmlRequesterInfo requester, XmlUTMInfo utm, String comments) {
+    public XmlCallbackRequestInfo(final XmlRequesterInfo requester, final XmlUTMInfo utm, final String comments) {
 	super(requester, utm);
 	this.comments = comments;
     }
@@ -32,7 +32,7 @@ public class XmlCallbackRequestInfo extends XmlRequestInfo {
 	return comments;
     }
 
-    public void setComments(String comments) {
+    public void setComments(final String comments) {
 	this.comments = comments;
     }
 }

@@ -26,7 +26,7 @@ public class XmlRequestInfo implements Serializable {
     public XmlRequestInfo() {
     }
 
-    public XmlRequestInfo(XmlRequesterInfo requester, XmlUTMInfo utm) {
+    public XmlRequestInfo(final XmlRequesterInfo requester, final XmlUTMInfo utm) {
 	this.requester = requester;
 	this.utm = utm;
     }
@@ -40,7 +40,7 @@ public class XmlRequestInfo implements Serializable {
 	return requester;
     }
 
-    public void setRequester(XmlRequesterInfo requester) {
+    public void setRequester(final XmlRequesterInfo requester) {
 	this.requester = requester;
     }
 
@@ -48,7 +48,7 @@ public class XmlRequestInfo implements Serializable {
 	return utm;
     }
 
-    public void setUtm(XmlUTMInfo utm) {
+    public void setUtm(final XmlUTMInfo utm) {
 	this.utm = utm;
     }
 }

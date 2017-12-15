@@ -20,7 +20,7 @@ public class XmlPOSCity implements Serializable {
 	return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
 	this.name = name;
     }
 
@@ -28,7 +28,7 @@ public class XmlPOSCity implements Serializable {
 	return poses;
     }
 
-    public void setPoses(XmlPOS[] poses) {
+    public void setPoses(final XmlPOS[] poses) {
 	this.poses = poses;
     }
 }

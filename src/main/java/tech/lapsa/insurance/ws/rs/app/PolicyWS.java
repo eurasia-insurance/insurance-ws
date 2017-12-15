@@ -45,51 +45,51 @@ public class PolicyWS extends ALanguageDetectorWS {
 
     @POST
     @Path("/fetch-driver")
-    public Response fetchDriverPOST(@NotNullValue @Valid XmlFetchPolicyDriver request) {
+    public Response fetchDriverPOST(@NotNullValue @Valid final XmlFetchPolicyDriver request) {
 	return fetchDriver(request);
     }
 
-    private Response fetchDriver(XmlFetchPolicyDriver request) {
+    private Response fetchDriver(final XmlFetchPolicyDriver request) {
 	try {
-	    XmlPolicyDriverInfo reply = _fetchDriver(request);
+	    final XmlPolicyDriverInfo reply = _fetchDriver(request);
 	    return responseOk(reply, getLocaleOrDefault());
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
-	} catch (InternalServerErrorException e) {
+	} catch (final InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
 	}
     }
 
     @POST
     @Path("/fetch-vehicle")
-    public Response fetchVehiclePOST(@NotNullValue @Valid XmlFetchPolicyVehicle request) {
+    public Response fetchVehiclePOST(@NotNullValue @Valid final XmlFetchPolicyVehicle request) {
 	return fetchVehicle(request);
     }
 
-    private Response fetchVehicle(XmlFetchPolicyVehicle request) {
+    private Response fetchVehicle(final XmlFetchPolicyVehicle request) {
 	try {
-	    XmlPolicyVehicleInfo reply = _fetchVehicle(request);
+	    final XmlPolicyVehicleInfo reply = _fetchVehicle(request);
 	    return responseOk(reply, getLocaleOrDefault());
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
-	} catch (InternalServerErrorException e) {
+	} catch (final InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
 	}
     }
 
     @POST
     @Path("/fetch-policy")
-    public Response fetchPolicyPOST(@NotNullValue @Valid XmlFetchPolicy request) {
+    public Response fetchPolicyPOST(@NotNullValue @Valid final XmlFetchPolicy request) {
 	return fetchPolicy(request);
     }
 
-    private Response fetchPolicy(XmlFetchPolicy request) {
+    private Response fetchPolicy(final XmlFetchPolicy request) {
 	try {
-	    XmlPolicyInfo reply = _fetchPolicy(request);
+	    final XmlPolicyInfo reply = _fetchPolicy(request);
 	    return responseOk(reply, getLocaleOrDefault());
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
-	} catch (InternalServerErrorException e) {
+	} catch (final InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
 	}
     }
@@ -103,16 +103,16 @@ public class PolicyWS extends ALanguageDetectorWS {
     @EJB
     private PolicyDriverFacadeRemote driverFacade;
 
-    private XmlPolicyDriverInfo _fetchDriver(XmlFetchPolicyDriver request)
+    private XmlPolicyDriverInfo _fetchDriver(final XmlFetchPolicyDriver request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    PolicyDriver driver = driverFacade.getByTaxpayerNumberOrDefault(request.getIdNumber());
-	    XmlPolicyDriverInfo response = ConverterUtil.convertXmlPolicyDriver(driver);
+	    final PolicyDriver driver = driverFacade.getByTaxpayerNumberOrDefault(request.getIdNumber());
+	    final XmlPolicyDriverInfo response = ConverterUtil.convertXmlPolicyDriver(driver);
 	    return response;
-	} catch (IllegalArgument e) {
+	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
+	} catch (final RuntimeException e) {
 	    logger.SEVERE.log(e);
 	    throw new InternalServerErrorException(e);
 	}
@@ -123,44 +123,44 @@ public class PolicyWS extends ALanguageDetectorWS {
     @EJB
     private PolicyVehicleFacadeRemote policyVehicles;
 
-    private XmlPolicyVehicleInfo _fetchVehicle(XmlFetchPolicyVehicle request)
+    private XmlPolicyVehicleInfo _fetchVehicle(final XmlFetchPolicyVehicle request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    PolicyVehicle vehicle = policyVehicles.fetchFirstByRegNumberOrDefault(request.getRegNumber());
-	    XmlPolicyVehicleInfo response = ConverterUtil.convertXmlPolicyVehicle(vehicle);
+	    final PolicyVehicle vehicle = policyVehicles.fetchFirstByRegNumberOrDefault(request.getRegNumber());
+	    final XmlPolicyVehicleInfo response = ConverterUtil.convertXmlPolicyVehicle(vehicle);
 	    return response;
-	} catch (IllegalArgument e) {
+	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
+	} catch (final RuntimeException e) {
 	    logger.SEVERE.log(e);
 	    throw new InternalServerErrorException(e);
 	}
     }
 
-    private XmlPolicyInfo _fetchPolicy(XmlFetchPolicy request)
+    private XmlPolicyInfo _fetchPolicy(final XmlFetchPolicy request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    MyObjects.requireNonNull(request, "request");
 
-	    Policy policy = convertPolicyShort(request);
+	    final Policy policy = convertPolicyShort(request);
 
 	    try {
 		PolicyCalculation.calculatePolicyCost(policy);
-	    } catch (CalculationFailed e) {
+	    } catch (final CalculationFailed e) {
 		throw new InternalServerErrorException(
 			String.format("Calculation failed. %1$s. Ask to support team for details. ", e.getMessage()),
 			e);
 	    }
 
-	    XmlPolicyInfo response = convertPolicyShortToFull(request);
+	    final XmlPolicyInfo response = convertPolicyShortToFull(request);
 
 	    response.setCost(policy.getCalculation().getCalculatedPremiumCost());
 	    return response;
 	} catch (IllegalArgumentException | IllegalStateException e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
+	} catch (final RuntimeException e) {
 	    logger.SEVERE.log(e);
 	    throw new InternalServerErrorException(e);
 	}

@@ -29,7 +29,7 @@ public class XmlGeo implements Serializable {
 	return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(final double lat) {
 	this.lat = lat;
     }
 
@@ -37,7 +37,7 @@ public class XmlGeo implements Serializable {
 	return lng;
     }
 
-    public void setLng(double lng) {
+    public void setLng(final double lng) {
 	this.lng = lng;
     }
 

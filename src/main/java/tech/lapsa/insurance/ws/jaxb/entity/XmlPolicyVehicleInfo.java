@@ -66,9 +66,9 @@ public class XmlPolicyVehicleInfo implements Serializable {
     public XmlPolicyVehicleInfo() {
     }
 
-    public XmlPolicyVehicleInfo(KZArea area, Boolean majorCity, VehicleClass typeClass,
-	    VehicleAgeClass ageClass,
-	    Boolean temporaryEntry) {
+    public XmlPolicyVehicleInfo(final KZArea area, final Boolean majorCity, final VehicleClass typeClass,
+	    final VehicleAgeClass ageClass,
+	    final Boolean temporaryEntry) {
 	this.area = area;
 	this.majorCity = majorCity;
 	this.typeClass = typeClass;
@@ -76,7 +76,7 @@ public class XmlPolicyVehicleInfo implements Serializable {
 	this.temporaryEntry = temporaryEntry;
     }
 
-    public XmlPolicyVehicleInfo(VehicleRegNumber regNumber) {
+    public XmlPolicyVehicleInfo(final VehicleRegNumber regNumber) {
 	this.regNumber = regNumber;
     }
 
@@ -89,7 +89,7 @@ public class XmlPolicyVehicleInfo implements Serializable {
 	return area;
     }
 
-    public void setArea(KZArea area) {
+    public void setArea(final KZArea area) {
 	this.area = area;
     }
 
@@ -97,7 +97,7 @@ public class XmlPolicyVehicleInfo implements Serializable {
 	return majorCity;
     }
 
-    public void setMajorCity(Boolean majorCity) {
+    public void setMajorCity(final Boolean majorCity) {
 	this.majorCity = majorCity;
     }
 
@@ -105,7 +105,7 @@ public class XmlPolicyVehicleInfo implements Serializable {
 	return typeClass;
     }
 
-    public void setTypeClass(VehicleClass typeClass) {
+    public void setTypeClass(final VehicleClass typeClass) {
 	this.typeClass = typeClass;
     }
 
@@ -113,7 +113,7 @@ public class XmlPolicyVehicleInfo implements Serializable {
 	return ageClass;
     }
 
-    public void setAgeClass(VehicleAgeClass ageClass) {
+    public void setAgeClass(final VehicleAgeClass ageClass) {
 	this.ageClass = ageClass;
     }
 
@@ -121,7 +121,7 @@ public class XmlPolicyVehicleInfo implements Serializable {
 	return temporaryEntry;
     }
 
-    public void setTemporaryEntry(Boolean temporaryEntry) {
+    public void setTemporaryEntry(final Boolean temporaryEntry) {
 	this.temporaryEntry = temporaryEntry;
     }
 
@@ -131,7 +131,7 @@ public class XmlPolicyVehicleInfo implements Serializable {
 	return regNumber;
     }
 
-    public void setRegNumber(VehicleRegNumber regNumber) {
+    public void setRegNumber(final VehicleRegNumber regNumber) {
 	this.regNumber = regNumber;
     }
 
@@ -139,7 +139,7 @@ public class XmlPolicyVehicleInfo implements Serializable {
 	return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
 	this.name = name;
     }
 
@@ -147,11 +147,11 @@ public class XmlPolicyVehicleInfo implements Serializable {
 	return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(final Integer year) {
 	this.year = year;
     }
 
-    public void setVin(String vin) {
+    public void setVin(final String vin) {
 	this.vin = vin;
     }
 

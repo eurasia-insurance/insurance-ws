@@ -32,7 +32,7 @@ public class XmlPOS implements Serializable {
 	return id;
     }
 
-    public void setId(int id) {
+    public void setId(final int id) {
 	this.id = id;
     }
 
@@ -40,7 +40,7 @@ public class XmlPOS implements Serializable {
 	return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
 	this.name = name;
     }
 
@@ -48,7 +48,7 @@ public class XmlPOS implements Serializable {
 	return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(final String address) {
 	this.address = address;
     }
 
@@ -56,7 +56,7 @@ public class XmlPOS implements Serializable {
 	return deliveryServiceEnable;
     }
 
-    public void setDeliveryServiceEnable(boolean deliveryServiceEnable) {
+    public void setDeliveryServiceEnable(final boolean deliveryServiceEnable) {
 	this.deliveryServiceEnable = deliveryServiceEnable;
     }
 
@@ -64,7 +64,7 @@ public class XmlPOS implements Serializable {
 	return geoPoint;
     }
 
-    public void setGeoPoint(XmlGeo geoPoint) {
+    public void setGeoPoint(final XmlGeo geoPoint) {
 	this.geoPoint = geoPoint;
     }
 
@@ -72,7 +72,7 @@ public class XmlPOS implements Serializable {
 	return phones;
     }
 
-    public void setPhones(XmlPOSPhone[] phones) {
+    public void setPhones(final XmlPOSPhone[] phones) {
 	this.phones = phones;
     }
 
@@ -80,7 +80,7 @@ public class XmlPOS implements Serializable {
 	return emails;
     }
 
-    public void setEmails(XmlPOSEmail[] emails) {
+    public void setEmails(final XmlPOSEmail[] emails) {
 	this.emails = emails;
     }
 
@@ -88,7 +88,7 @@ public class XmlPOS implements Serializable {
 	return pickupServiceAvailable;
     }
 
-    public void setPickupServiceAvailable(boolean pickupServiceAvailable) {
+    public void setPickupServiceAvailable(final boolean pickupServiceAvailable) {
 	this.pickupServiceAvailable = pickupServiceAvailable;
     }
 

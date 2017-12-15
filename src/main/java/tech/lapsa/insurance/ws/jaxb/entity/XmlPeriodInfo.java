@@ -46,7 +46,7 @@ public class XmlPeriodInfo implements Serializable {
     public XmlPeriodInfo() {
     }
 
-    public XmlPeriodInfo(LocalDate from, LocalDate to) {
+    public XmlPeriodInfo(final LocalDate from, final LocalDate to) {
 	this.from = from;
 	this.to = to;
     }
@@ -60,7 +60,7 @@ public class XmlPeriodInfo implements Serializable {
 	return from;
     }
 
-    public void setFrom(LocalDate from) {
+    public void setFrom(final LocalDate from) {
 	this.from = from;
     }
 
@@ -68,7 +68,7 @@ public class XmlPeriodInfo implements Serializable {
 	return to;
     }
 
-    public void setTo(LocalDate to) {
+    public void setTo(final LocalDate to) {
 	this.to = to;
     }
 }

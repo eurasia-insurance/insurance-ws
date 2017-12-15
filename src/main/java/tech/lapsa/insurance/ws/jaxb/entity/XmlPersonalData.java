@@ -40,7 +40,8 @@ public class XmlPersonalData implements Serializable {
     public XmlPersonalData() {
     }
 
-    public XmlPersonalData(String name, String surename, String patronymic, LocalDate dayOfBirth) {
+    public XmlPersonalData(final String name, final String surename, final String patronymic,
+	    final LocalDate dayOfBirth) {
 	this.name = name;
 	this.surename = surename;
 	this.patronymic = patronymic;
@@ -56,7 +57,7 @@ public class XmlPersonalData implements Serializable {
 	return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
 	this.name = name;
     }
 
@@ -64,7 +65,7 @@ public class XmlPersonalData implements Serializable {
 	return surename;
     }
 
-    public void setSurename(String surename) {
+    public void setSurename(final String surename) {
 	this.surename = surename;
     }
 
@@ -72,7 +73,7 @@ public class XmlPersonalData implements Serializable {
 	return patronymic;
     }
 
-    public void setPatronymic(String patronymic) {
+    public void setPatronymic(final String patronymic) {
 	this.patronymic = patronymic;
     }
 
@@ -80,7 +81,7 @@ public class XmlPersonalData implements Serializable {
 	return dayOfBirth;
     }
 
-    public void setDayOfBirth(LocalDate dayOfBirth) {
+    public void setDayOfBirth(final LocalDate dayOfBirth) {
 	this.dayOfBirth = dayOfBirth;
     }
 }

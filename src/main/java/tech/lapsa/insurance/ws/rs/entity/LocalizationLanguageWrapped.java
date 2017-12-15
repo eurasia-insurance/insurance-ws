@@ -8,7 +8,7 @@ public final class LocalizationLanguageWrapped {
 
     private final LocalizationLanguage wrapped;
 
-    private LocalizationLanguageWrapped(LocalizationLanguage wrapped) {
+    private LocalizationLanguageWrapped(final LocalizationLanguage wrapped) {
 	MyObjects.requireNonNull(wrapped, "wrapped value must not be a null value");
 	this.wrapped = wrapped;
     }
@@ -17,7 +17,7 @@ public final class LocalizationLanguageWrapped {
 	return wrapped;
     }
 
-    public static LocalizationLanguageWrapped create(LocalizationLanguage ll) {
+    public static LocalizationLanguageWrapped create(final LocalizationLanguage ll) {
 	if (ll == null)
 	    return null;
 	return new LocalizationLanguageWrapped(ll);

@@ -26,35 +26,35 @@ public class SamplesWS extends ALanguageDetectorWS {
     @GET
     @Path("/driver")
     public Response driverSampleGET() {
-	XmlPolicyDriverInfo sample = driverSample();
+	final XmlPolicyDriverInfo sample = driverSample();
 	return responseOk(sample, getLocaleOrDefault());
     }
 
     @GET
     @Path("/vehicle")
     public Response vehicleSampleGET() {
-	XmlPolicyVehicleInfo sample = vehicleSample();
+	final XmlPolicyVehicleInfo sample = vehicleSample();
 	return responseOk(sample, getLocaleOrDefault());
     }
 
     @GET
     @Path("/policy")
     public Response policySampleGET() {
-	XmlPolicyInfo sample = policySample();
+	final XmlPolicyInfo sample = policySample();
 	return responseOk(sample, getLocaleOrDefault());
     }
 
     @GET
     @Path("/policy-request")
     public Response policyRequestSampleGET() {
-	XmlPolicyRequestInfo sample = policyRequestSample();
+	final XmlPolicyRequestInfo sample = policyRequestSample();
 	return responseOk(sample, getLocaleOrDefault());
     }
 
     @GET
     @Path("/callback-request")
     public Response callbackRequestSampleGET() {
-	XmlCallbackRequestInfo sample = callbackRequestSample();
+	final XmlCallbackRequestInfo sample = callbackRequestSample();
 	return responseOk(sample, getLocaleOrDefault());
     }
 }

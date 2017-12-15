@@ -35,18 +35,18 @@ public class CheckWS extends ALanguageDetectorWS {
     @GET
     @Path("/phone/{phoneNumber}")
     public Response testPhoneGET(
-	    @NotNullValue @ValidPhoneNumber @PathParam("phoneNumber") PhoneNumber phoneNumber) {
+	    @NotNullValue @ValidPhoneNumber @PathParam("phoneNumber") final PhoneNumber phoneNumber) {
 	return _testPhoneNumber(phoneNumber);
     }
 
     @GET
     @Path("/phoneNumber/{phoneNumber}")
     public Response testPhoneNumberGET(
-	    @NotNullValue @ValidPhoneNumber @PathParam("phoneNumber") PhoneNumber phoneNumber) {
+	    @NotNullValue @ValidPhoneNumber @PathParam("phoneNumber") final PhoneNumber phoneNumber) {
 	return _testPhoneNumber(phoneNumber);
     }
 
-    private Response _testPhoneNumber(PhoneNumber phoneNumber) {
+    private Response _testPhoneNumber(final PhoneNumber phoneNumber) {
 	return responseOk(phoneNumber, getLocaleOrDefault());
     }
 
@@ -54,42 +54,42 @@ public class CheckWS extends ALanguageDetectorWS {
     @GET
     @Path("/idNumber/{taxpayerNumber}")
     public Response testIdNumberGET(
-	    @NotNullValue @ValidTaxpayerNumber @PathParam("taxpayerNumber") TaxpayerNumber taxpayerNumber) {
+	    @NotNullValue @ValidTaxpayerNumber @PathParam("taxpayerNumber") final TaxpayerNumber taxpayerNumber) {
 	return _testTaxpayerNumber(taxpayerNumber);
     }
 
     @GET
     @Path("/taxpayerNumber/{taxpayerNumber}")
     public Response checkTaxpayerNumberGET(
-	    @NotNullValue @ValidTaxpayerNumber @PathParam("taxpayerNumber") TaxpayerNumber taxpayerNumber) {
+	    @NotNullValue @ValidTaxpayerNumber @PathParam("taxpayerNumber") final TaxpayerNumber taxpayerNumber) {
 	return _testTaxpayerNumber(taxpayerNumber);
     }
 
-    protected Response _testTaxpayerNumber(TaxpayerNumber taxpayerNumber) {
+    protected Response _testTaxpayerNumber(final TaxpayerNumber taxpayerNumber) {
 	return responseOk(taxpayerNumber, getLocaleOrDefault());
     }
 
     @GET
     @Path("/vehicleRegNumber/{vehicleRegNumber}")
     public Response checkTaxpayerNumberGET(
-	    @NotNullValue @ValidVehicleRegNumber @PathParam("vehicleRegNumber") VehicleRegNumber vehicleRegNumber) {
+	    @NotNullValue @ValidVehicleRegNumber @PathParam("vehicleRegNumber") final VehicleRegNumber vehicleRegNumber) {
 	return _testVehicleRegNumber(vehicleRegNumber);
     }
 
-    protected Response _testVehicleRegNumber(VehicleRegNumber vehicleRegNumber) {
+    protected Response _testVehicleRegNumber(final VehicleRegNumber vehicleRegNumber) {
 	return responseOk(vehicleRegNumber, getLocaleOrDefault());
     }
 
     @GET
     @Path("/email/{email}")
     public Response testEmailGET(
-	    @NotNullValue @ValidEmail @PathParam("email") String email)
+	    @NotNullValue @ValidEmail @PathParam("email") final String email)
 	    throws PhoneFormatException {
 	return _testEmail(email);
     }
 
-    protected Response _testEmail(String email) {
-	Map<String, String> response = new HashMap<>();
+    protected Response _testEmail(final String email) {
+	final Map<String, String> response = new HashMap<>();
 	response.put("email", email);
 	return responseOk(response, getLocaleOrDefault());
     }

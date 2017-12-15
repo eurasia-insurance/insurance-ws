@@ -43,7 +43,8 @@ public class XmlFetchPolicy implements Serializable {
     public XmlFetchPolicy() {
     }
 
-    public XmlFetchPolicy(XmlPolicyDriverInfo[] drivers, XmlPolicyVehicleInfo[] vehicles, XmlPeriodInfo period) {
+    public XmlFetchPolicy(final XmlPolicyDriverInfo[] drivers, final XmlPolicyVehicleInfo[] vehicles,
+	    final XmlPeriodInfo period) {
 	this.drivers = drivers;
 	this.vehicles = vehicles;
 	this.period = period;
@@ -58,7 +59,7 @@ public class XmlFetchPolicy implements Serializable {
 	return drivers;
     }
 
-    public void setDrivers(XmlPolicyDriverInfo[] drivers) {
+    public void setDrivers(final XmlPolicyDriverInfo[] drivers) {
 	this.drivers = drivers;
     }
 
@@ -66,7 +67,7 @@ public class XmlFetchPolicy implements Serializable {
 	return vehicles;
     }
 
-    public void setVehicles(XmlPolicyVehicleInfo[] vehicles) {
+    public void setVehicles(final XmlPolicyVehicleInfo[] vehicles) {
 	this.vehicles = vehicles;
     }
 
@@ -74,7 +75,7 @@ public class XmlFetchPolicy implements Serializable {
 	return period;
     }
 
-    public void setPeriod(XmlPeriodInfo period) {
+    public void setPeriod(final XmlPeriodInfo period) {
 	this.period = period;
     }
 }

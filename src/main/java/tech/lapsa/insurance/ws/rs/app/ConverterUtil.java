@@ -40,91 +40,92 @@ import tech.lapsa.javax.rs.utility.WrongArgumentException;
 
 public class ConverterUtil {
 
-    public static CallbackRequest convertCallbackRequest(XmlCallbackRequestInfo request, User createdBy)
+    public static CallbackRequest convertCallbackRequest(final XmlCallbackRequestInfo request, final User createdBy)
 	    throws WrongArgumentException {
-	CallbackRequest response = new CallbackRequest();
+	final CallbackRequest response = new CallbackRequest();
 	processConversionRequest(request, response, createdBy);
 	processConversionCallbackRequest(request, response);
 	return response;
     }
 
-    public static PolicyRequest convertPolicyRequest(XmlPolicyRequestInfo request, User createdBy)
+    public static PolicyRequest convertPolicyRequest(final XmlPolicyRequestInfo request, final User createdBy)
 	    throws WrongArgumentException {
-	PolicyRequest response = new PolicyRequest(RequestSource.API);
+	final PolicyRequest response = new PolicyRequest(RequestSource.API);
 	processConversionRequest(request, response, createdBy);
 	processConversionInsuranceRequest(request, response);
 	processConversionPolicyRequest(request, response);
 	return response;
     }
 
-    public static RequesterData convertRequester(XmlRequesterInfo request) throws WrongArgumentException {
-	RequesterData response = new RequesterData();
+    public static RequesterData convertRequester(final XmlRequesterInfo request) throws WrongArgumentException {
+	final RequesterData response = new RequesterData();
 	processConversionRequester(request, response);
 	return response;
     }
 
-    public static UTMData convertUTM(XmlUTMInfo request) {
+    public static UTMData convertUTM(final XmlUTMInfo request) {
 	if (request == null)
 	    return null;
-	UTMData response = new UTMData();
+	final UTMData response = new UTMData();
 	processConversionUTM(request, response);
 	return response;
     }
 
-    private static PaymentData convertPayment(XmlPaymentInfo request) {
+    private static PaymentData convertPayment(final XmlPaymentInfo request) {
 	if (request == null)
 	    return null;
-	PaymentData response = new PaymentData();
+	final PaymentData response = new PaymentData();
 	processConversionPayment(request, response);
 	return response;
     }
 
-    public static XmlPolicyInfo convertPolicyShortToFull(XmlFetchPolicy request) {
-	XmlPolicyInfo response = new XmlPolicyInfo(Arrays.copyOf(request.getDrivers(), request.getDrivers().length),
+    public static XmlPolicyInfo convertPolicyShortToFull(final XmlFetchPolicy request) {
+	final XmlPolicyInfo response = new XmlPolicyInfo(
+		Arrays.copyOf(request.getDrivers(), request.getDrivers().length),
 		Arrays.copyOf(request.getVehicles(), request.getVehicles().length), request.getPeriod(),
 		null);
 	return response;
     }
 
-    public static Policy convertPolicyShort(XmlFetchPolicy request) throws WrongArgumentException {
-	Policy response = new Policy();
+    public static Policy convertPolicyShort(final XmlFetchPolicy request) throws WrongArgumentException {
+	final Policy response = new Policy();
 	processConversionPolicyShort(request, response);
 	return response;
     }
 
-    public static InsurancePeriodData converPeriod(XmlPeriodInfo period) {
+    public static InsurancePeriodData converPeriod(final XmlPeriodInfo period) {
 	if (period == null)
 	    return null;
-	InsurancePeriodData response = new InsurancePeriodData();
+	final InsurancePeriodData response = new InsurancePeriodData();
 	processConversionPeriod(period, response);
 	return response;
     }
 
-    public static Policy convertPolicy(XmlPolicyInfo request)
+    public static Policy convertPolicy(final XmlPolicyInfo request)
 	    throws WrongArgumentException {
-	Policy response = new Policy();
+	final Policy response = new Policy();
 	processConversionPolicyShort(request, response);
 	processConversionPolicy(request, response);
 	return response;
     }
 
-    public static PolicyDriver convertDriver(XmlPolicyDriverInfo request)
+    public static PolicyDriver convertDriver(final XmlPolicyDriverInfo request)
 	    throws WrongArgumentException {
-	PolicyDriver response = new PolicyDriver();
+	final PolicyDriver response = new PolicyDriver();
 	processConversionDriver(request, response);
 	processConversionPolicyDriver(request, response);
 	return response;
     }
 
-    public static PolicyVehicle convertVehicle(XmlPolicyVehicleInfo request)
+    public static PolicyVehicle convertVehicle(final XmlPolicyVehicleInfo request)
 	    throws WrongArgumentException {
-	PolicyVehicle response = new PolicyVehicle();
+	final PolicyVehicle response = new PolicyVehicle();
 	processConversionPolicyVehicle(request, response);
 	return response;
     }
 
-    public static XmlPersonalData convertXmlPersonalData(PersonalData request) {
-	XmlPersonalData response = new XmlPersonalData();
+    public static XmlPersonalData convertXmlPersonalData(final PersonalData request) {
+	final XmlPersonalData response = new XmlPersonalData();
 	response.setName(request.getName());
 	response.setPatronymic(request.getPatronymic());
 	response.setSurename(request.getSurename());
@@ -132,28 +133,28 @@ public class ConverterUtil {
 	return response;
     }
 
-    public static XmlPolicyDriverInfo convertXmlPolicyDriver(PolicyDriver request) {
-	XmlPolicyDriverInfo response = new XmlPolicyDriverInfo();
+    public static XmlPolicyDriverInfo convertXmlPolicyDriver(final PolicyDriver request) {
+	final XmlPolicyDriverInfo response = new XmlPolicyDriverInfo();
 	processConversionXmlPolicyDriverInfo(request, response);
 	return response;
     }
 
-    public static XmlPolicyVehicleInfo convertXmlPolicyVehicle(PolicyVehicle request) {
-	XmlPolicyVehicleInfo response = new XmlPolicyVehicleInfo();
+    public static XmlPolicyVehicleInfo convertXmlPolicyVehicle(final PolicyVehicle request) {
+	final XmlPolicyVehicleInfo response = new XmlPolicyVehicleInfo();
 	processConversionXmlPolicyVehicleInfo(request, response);
 	return response;
     }
 
     // PRIVATE
 
-    private static void processConversionRequester(XmlRequesterInfo request, RequesterData response) {
+    private static void processConversionRequester(final XmlRequesterInfo request, final RequesterData response) {
 	response.setName(request.getName());
 	response.setEmail(request.getEmail());
 	response.setPhone(request.getPhone());
 	response.setPreferLanguage(request.getLanguage());
     }
 
-    private static void processConversionUTM(XmlUTMInfo request, UTMData response) {
+    private static void processConversionUTM(final XmlUTMInfo request, final UTMData response) {
 	response.setSource(request.getSource());
 	response.setMedium(request.getMedium());
 	response.setCampaign(request.getCampaign());
@@ -161,36 +162,36 @@ public class ConverterUtil {
 	response.setTerm(request.getTerm());
     }
 
-    private static void processConversionPayment(XmlPaymentInfo request, PaymentData response) {
+    private static void processConversionPayment(final XmlPaymentInfo request, final PaymentData response) {
 	response.setStatus(PaymentStatus.PENDING);
     }
 
-    private static void processConversionPeriod(XmlPeriodInfo period, InsurancePeriodData response) {
+    private static void processConversionPeriod(final XmlPeriodInfo period, final InsurancePeriodData response) {
 	response.setFrom(period.getFrom());
 	response.setTo(period.getTo());
     }
 
-    private static void processConversionDriver(XmlPolicyDriverInfo request, Driver response) {
+    private static void processConversionDriver(final XmlPolicyDriverInfo request, final Driver response) {
 	response.setIdNumber(request.getIdNumber());
     }
 
-    private static void processConversionPolicyDriver(XmlPolicyDriverInfo request, PolicyDriver response) {
+    private static void processConversionPolicyDriver(final XmlPolicyDriverInfo request, final PolicyDriver response) {
 	response.setInsuranceClassType(request.getInsuranceClass());
 	response.setAgeClass(request.getAgeClass());
 	response.setExpirienceClass(request.getExpirienceClass());
 	response.setHasAnyPrivilege(request.getPrivileger() == null ? false : request.getPrivileger().booleanValue());
     }
 
-    private static void processConversionPolicyVehicle(XmlPolicyVehicleInfo request, PolicyVehicle response)
+    private static void processConversionPolicyVehicle(final XmlPolicyVehicleInfo request, final PolicyVehicle response)
 	    throws WrongArgumentException {
 
-	boolean temporaryEntry = request.getTemporaryEntry() == null ? false
+	final boolean temporaryEntry = request.getTemporaryEntry() == null ? false
 		: request.getTemporaryEntry().booleanValue();
 	response.setTemporaryEntry(temporaryEntry);
 
 	if (!temporaryEntry) { // проверяем только, если не
 			       // временный въезд
-	    boolean majorCity = request.getMajorCity() == null ? false : request.getMajorCity().booleanValue();
+	    final boolean majorCity = request.getMajorCity() == null ? false : request.getMajorCity().booleanValue();
 	    response.setArea(request.getArea());
 	    response.setForcedMajorCity(majorCity);
 	    if ((request.getArea() == KZArea.GALM || request.getArea() == KZArea.GAST) && !majorCity)
@@ -203,50 +204,54 @@ public class ConverterUtil {
 	response.setVehicleAgeClass(request.getAgeClass());
     }
 
-    private static void processConversionPolicy(XmlPolicyInfo request, Policy response) {
+    private static void processConversionPolicy(final XmlPolicyInfo request, final Policy response) {
 	response.getCalculation().setCalculatedPremiumCost(request.getCost());
 	response.getCalculation().setPremiumCurrency(FinCurrency.KZT);
     }
 
-    private static void processConversionPolicyShort(XmlFetchPolicy request, Policy response)
+    private static void processConversionPolicyShort(final XmlFetchPolicy request, final Policy response)
 	    throws WrongArgumentException {
-	for (XmlPolicyDriverInfo driver : request.getDrivers())
+	for (final XmlPolicyDriverInfo driver : request.getDrivers())
 	    response.addDriver(convertDriver(driver));
 
-	for (XmlPolicyVehicleInfo vehicle : request.getVehicles())
+	for (final XmlPolicyVehicleInfo vehicle : request.getVehicles())
 	    response.addVehicle(convertVehicle(vehicle));
 
 	if (request.getPeriod() != null)
 	    response.setPeriod(converPeriod(request.getPeriod()));
     }
 
-    private static void processConversionCallbackRequest(XmlCallbackRequestInfo request, CallbackRequest response) {
+    private static void processConversionCallbackRequest(final XmlCallbackRequestInfo request,
+	    final CallbackRequest response) {
 	response.setComments(request.getComments());
     }
 
-    private static void processConversionRequest(XmlRequestInfo request, Request response, User createdBy)
+    private static void processConversionRequest(final XmlRequestInfo request, final Request response,
+	    final User createdBy)
 	    throws WrongArgumentException {
 	response.setCreatedBy(createdBy);
-	RequesterData requester = convertRequester(request.getRequester());
+	final RequesterData requester = convertRequester(request.getRequester());
 	response.setRequester(requester);
-	UTMData utm = convertUTM(request.getUtm());
+	final UTMData utm = convertUTM(request.getUtm());
 	response.setUtmData(utm);
     }
 
-    private static void processConversionInsuranceRequest(XmlPolicyRequestInfo request, InsuranceRequest response)
+    private static void processConversionInsuranceRequest(final XmlPolicyRequestInfo request,
+	    final InsuranceRequest response)
 	    throws WrongArgumentException {
-	PaymentData payment = convertPayment(request.getPayment());
+	final PaymentData payment = convertPayment(request.getPayment());
 	response.setPayment(payment);
 	response.setType(request.getType());
     }
 
-    private static void processConversionPolicyRequest(XmlPolicyRequestInfo request, PolicyRequest response)
+    private static void processConversionPolicyRequest(final XmlPolicyRequestInfo request, final PolicyRequest response)
 	    throws WrongArgumentException {
-	Policy policy = convertPolicy(request.getPolicy());
+	final Policy policy = convertPolicy(request.getPolicy());
 	response.setPolicy(policy);
     }
 
-    private static void processConversionXmlPolicyVehicleInfo(PolicyVehicle request, XmlPolicyVehicleInfo response) {
+    private static void processConversionXmlPolicyVehicleInfo(final PolicyVehicle request,
+	    final XmlPolicyVehicleInfo response) {
 
 	MyOptionals.of(request.getCertificateData()) //
 		.map(VehicleCertificateData::getRegistrationNumber) //
@@ -279,13 +284,14 @@ public class ConverterUtil {
 		.ifPresent(x -> response.setMajorCity(true));
     }
 
-    private static void processConversionXmlPolicyDriverInfo(PolicyDriver request, XmlPolicyDriverInfo response) {
+    private static void processConversionXmlPolicyDriverInfo(final PolicyDriver request,
+	    final XmlPolicyDriverInfo response) {
 	MyOptionals.of(request.getIdNumber())
 		.ifPresent(response::setIdNumber);
 	response.setAgeClass(request.getAgeClass());
 	response.setExpirienceClass(request.getExpirienceClass());
 	response.setInsuranceClass(request.getInsuranceClassType());
-	XmlPersonalData personalData = convertXmlPersonalData(request.getPersonalData());
+	final XmlPersonalData personalData = convertXmlPersonalData(request.getPersonalData());
 	response.setPersonal(personalData);
 	response.setPrivileger(request.isHasAnyPrivilege());
     }

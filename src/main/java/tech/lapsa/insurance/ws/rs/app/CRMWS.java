@@ -45,68 +45,68 @@ public class CRMWS extends ALanguageDetectorWS {
 
     @POST
     @Path("/send-policy-request")
-    public Response sendPolicyRequestPOST(@NotNullValue @Valid XmlPolicyRequestInfo request) {
+    public Response sendPolicyRequestPOST(@NotNullValue @Valid final XmlPolicyRequestInfo request) {
 	return sendPolicyRequest(request);
     }
 
-    private Response sendPolicyRequest(XmlPolicyRequestInfo request) {
+    private Response sendPolicyRequest(final XmlPolicyRequestInfo request) {
 	try {
-	    XmlSendRequestResponse reply = _sendPolicyRequest(request);
+	    final XmlSendRequestResponse reply = _sendPolicyRequest(request);
 	    return responseOk(reply, getLocaleOrDefault());
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
-	} catch (InternalServerErrorException e) {
+	} catch (final InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
 	}
     }
 
     @POST
     @Path("/send-policy-request-reply")
-    public Response sendPolicyRequestAndReplyPOST(@NotNullValue @Valid XmlPolicyRequestInfo request) {
+    public Response sendPolicyRequestAndReplyPOST(@NotNullValue @Valid final XmlPolicyRequestInfo request) {
 	return sendPolicyRequestAndReply(request);
     }
 
-    private Response sendPolicyRequestAndReply(XmlPolicyRequestInfo request) {
+    private Response sendPolicyRequestAndReply(final XmlPolicyRequestInfo request) {
 	try {
-	    XmlSendRequestResponseFull reply = _sendPolicyRequestAndReply(request);
+	    final XmlSendRequestResponseFull reply = _sendPolicyRequestAndReply(request);
 	    return responseOk(reply, getLocaleOrDefault());
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
-	} catch (InternalServerErrorException e) {
+	} catch (final InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
 	}
     }
 
     @POST
     @Path("/send-callback-request")
-    public Response sendCallbackRequestPOST(@NotNullValue @Valid XmlCallbackRequestInfo request) {
+    public Response sendCallbackRequestPOST(@NotNullValue @Valid final XmlCallbackRequestInfo request) {
 	return sendCallbackRequest(request);
     }
 
-    private Response sendCallbackRequest(XmlCallbackRequestInfo request) {
+    private Response sendCallbackRequest(final XmlCallbackRequestInfo request) {
 	try {
-	    XmlSendRequestResponse reply = _sendCallbackRequest(request);
+	    final XmlSendRequestResponse reply = _sendCallbackRequest(request);
 	    return responseOk(reply, getLocaleOrDefault());
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
-	} catch (InternalServerErrorException e) {
+	} catch (final InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
 	}
     }
 
     @POST
     @Path("/send-callback-request-reply")
-    public Response sendCallbackRequestSyncPOST(@NotNullValue @Valid XmlCallbackRequestInfo request) {
+    public Response sendCallbackRequestSyncPOST(@NotNullValue @Valid final XmlCallbackRequestInfo request) {
 	return sendCallbackRequestSync(request);
     }
 
-    private Response sendCallbackRequestSync(XmlCallbackRequestInfo request) {
+    private Response sendCallbackRequestSync(final XmlCallbackRequestInfo request) {
 	try {
-	    XmlSendRequestResponseFull reply = _sendCallbackRequestAndReply(request);
+	    final XmlSendRequestResponseFull reply = _sendCallbackRequestAndReply(request);
 	    return responseOk(reply, getLocaleOrDefault());
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
-	} catch (InternalServerErrorException e) {
+	} catch (final InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
 	}
     }
@@ -123,16 +123,16 @@ public class CRMWS extends ALanguageDetectorWS {
     @EJB
     private InsuranceRequestFacadeRemote insuranceRequests;
 
-    private XmlSendRequestResponse _sendPolicyRequest(XmlPolicyRequestInfo request)
+    private XmlSendRequestResponse _sendPolicyRequest(final XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
+	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
 	    insuranceRequests.acceptAndReply(policy);
 	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
-	} catch (IllegalArgument e) {
+	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
+	} catch (final RuntimeException e) {
 	    logger.SEVERE.log(e);
 	    throw new InternalServerErrorException(e);
 	}
@@ -141,7 +141,7 @@ public class CRMWS extends ALanguageDetectorWS {
     @EJB
     private EpaymentConnectionFacadeRemote toEpayments;
 
-    private XmlSendRequestResponseFull _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
+    private XmlSendRequestResponseFull _sendPolicyRequestAndReply(final XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
@@ -150,10 +150,10 @@ public class CRMWS extends ALanguageDetectorWS {
 	    final XmlSendRequestResponseFull reply = new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE,
 		    saved.getId(), invoiceNumber, toEpayments.getPaymentURI(invoiceNumber));
 	    return reply;
-	} catch (IllegalArgument e) {
+	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
+	} catch (final RuntimeException e) {
 	    logger.SEVERE.log(e);
 	    throw new InternalServerErrorException(e);
 	}
@@ -162,31 +162,31 @@ public class CRMWS extends ALanguageDetectorWS {
     @EJB
     private CallbackRequestFacadeRemote callbackRequestFacade;
 
-    private XmlSendRequestResponse _sendCallbackRequest(XmlCallbackRequestInfo request)
+    private XmlSendRequestResponse _sendCallbackRequest(final XmlCallbackRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
+	    final CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
 	    callbackRequestFacade.acceptAndReply(callback);
 	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
-	} catch (IllegalArgument e) {
+	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
+	} catch (final RuntimeException e) {
 	    logger.SEVERE.log(e);
 	    throw new InternalServerErrorException(e);
 	}
     }
 
-    private XmlSendRequestResponseFull _sendCallbackRequestAndReply(XmlCallbackRequestInfo request)
+    private XmlSendRequestResponseFull _sendCallbackRequestAndReply(final XmlCallbackRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
-	    CallbackRequest reply = callbackRequestFacade.acceptAndReply(callback);
+	    final CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
+	    final CallbackRequest reply = callbackRequestFacade.acceptAndReply(callback);
 	    return new XmlSendRequestResponseFull(DEFAULT_SUCCESS_MESSAGE, reply.getId());
-	} catch (IllegalArgument e) {
+	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
+	} catch (final RuntimeException e) {
 	    logger.SEVERE.log(e);
 	    throw new InternalServerErrorException(e);
 	}

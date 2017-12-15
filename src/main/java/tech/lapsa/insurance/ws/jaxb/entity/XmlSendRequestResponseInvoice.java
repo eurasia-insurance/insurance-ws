@@ -29,17 +29,18 @@ public class XmlSendRequestResponseInvoice extends XmlSendRequestResponseFull {
     public XmlSendRequestResponseInvoice() {
     }
 
-    public XmlSendRequestResponseInvoice(String message) {
+    public XmlSendRequestResponseInvoice(final String message) {
 	super(message);
     }
 
-    public XmlSendRequestResponseInvoice(String message, Integer requestId) {
+    public XmlSendRequestResponseInvoice(final String message, final Integer requestId) {
 	super(message, requestId);
     }
 
-    public XmlSendRequestResponseInvoice(String message, Integer requestId, String ebillId, URI paymentLink) {
+    public XmlSendRequestResponseInvoice(final String message, final Integer requestId, final String ebillId,
+	    final URI paymentLink) {
 	super(message, requestId);
-	this.invoiceId = ebillId;
+	invoiceId = ebillId;
 	this.paymentLink = paymentLink;
     }
 
@@ -54,7 +55,7 @@ public class XmlSendRequestResponseInvoice extends XmlSendRequestResponseFull {
     }
 
     @Deprecated
-    public void setInvoiceId(String invoiceId) {
+    public void setInvoiceId(final String invoiceId) {
 	this.invoiceId = invoiceId;
     }
 
@@ -62,7 +63,7 @@ public class XmlSendRequestResponseInvoice extends XmlSendRequestResponseFull {
 	return paymentLink;
     }
 
-    public void setPaymentLink(URI paymentLink) {
+    public void setPaymentLink(final URI paymentLink) {
 	this.paymentLink = paymentLink;
     }
 }

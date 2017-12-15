@@ -25,12 +25,12 @@ public class AuthenticatedUser {
 
     private User user;
 
-    public void handleAuthenticationEvent(@Observes @QAuthenticatedUser String principalName) {
+    public void handleAuthenticationEvent(@Observes @QAuthenticatedUser final String principalName) {
 	if (user == null)
 	    user = reThrowAsUnchecked(() -> userFacade.findOrCreate(principalName));
     }
 
-    public void handleAuthenticationEvent(@Observes @QAuthenticatedUser Principal principal) {
+    public void handleAuthenticationEvent(@Observes @QAuthenticatedUser final Principal principal) {
 	if (user == null)
 	    user = reThrowAsUnchecked(() -> userFacade.findOrCreate(principal));
     }

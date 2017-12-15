@@ -29,7 +29,7 @@ public class XmlFetchPolicyDriver implements Serializable {
     public XmlFetchPolicyDriver() {
     }
 
-    public XmlFetchPolicyDriver(TaxpayerNumber idNumber) {
+    public XmlFetchPolicyDriver(final TaxpayerNumber idNumber) {
 	this.idNumber = idNumber;
     }
 
@@ -42,7 +42,7 @@ public class XmlFetchPolicyDriver implements Serializable {
 	return idNumber;
     }
 
-    public void setIdNumber(TaxpayerNumber idNumber) {
+    public void setIdNumber(final TaxpayerNumber idNumber) {
 	this.idNumber = idNumber;
     }
 
