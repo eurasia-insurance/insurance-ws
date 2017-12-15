@@ -3,6 +3,8 @@ package tech.lapsa.insurance.ws.rs.app;
 import static tech.lapsa.insurance.ws.rs.app.ConverterUtil.*;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
+import java.net.URI;
+
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -147,8 +149,8 @@ public class CRMWS extends ALanguageDetectorWS {
 	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
 	    final PolicyRequest saved = insuranceRequests.acceptAndReply(policy);
 	    final String invoiceNumber = saved.getPayment().getInvoiceNumber();
-	    final XmlSendRequestResponseFull reply = new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE,
-		    saved.getId(), invoiceNumber, toEpayments.getPaymentURI(invoiceNumber));
+	    final URI uri = toEpayments.getPaymentURI(invoiceNumber);
+	    final XmlSendRequestResponseFull reply = new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE, saved.getId(), invoiceNumber, uri);
 	    return reply;
 	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
