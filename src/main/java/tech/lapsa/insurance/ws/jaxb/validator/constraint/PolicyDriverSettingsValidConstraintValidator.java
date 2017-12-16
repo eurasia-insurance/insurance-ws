@@ -6,7 +6,6 @@ import javax.validation.ValidationException;
 
 import com.lapsa.insurance.domain.policy.PolicyDriver;
 
-import tech.lapsa.insurance.facade.PolicyDriverFacade;
 import tech.lapsa.insurance.facade.PolicyDriverFacade.PolicyDriverFacadeRemote;
 import tech.lapsa.insurance.facade.PolicyDriverNotFound;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
@@ -28,11 +27,11 @@ public class PolicyDriverSettingsValidConstraintValidator
 	if (value == null)
 	    return true;
 
-	final PolicyDriverFacade policyDrivers = MyNaming.lookupEJB(ValidationException::new,
-		PolicyDriverFacade.APPLICATION_NAME,
-		PolicyDriverFacade.MODULE_NAME,
-		PolicyDriverFacadeRemote.class,
-		PolicyDriverFacade.class);
+	final PolicyDriverFacadeRemote policyDrivers = MyNaming.lookupEJB(ValidationException::new,
+		PolicyDriverFacadeRemote.APPLICATION_NAME,
+		PolicyDriverFacadeRemote.MODULE_NAME,
+		PolicyDriverFacadeRemote.BEAN_NAME,
+		PolicyDriverFacadeRemote.class);
 
 	final PolicyDriver fetched;
 	try {
