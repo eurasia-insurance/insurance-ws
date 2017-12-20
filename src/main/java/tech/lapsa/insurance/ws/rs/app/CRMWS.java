@@ -20,8 +20,9 @@ import javax.ws.rs.core.Response;
 import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 
+import tech.lapsa.epayment.facade.EpaymentFacade.EpaymentFacadeRemote;
+import tech.lapsa.epayment.facade.InvoiceNotFound;
 import tech.lapsa.insurance.facade.CallbackRequestFacade.CallbackRequestFacadeRemote;
-import tech.lapsa.insurance.facade.EpaymentConnectionFacade.EpaymentConnectionFacadeRemote;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade.InsuranceRequestFacadeRemote;
 import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
@@ -141,7 +142,7 @@ public class CRMWS extends ALanguageDetectorWS {
     }
 
     @EJB
-    private EpaymentConnectionFacadeRemote toEpayments;
+    private EpaymentFacadeRemote epayments;
 
     private XmlSendRequestResponseFull _sendPolicyRequestAndReply(final XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
@@ -149,8 +150,15 @@ public class CRMWS extends ALanguageDetectorWS {
 	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
 	    final PolicyRequest saved = insuranceRequests.acceptAndReply(policy);
 	    final String invoiceNumber = saved.getPayment().getInvoiceNumber();
-	    final URI uri = toEpayments.getPaymentURI(invoiceNumber);
-	    final XmlSendRequestResponseFull reply = new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE, saved.getId(), invoiceNumber, uri);
+	    final URI uri;
+	    try {
+		uri = epayments.getDefaultPaymentURI(invoiceNumber);
+	    } catch (InvoiceNotFound e) {
+		logger.SEVERE.log(e);
+		throw new InternalServerErrorException(e);
+	    }
+	    final XmlSendRequestResponseFull reply = new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE,
+		    saved.getId(), invoiceNumber, uri);
 	    return reply;
 	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);

@@ -27,7 +27,9 @@
 		<payara-jersey-extensions.version>1.0</payara-jersey-extensions.version>
 		<payara-hibernate-validation.version>1.0</payara-hibernate-validation.version>
 		<insurance-calculation.version>1.1-SNAPSHOT</insurance-calculation.version>
+		<!-- facade -->
 		<insurance-facade.version>1.1-SNAPSHOT</insurance-facade.version>
+		<epayment-facade.version>1.1-SNAPSHOT</epayment-facade.version>
 		<!-- oldies -->
 		<insurance-lib.version>2.4-SNAPSHOT</insurance-lib.version>
 	</properties>
@@ -57,10 +59,18 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<!-- facade -->
 			<dependency>
 				<groupId>tech.lapsa.insurance</groupId>
 				<artifactId>insurance-facade-root</artifactId>
 				<version>${insurance-facade.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.epayment</groupId>
+				<artifactId>epayment-facade-root</artifactId>
+				<version>${epayment-facade.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -167,6 +177,12 @@
 		<dependency>
 			<groupId>tech.lapsa.insurance</groupId>
 			<artifactId>insurance-facade-client</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>tech.lapsa.epayment</groupId>
+			<artifactId>epayment-facade-client</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
