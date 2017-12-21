@@ -23,10 +23,12 @@
 		<java-jaxb-commons.version>1.1-SNAPSHOT</java-jaxb-commons.version>
 		<javax-rs-commons.version>1.1-SNAPSHOT</javax-rs-commons.version>
 		<javax-cdi-commons.version>1.1-SNAPSHOT</javax-cdi-commons.version>
-		<javax-validation-commons.version>1.1-SNAPSHOT</javax-validation-commons.version>
 		<payara-jersey-extensions.version>1.0</payara-jersey-extensions.version>
 		<payara-hibernate-validation.version>1.0</payara-hibernate-validation.version>
 		<insurance-calculation.version>1.1-SNAPSHOT</insurance-calculation.version>
+		<!-- validation -->
+		<javax-validation-commons.version>1.1-SNAPSHOT</javax-validation-commons.version>
+		<insurance-validation.version>1.0-SNAPSHOT</insurance-validation.version>
 		<!-- facade -->
 		<insurance-facade.version>1.1-SNAPSHOT</insurance-facade.version>
 		<epayment-facade.version>1.1-SNAPSHOT</epayment-facade.version>
@@ -74,6 +76,17 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<!-- validation -->
+			<dependency>
+				<groupId>tech.lapsa.javax</groupId>
+				<artifactId>javax-validation-commons</artifactId>
+				<version>${javax-validation-commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tech.lapsa.insurance</groupId>
+				<artifactId>insurance-validation</artifactId>
+				<version>${insurance-validation.version}</version>
+			</dependency>
 			<!-- tech -->
 			<dependency>
 				<groupId>tech.lapsa.java</groupId>
@@ -89,11 +102,6 @@
 				<groupId>tech.lapsa.javax</groupId>
 				<artifactId>javax-cdi-commons</artifactId>
 				<version>${javax-cdi-commons.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>tech.lapsa.javax</groupId>
-				<artifactId>javax-validation-commons</artifactId>
-				<version>${javax-validation-commons.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>tech.lapsa.payara</groupId>
@@ -143,14 +151,21 @@
 			<optional>false</optional>
 		</dependency>
 		<dependency>
+			<groupId>tech.lapsa.payara</groupId>
+			<artifactId>payara-jersey-extensions</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<!-- validation related -->
+		<dependency>
 			<groupId>tech.lapsa.javax</groupId>
 			<artifactId>javax-validation-commons</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
 		<dependency>
-			<groupId>tech.lapsa.payara</groupId>
-			<artifactId>payara-jersey-extensions</artifactId>
+			<groupId>tech.lapsa.insurance</groupId>
+			<artifactId>insurance-validation</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
