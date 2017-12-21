@@ -13,11 +13,11 @@ public class PolicyVehicleSettingsValidConstraintValidator
 	implements ConstraintValidator<PolicyVehicleSettingsValid, XmlPolicyVehicleInfo> {
 
     @Override
-    public void initialize(PolicyVehicleSettingsValid constraintAnnotation) {
+    public void initialize(final PolicyVehicleSettingsValid constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(XmlPolicyVehicleInfo value, ConstraintValidatorContext context) {
+    public boolean isValid(final XmlPolicyVehicleInfo value, final ConstraintValidatorContext context) {
 	if (value == null)
 	    return true;
 
@@ -32,7 +32,8 @@ public class PolicyVehicleSettingsValidConstraintValidator
 
 	if (value.getTemporaryEntry()) {
 	    if (!KZArea.UNDEFINED.equals(value.getArea()))
-		return invalid(context, ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_AREA_MUST_DEFINED);
+		return invalid(context,
+			ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_AREA_MUST_DEFINED);
 	    if (value.getMajorCity())
 		return invalid(context,
 			ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_MAJOR_CITY_MUST_FALSE);
@@ -46,7 +47,7 @@ public class PolicyVehicleSettingsValidConstraintValidator
 	return true;
     }
 
-    private boolean invalid(ConstraintValidatorContext context, String string) {
+    private boolean invalid(final ConstraintValidatorContext context, final String string) {
 	context.disableDefaultConstraintViolation();
 	context.buildConstraintViolationWithTemplate(string).addConstraintViolation();
 	return false;

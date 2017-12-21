@@ -57,18 +57,20 @@ public class XmlPolicyDriverInfo implements Serializable {
     public XmlPolicyDriverInfo() {
     }
 
-    public XmlPolicyDriverInfo(TaxpayerNumber idNumber) {
+    public XmlPolicyDriverInfo(final TaxpayerNumber idNumber) {
 	this.idNumber = idNumber;
     }
 
-    public XmlPolicyDriverInfo(TaxpayerNumber idNumber, InsuranceClassType insuranceClass, XmlPersonalData personal) {
+    public XmlPolicyDriverInfo(final TaxpayerNumber idNumber, final InsuranceClassType insuranceClass,
+	    final XmlPersonalData personal) {
 	this(idNumber);
 	this.insuranceClass = insuranceClass;
 	this.personal = personal;
     }
 
-    public XmlPolicyDriverInfo(TaxpayerNumber idNumber, InsuranceClassType insuranceClass, InsuredAgeClass ageClass,
-	    InsuredExpirienceClass expirienceClass, Boolean privileger, XmlPersonalData personal) {
+    public XmlPolicyDriverInfo(final TaxpayerNumber idNumber, final InsuranceClassType insuranceClass,
+	    final InsuredAgeClass ageClass,
+	    final InsuredExpirienceClass expirienceClass, final Boolean privileger, final XmlPersonalData personal) {
 	this(idNumber);
 	this.insuranceClass = insuranceClass;
 	this.ageClass = ageClass;
@@ -86,7 +88,7 @@ public class XmlPolicyDriverInfo implements Serializable {
 	return insuranceClass;
     }
 
-    public void setInsuranceClass(InsuranceClassType insuranceClass) {
+    public void setInsuranceClass(final InsuranceClassType insuranceClass) {
 	this.insuranceClass = insuranceClass;
     }
 
@@ -94,7 +96,7 @@ public class XmlPolicyDriverInfo implements Serializable {
 	return personal;
     }
 
-    public void setPersonal(XmlPersonalData personal) {
+    public void setPersonal(final XmlPersonalData personal) {
 	this.personal = personal;
     }
 
@@ -102,7 +104,7 @@ public class XmlPolicyDriverInfo implements Serializable {
 	return ageClass;
     }
 
-    public void setAgeClass(InsuredAgeClass ageClass) {
+    public void setAgeClass(final InsuredAgeClass ageClass) {
 	this.ageClass = ageClass;
     }
 
@@ -110,7 +112,7 @@ public class XmlPolicyDriverInfo implements Serializable {
 	return expirienceClass;
     }
 
-    public void setExpirienceClass(InsuredExpirienceClass expirienceClass) {
+    public void setExpirienceClass(final InsuredExpirienceClass expirienceClass) {
 	this.expirienceClass = expirienceClass;
     }
 
@@ -118,7 +120,7 @@ public class XmlPolicyDriverInfo implements Serializable {
 	return privileger;
     }
 
-    public void setPrivileger(Boolean privileger) {
+    public void setPrivileger(final Boolean privileger) {
 	this.privileger = privileger;
     }
 
@@ -126,7 +128,7 @@ public class XmlPolicyDriverInfo implements Serializable {
 	return idNumber;
     }
 
-    public void setIdNumber(TaxpayerNumber idNumber) {
+    public void setIdNumber(final TaxpayerNumber idNumber) {
 	this.idNumber = idNumber;
     }
 }

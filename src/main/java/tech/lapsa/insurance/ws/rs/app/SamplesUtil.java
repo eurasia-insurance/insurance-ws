@@ -27,7 +27,7 @@ import tech.lapsa.kz.taxpayer.TaxpayerNumber;
 
 public class SamplesUtil {
     public static XmlPolicyDriverInfo driverSample() {
-	XmlPolicyDriverInfo sample = new XmlPolicyDriverInfo(TaxpayerNumber.of("811203400953"),
+	final XmlPolicyDriverInfo sample = new XmlPolicyDriverInfo(TaxpayerNumber.of("811203400953"),
 		InsuranceClassType.CLASS_10,
 		InsuredAgeClass.OVER25, InsuredExpirienceClass.LESS2, false,
 		new XmlPersonalData("Иван", "Иванов", "Иванович", LocalDate.of(1976, 4, 1)));
@@ -35,13 +35,13 @@ public class SamplesUtil {
     }
 
     public static XmlPolicyVehicleInfo vehicleSample() {
-	XmlPolicyVehicleInfo sample = new XmlPolicyVehicleInfo(KZArea.GALM, true, VehicleClass.CAR,
+	final XmlPolicyVehicleInfo sample = new XmlPolicyVehicleInfo(KZArea.GALM, true, VehicleClass.CAR,
 		VehicleAgeClass.UNDER7, false);
 	return sample;
     }
 
     public static XmlPolicyInfo policySample() {
-	XmlPolicyInfo sample = new XmlPolicyInfo(new XmlPolicyDriverInfo[] { driverSample() },
+	final XmlPolicyInfo sample = new XmlPolicyInfo(new XmlPolicyDriverInfo[] { driverSample() },
 		new XmlPolicyVehicleInfo[] { vehicleSample() }, periodSample(), 18252.27d);
 	return sample;
     }
@@ -55,13 +55,14 @@ public class SamplesUtil {
     }
 
     public static XmlRequesterInfo requesterSample() {
-	XmlRequesterInfo sample = new XmlRequesterInfo("Джон Булл", PhoneNumber.of(CountryCode.KZ, "701", "9655474"),
+	final XmlRequesterInfo sample = new XmlRequesterInfo("Джон Булл",
+		PhoneNumber.of(CountryCode.KZ, "701", "9655474"),
 		LocalizationLanguage.RUSSIAN, "john.smith@email.com");
 	return sample;
     }
 
     public static XmlPolicyRequestInfo policyRequestSample() {
-	XmlPolicyRequestInfo sample = new XmlPolicyRequestInfo(requesterSample(), utmSample(),
+	final XmlPolicyRequestInfo sample = new XmlPolicyRequestInfo(requesterSample(), utmSample(),
 		policySample(), paymentSample(), InsuranceRequestType.EXPRESS);
 	return sample;
     }
@@ -71,7 +72,7 @@ public class SamplesUtil {
     }
 
     public static XmlCallbackRequestInfo callbackRequestSample() {
-	XmlCallbackRequestInfo sample = new XmlCallbackRequestInfo(requesterSample(), utmSample(),
+	final XmlCallbackRequestInfo sample = new XmlCallbackRequestInfo(requesterSample(), utmSample(),
 		"Pls call back ASAP");
 	return sample;
     }

@@ -16,11 +16,11 @@ import tech.lapsa.javax.rs.utility.WrongArgumentException;
 public class PolicyCostValidConstraintValidator implements ConstraintValidator<PolicyCostValid, XmlPolicyInfo> {
 
     @Override
-    public void initialize(PolicyCostValid constraintAnnotation) {
+    public void initialize(final PolicyCostValid constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(XmlPolicyInfo value, ConstraintValidatorContext context) {
+    public boolean isValid(final XmlPolicyInfo value, final ConstraintValidatorContext context) {
 	if (value == null)
 	    return true;
 
@@ -30,16 +30,16 @@ public class PolicyCostValidConstraintValidator implements ConstraintValidator<P
 	Policy policy;
 	try {
 	    policy = convertPolicyShort(value);
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return true;
 	}
 	try {
 	    PolicyCalculation.calculatePolicyCost(policy);
-	} catch (CalculationFailed e) {
+	} catch (final CalculationFailed e) {
 	    return true; // означает что была ошибка расчета. Проверка должна
 			 // быть пройдена, т.к. до сути проверки не дошло
 	}
-	boolean result = policy.getCalculation().getCalculatedPremiumCost() == value.getCost();
+	final boolean result = policy.getCalculation().getCalculatedPremiumCost() == value.getCost();
 	return result;
     }
 

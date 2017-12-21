@@ -28,49 +28,50 @@ public class TestValidationMessages {
 
     @Test
     public void testRussianBundle() {
-	Locale locale = Locale.forLanguageTag(Constants.LANGUAGE_TAG_RUSSIAN);
+	final Locale locale = Locale.forLanguageTag(Constants.LANGUAGE_TAG_RUSSIAN);
 	testBundle(locale, Constants.LANGUAGE_TAG_RUSSIAN);
     }
 
     @Test
     public void testKazakhBundle() {
-	Locale locale = Locale.forLanguageTag(Constants.LANGUAGE_TAG_KAZAKH);
+	final Locale locale = Locale.forLanguageTag(Constants.LANGUAGE_TAG_KAZAKH);
 	testBundle(locale, Constants.LANGUAGE_TAG_KAZAKH);
     }
 
     @Test
     public void testEnglishBundle() {
-	Locale locale = Locale.ENGLISH;
+	final Locale locale = Locale.ENGLISH;
 	testBundle(locale, Constants.LANGUAGE_TAG_ENGLISH);
     }
 
-    private void testBundle(Locale locale, String expectingLanguageTag) {
+    private void testBundle(final Locale locale, final String expectingLanguageTag) {
 	testLocale(locale, expectingLanguageTag);
 	testResourceBundle(locale);
 	testAnnotated(locale);
     }
 
-    private void testLocale(Locale locale, String expectingLanguageTag) {
+    private void testLocale(final Locale locale, final String expectingLanguageTag) {
 	assertThat(locale, not(nullValue()));
 	assertThat(locale.getLanguage(), is(expectingLanguageTag));
     }
 
-    private void testResourceBundle(Locale locale) {
-	ResourceBundle resources = ResourceBundle.getBundle(Constants.VALIDATION_MESSAGES_BUNDLE_BASE_NAME, locale);
+    private void testResourceBundle(final Locale locale) {
+	final ResourceBundle resources = ResourceBundle.getBundle(Constants.VALIDATION_MESSAGES_BUNDLE_BASE_NAME,
+		locale);
 	assertThat(resources, not(nullValue()));
     }
 
-    private void testAnnotated(Locale locale) {
-	for (String messageKey : ValidationMessages.ALL)
+    private void testAnnotated(final Locale locale) {
+	for (final String messageKey : ValidationMessages.ALL)
 	    testMessageKey(locale, messageKey);
     }
 
-    private void testMessageKey(Locale locale, String messageKey) {
+    private void testMessageKey(final Locale locale, final String messageKey) {
 	assertThat("Message key must be non empty string", messageKey, allOf(not(nullValue()), not(isEmptyString())));
 	String interpolatedMessage = null;
 	try {
 	    interpolatedMessage = interpolator.interpolate(messageKey, context, locale);
-	} catch (Exception e) {
+	} catch (final Exception e) {
 	    fail(String.format("Error interpolating message key '%1$s' for locale '%2$s'", messageKey,
 		    locale.getDisplayName(Locale.ENGLISH)));
 	}

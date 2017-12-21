@@ -40,7 +40,8 @@ public class XmlRequesterInfo implements Serializable {
     public XmlRequesterInfo() {
     }
 
-    public XmlRequesterInfo(String name, PhoneNumber phone, LocalizationLanguage language, String email) {
+    public XmlRequesterInfo(final String name, final PhoneNumber phone, final LocalizationLanguage language,
+	    final String email) {
 	this.name = name;
 	this.phone = phone;
 	this.language = language;
@@ -56,7 +57,7 @@ public class XmlRequesterInfo implements Serializable {
 	return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
 	this.name = name;
     }
 
@@ -64,7 +65,7 @@ public class XmlRequesterInfo implements Serializable {
 	return phone;
     }
 
-    public void setPhone(PhoneNumber phone) {
+    public void setPhone(final PhoneNumber phone) {
 	this.phone = phone;
     }
 
@@ -72,7 +73,7 @@ public class XmlRequesterInfo implements Serializable {
 	return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(final String email) {
 	this.email = email;
     }
 
@@ -80,7 +81,7 @@ public class XmlRequesterInfo implements Serializable {
 	return language;
     }
 
-    public void setLanguage(LocalizationLanguage language) {
+    public void setLanguage(final LocalizationLanguage language) {
 	this.language = language;
     }
 }

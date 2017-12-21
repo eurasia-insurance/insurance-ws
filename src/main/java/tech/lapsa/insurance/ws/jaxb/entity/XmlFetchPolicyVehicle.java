@@ -29,7 +29,7 @@ public class XmlFetchPolicyVehicle implements Serializable {
     public XmlFetchPolicyVehicle() {
     }
 
-    public XmlFetchPolicyVehicle(VehicleRegNumber regNumber) {
+    public XmlFetchPolicyVehicle(final VehicleRegNumber regNumber) {
 	this.regNumber = regNumber;
     }
 
@@ -42,7 +42,7 @@ public class XmlFetchPolicyVehicle implements Serializable {
 	return regNumber;
     }
 
-    public void setRegNumber(VehicleRegNumber regNumber) {
+    public void setRegNumber(final VehicleRegNumber regNumber) {
 	this.regNumber = regNumber;
     }
 }

@@ -20,7 +20,7 @@ public class XmlPOSPhone implements Serializable {
 	return type;
     }
 
-    public void setType(String type) {
+    public void setType(final String type) {
 	this.type = type;
     }
 
@@ -28,7 +28,7 @@ public class XmlPOSPhone implements Serializable {
 	return fullNumber;
     }
 
-    public void setFullNumber(String fullNumber) {
+    public void setFullNumber(final String fullNumber) {
 	this.fullNumber = fullNumber;
     }
 

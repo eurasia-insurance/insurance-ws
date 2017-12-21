@@ -1,6 +1,5 @@
 package test.validationMessages;
 
-
 public interface Constants {
     public static final String VALIDATION_MESSAGES_BUNDLE_BASE_NAME = "ValidationMessages";
     public static final String KEY_SUFFIX = ".message";

@@ -17,31 +17,31 @@ public class PolicyParametersValidConstraintValidator
 	implements ConstraintValidator<PolicyParametersValid, XmlFetchPolicy> {
 
     @Override
-    public void initialize(PolicyParametersValid constraintAnnotation) {
+    public void initialize(final PolicyParametersValid constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(XmlFetchPolicy value, ConstraintValidatorContext context) {
+    public boolean isValid(final XmlFetchPolicy value, final ConstraintValidatorContext context) {
 	if (value == null)
 	    return true;
 
 	Policy policy;
 	try {
 	    policy = convertPolicyShort(value);
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    exception(context, e);
 	    return false;
 	}
 	try {
 	    PolicyCalculation.calculatePolicyCost(policy);
-	} catch (CalculationFailed e) {
+	} catch (final CalculationFailed e) {
 	    exception(context, e);
 	    return false;
 	}
 	return true;
     }
 
-    protected void exception(ConstraintValidatorContext context, Exception e) {
+    protected void exception(final ConstraintValidatorContext context, final Exception e) {
 	// context.disableDefaultConstraintViolation();
 	// context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate()
 	// + e.getLocalizedMessage())

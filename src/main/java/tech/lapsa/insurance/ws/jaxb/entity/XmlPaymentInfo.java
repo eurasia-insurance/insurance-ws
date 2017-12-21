@@ -28,7 +28,7 @@ public class XmlPaymentInfo implements Serializable {
     }
 
     @Deprecated
-    public XmlPaymentInfo(String method) {
+    public XmlPaymentInfo(final String method) {
 	this.method = method;
     }
 
@@ -38,7 +38,7 @@ public class XmlPaymentInfo implements Serializable {
     }
 
     @Deprecated
-    public void setMethod(String method) {
+    public void setMethod(final String method) {
 	this.method = method;
     }
 }

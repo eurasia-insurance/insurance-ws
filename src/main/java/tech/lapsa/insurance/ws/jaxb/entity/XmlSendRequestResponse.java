@@ -20,7 +20,7 @@ public class XmlSendRequestResponse implements Serializable {
     public XmlSendRequestResponse() {
     }
 
-    public XmlSendRequestResponse(String message) {
+    public XmlSendRequestResponse(final String message) {
 	this.message = message;
     }
 
@@ -33,7 +33,7 @@ public class XmlSendRequestResponse implements Serializable {
 	return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
 	this.message = message;
     }
 

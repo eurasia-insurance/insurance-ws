@@ -1,10 +1,12 @@
 package tech.lapsa.insurance.ws.rs.app;
 
 import static tech.lapsa.insurance.ws.rs.app.ConverterUtil.*;
-import static tech.lapsa.java.commons.function.MyExceptions.*;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
+import java.net.URI;
+
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.validation.Valid;
@@ -18,9 +20,10 @@ import javax.ws.rs.core.Response;
 import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 
-import tech.lapsa.insurance.facade.CallbackRequestFacade;
-import tech.lapsa.insurance.facade.EpaymentConnectionFacade;
-import tech.lapsa.insurance.facade.InsuranceRequestFacade;
+import tech.lapsa.epayment.facade.EpaymentFacade.EpaymentFacadeRemote;
+import tech.lapsa.epayment.facade.InvoiceNotFound;
+import tech.lapsa.insurance.facade.CallbackRequestFacade.CallbackRequestFacadeRemote;
+import tech.lapsa.insurance.facade.InsuranceRequestFacade.InsuranceRequestFacadeRemote;
 import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
@@ -28,6 +31,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponse;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponseFull;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlSendRequestResponseInvoice;
+import tech.lapsa.java.commons.exceptions.IllegalArgument;
 import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.rs.utility.InternalServerErrorException;
 import tech.lapsa.javax.rs.utility.WrongArgumentException;
@@ -44,68 +48,68 @@ public class CRMWS extends ALanguageDetectorWS {
 
     @POST
     @Path("/send-policy-request")
-    public Response sendPolicyRequestPOST(@NotNullValue @Valid XmlPolicyRequestInfo request) {
+    public Response sendPolicyRequestPOST(@NotNullValue @Valid final XmlPolicyRequestInfo request) {
 	return sendPolicyRequest(request);
     }
 
-    private Response sendPolicyRequest(XmlPolicyRequestInfo request) {
+    private Response sendPolicyRequest(final XmlPolicyRequestInfo request) {
 	try {
-	    XmlSendRequestResponse reply = _sendPolicyRequest(request);
+	    final XmlSendRequestResponse reply = _sendPolicyRequest(request);
 	    return responseOk(reply, getLocaleOrDefault());
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
-	} catch (InternalServerErrorException e) {
+	} catch (final InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
 	}
     }
 
     @POST
     @Path("/send-policy-request-reply")
-    public Response sendPolicyRequestAndReplyPOST(@NotNullValue @Valid XmlPolicyRequestInfo request) {
+    public Response sendPolicyRequestAndReplyPOST(@NotNullValue @Valid final XmlPolicyRequestInfo request) {
 	return sendPolicyRequestAndReply(request);
     }
 
-    private Response sendPolicyRequestAndReply(XmlPolicyRequestInfo request) {
+    private Response sendPolicyRequestAndReply(final XmlPolicyRequestInfo request) {
 	try {
-	    XmlSendRequestResponseFull reply = _sendPolicyRequestAndReply(request);
+	    final XmlSendRequestResponseFull reply = _sendPolicyRequestAndReply(request);
 	    return responseOk(reply, getLocaleOrDefault());
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
-	} catch (InternalServerErrorException e) {
+	} catch (final InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
 	}
     }
 
     @POST
     @Path("/send-callback-request")
-    public Response sendCallbackRequestPOST(@NotNullValue @Valid XmlCallbackRequestInfo request) {
+    public Response sendCallbackRequestPOST(@NotNullValue @Valid final XmlCallbackRequestInfo request) {
 	return sendCallbackRequest(request);
     }
 
-    private Response sendCallbackRequest(XmlCallbackRequestInfo request) {
+    private Response sendCallbackRequest(final XmlCallbackRequestInfo request) {
 	try {
-	    XmlSendRequestResponse reply = _sendCallbackRequest(request);
+	    final XmlSendRequestResponse reply = _sendCallbackRequest(request);
 	    return responseOk(reply, getLocaleOrDefault());
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
-	} catch (InternalServerErrorException e) {
+	} catch (final InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
 	}
     }
 
     @POST
     @Path("/send-callback-request-reply")
-    public Response sendCallbackRequestSyncPOST(@NotNullValue @Valid XmlCallbackRequestInfo request) {
+    public Response sendCallbackRequestSyncPOST(@NotNullValue @Valid final XmlCallbackRequestInfo request) {
 	return sendCallbackRequestSync(request);
     }
 
-    private Response sendCallbackRequestSync(XmlCallbackRequestInfo request) {
+    private Response sendCallbackRequestSync(final XmlCallbackRequestInfo request) {
 	try {
-	    XmlSendRequestResponseFull reply = _sendCallbackRequestAndReply(request);
+	    final XmlSendRequestResponseFull reply = _sendCallbackRequestAndReply(request);
 	    return responseOk(reply, getLocaleOrDefault());
-	} catch (WrongArgumentException e) {
+	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
-	} catch (InternalServerErrorException e) {
+	} catch (final InternalServerErrorException e) {
 	    return responseInternalServerError(e, getLocaleOrDefault());
 	}
     }
@@ -119,78 +123,80 @@ public class CRMWS extends ALanguageDetectorWS {
     @Inject
     private AuthenticatedUser authenticatedUser;
 
-    @Inject
-    private InsuranceRequestFacade insuranceRequests;
+    @EJB
+    private InsuranceRequestFacadeRemote insuranceRequests;
 
-    private XmlSendRequestResponse _sendPolicyRequest(XmlPolicyRequestInfo request)
-	    throws WrongArgumentException, InternalServerErrorException {
-	try {
-	    PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	    reThrowAsUnchecked(() ->
-	    //
-	    insuranceRequests.accept(policy)
-	    //
-	    );
-	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
-	} catch (IllegalArgumentException | IllegalStateException e) {
-	    logger.DEBUG.log(e);
-	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
-	    logger.SEVERE.log(e);
-	    throw new InternalServerErrorException(e);
-	}
-    }
-
-    @Inject
-    private EpaymentConnectionFacade toEpayments;
-
-    private XmlSendRequestResponseFull _sendPolicyRequestAndReply(XmlPolicyRequestInfo request)
+    private XmlSendRequestResponse _sendPolicyRequest(final XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
-	    final PolicyRequest saved = reThrowAsUnchecked(() -> insuranceRequests.acceptAndReply(policy));
-	    final String invoiceNumber = saved.getPayment().getInvoiceNumber();
-	    final XmlSendRequestResponseFull reply = reThrowAsUnchecked(
-		    () -> new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE, saved.getId(), invoiceNumber,
-			    toEpayments.getPaymentURI(invoiceNumber)));
-	    return reply;
-	} catch (IllegalArgumentException | IllegalStateException e) {
-	    logger.DEBUG.log(e);
-	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
-	    logger.SEVERE.log(e);
-	    throw new InternalServerErrorException(e);
-	}
-    }
-
-    @Inject
-    private CallbackRequestFacade callbackRequestFacade;
-
-    private XmlSendRequestResponse _sendCallbackRequest(XmlCallbackRequestInfo request)
-	    throws WrongArgumentException, InternalServerErrorException {
-	try {
-	    CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
-	    reThrowAsUnchecked(() -> callbackRequestFacade.accept(callback));
+	    insuranceRequests.acceptAndReply(policy);
 	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
-	} catch (IllegalArgumentException | IllegalStateException e) {
+	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
+	} catch (final RuntimeException e) {
 	    logger.SEVERE.log(e);
 	    throw new InternalServerErrorException(e);
 	}
     }
 
-    private XmlSendRequestResponseFull _sendCallbackRequestAndReply(XmlCallbackRequestInfo request)
+    @EJB
+    private EpaymentFacadeRemote epayments;
+
+    private XmlSendRequestResponseFull _sendPolicyRequestAndReply(final XmlPolicyRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
-	    CallbackRequest reply = reThrowAsUnchecked(() -> callbackRequestFacade.acceptAndReply(callback));
-	    return new XmlSendRequestResponseFull(DEFAULT_SUCCESS_MESSAGE, reply.getId());
-	} catch (IllegalArgumentException | IllegalStateException e) {
+	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
+	    final PolicyRequest saved = insuranceRequests.acceptAndReply(policy);
+	    final String invoiceNumber = saved.getPayment().getInvoiceNumber();
+	    final URI uri;
+	    try {
+		uri = epayments.getDefaultPaymentURI(invoiceNumber);
+	    } catch (InvoiceNotFound e) {
+		logger.SEVERE.log(e);
+		throw new InternalServerErrorException(e);
+	    }
+	    final XmlSendRequestResponseFull reply = new XmlSendRequestResponseInvoice(DEFAULT_SUCCESS_MESSAGE,
+		    saved.getId(), invoiceNumber, uri);
+	    return reply;
+	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
 	    throw new WrongArgumentException(e);
-	} catch (RuntimeException e) {
+	} catch (final RuntimeException e) {
+	    logger.SEVERE.log(e);
+	    throw new InternalServerErrorException(e);
+	}
+    }
+
+    @EJB
+    private CallbackRequestFacadeRemote callbackRequestFacade;
+
+    private XmlSendRequestResponse _sendCallbackRequest(final XmlCallbackRequestInfo request)
+	    throws WrongArgumentException, InternalServerErrorException {
+	try {
+	    final CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
+	    callbackRequestFacade.acceptAndReply(callback);
+	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
+	} catch (final IllegalArgument e) {
+	    logger.DEBUG.log(e);
+	    throw new WrongArgumentException(e);
+	} catch (final RuntimeException e) {
+	    logger.SEVERE.log(e);
+	    throw new InternalServerErrorException(e);
+	}
+    }
+
+    private XmlSendRequestResponseFull _sendCallbackRequestAndReply(final XmlCallbackRequestInfo request)
+	    throws WrongArgumentException, InternalServerErrorException {
+	try {
+	    final CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
+	    final CallbackRequest reply = callbackRequestFacade.acceptAndReply(callback);
+	    return new XmlSendRequestResponseFull(DEFAULT_SUCCESS_MESSAGE, reply.getId());
+	} catch (final IllegalArgument e) {
+	    logger.DEBUG.log(e);
+	    throw new WrongArgumentException(e);
+	} catch (final RuntimeException e) {
 	    logger.SEVERE.log(e);
 	    throw new InternalServerErrorException(e);
 	}

@@ -37,7 +37,8 @@ public class XmlUTMInfo implements Serializable {
     public XmlUTMInfo() {
     }
 
-    public XmlUTMInfo(String source, String medium, String campaign, String content, String term) {
+    public XmlUTMInfo(final String source, final String medium, final String campaign, final String content,
+	    final String term) {
 	this.source = source;
 	this.medium = medium;
 	this.campaign = campaign;
@@ -54,7 +55,7 @@ public class XmlUTMInfo implements Serializable {
 	return source;
     }
 
-    public void setSource(String source) {
+    public void setSource(final String source) {
 	this.source = source;
     }
 
@@ -62,7 +63,7 @@ public class XmlUTMInfo implements Serializable {
 	return medium;
     }
 
-    public void setMedium(String medium) {
+    public void setMedium(final String medium) {
 	this.medium = medium;
     }
 
@@ -70,7 +71,7 @@ public class XmlUTMInfo implements Serializable {
 	return campaign;
     }
 
-    public void setCampaign(String campaign) {
+    public void setCampaign(final String campaign) {
 	this.campaign = campaign;
     }
 
@@ -78,7 +79,7 @@ public class XmlUTMInfo implements Serializable {
 	return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(final String content) {
 	this.content = content;
     }
 
@@ -86,7 +87,7 @@ public class XmlUTMInfo implements Serializable {
 	return term;
     }
 
-    public void setTerm(String term) {
+    public void setTerm(final String term) {
 	this.term = term;
     }
 }

@@ -18,11 +18,11 @@ public class XmlSendRequestResponseFull extends XmlSendRequestResponse {
     public XmlSendRequestResponseFull() {
     }
 
-    public XmlSendRequestResponseFull(String message) {
+    public XmlSendRequestResponseFull(final String message) {
 	super(message);
     }
 
-    public XmlSendRequestResponseFull(String message, Integer requestId) {
+    public XmlSendRequestResponseFull(final String message, final Integer requestId) {
 	super(message);
 	this.requestId = requestId;
     }
@@ -36,7 +36,7 @@ public class XmlSendRequestResponseFull extends XmlSendRequestResponse {
 	return requestId;
     }
 
-    public void setRequestId(Integer requestId) {
+    public void setRequestId(final Integer requestId) {
 	this.requestId = requestId;
     }
 }

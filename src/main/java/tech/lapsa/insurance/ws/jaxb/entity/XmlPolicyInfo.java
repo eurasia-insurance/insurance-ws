@@ -27,8 +27,9 @@ public class XmlPolicyInfo extends XmlFetchPolicy implements Serializable {
     public XmlPolicyInfo() {
     }
 
-    public XmlPolicyInfo(XmlPolicyDriverInfo[] drivers, XmlPolicyVehicleInfo[] vehicles, XmlPeriodInfo period,
-	    Double cost) {
+    public XmlPolicyInfo(final XmlPolicyDriverInfo[] drivers, final XmlPolicyVehicleInfo[] vehicles,
+	    final XmlPeriodInfo period,
+	    final Double cost) {
 	super(drivers, vehicles, period);
 	this.cost = cost;
     }
@@ -42,7 +43,7 @@ public class XmlPolicyInfo extends XmlFetchPolicy implements Serializable {
 	return cost;
     }
 
-    public void setCost(Double cost) {
+    public void setCost(final Double cost) {
 	this.cost = cost;
     }
 
