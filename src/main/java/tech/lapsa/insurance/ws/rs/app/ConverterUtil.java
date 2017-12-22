@@ -1,8 +1,8 @@
 package tech.lapsa.insurance.ws.rs.app;
 
 import java.util.Arrays;
+import java.util.Currency;
 
-import com.lapsa.fin.FinCurrency;
 import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.Driver;
 import com.lapsa.insurance.domain.InsurancePeriodData;
@@ -205,8 +205,8 @@ public class ConverterUtil {
     }
 
     private static void processConversionPolicy(final XmlPolicyInfo request, final Policy response) {
-	response.getCalculation().setCalculatedPremiumCost(request.getCost());
-	response.getCalculation().setPremiumCurrency(FinCurrency.KZT);
+	response.getCalculation().setAmount(request.getCost());
+	response.getCalculation().setCurrency(Currency.getInstance("KZT"));
     }
 
     private static void processConversionPolicyShort(final XmlFetchPolicy request, final Policy response)
