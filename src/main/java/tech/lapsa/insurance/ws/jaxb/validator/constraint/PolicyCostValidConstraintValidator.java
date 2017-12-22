@@ -39,7 +39,7 @@ public class PolicyCostValidConstraintValidator implements ConstraintValidator<P
 	    return true; // означает что была ошибка расчета. Проверка должна
 			 // быть пройдена, т.к. до сути проверки не дошло
 	}
-	final boolean result = policy.getCalculation().getCalculatedPremiumCost() == value.getCost();
+	final boolean result = policy.getCalculation().getAmount() == value.getCost();
 	return result;
     }
 

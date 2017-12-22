@@ -155,7 +155,7 @@ public class PolicyWS extends ALanguageDetectorWS {
 
 	    final XmlPolicyInfo response = convertPolicyShortToFull(request);
 
-	    response.setCost(policy.getCalculation().getCalculatedPremiumCost());
+	    response.setCost(policy.getCalculation().getAmount());
 	    return response;
 	} catch (IllegalArgumentException | IllegalStateException e) {
 	    logger.DEBUG.log(e);
