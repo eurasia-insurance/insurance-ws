@@ -15,7 +15,7 @@
 	<name>Insurance Lib : Web-services</name>
 
 	<modules>
-		<module>depdendencies</module>
+		<module>dependencies</module>
 		<module>webapp</module>
 		<module>app</module>
 	</modules>
