@@ -27,14 +27,6 @@ public class PolicyParametersValidConstraintValidator
 	if (value == null)
 	    return true;
 
-	final Policy policy;
-	try {
-	    policy = convertPolicyShort(value);
-	} catch (final WrongArgumentException e) {
-	    exception(context, e);
-	    return false;
-	}
-
 	final PolicyCalculationRemote policyCalculations = MyNaming.lookupEJB(ValidationException::new,
 		PolicyCalculationRemote.APPLICATION_NAME,
 		PolicyCalculationRemote.MODULE_NAME,
@@ -42,7 +34,14 @@ public class PolicyParametersValidConstraintValidator
 		PolicyCalculationRemote.class);
 
 	try {
-	    policyCalculations.calculatePolicyCost(policy);
+	    final Policy policy;
+	    try {
+		policy = convertPolicyShort(value);
+	    } catch (final WrongArgumentException e) {
+		exception(context, e);
+		return false;
+	    }
+	    policyCalculations.calculateAmount(policy);
 	} catch (final CalculationFailed e) {
 	    exception(context, e);
 	    return false;
