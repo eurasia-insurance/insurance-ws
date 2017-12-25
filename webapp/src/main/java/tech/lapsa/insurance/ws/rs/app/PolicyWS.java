@@ -19,7 +19,7 @@ import com.lapsa.insurance.domain.policy.PolicyDriver;
 import com.lapsa.insurance.domain.policy.PolicyVehicle;
 
 import tech.lapsa.insurance.calculation.CalculationFailed;
-import tech.lapsa.insurance.calculation.PolicyCalculation;
+import tech.lapsa.insurance.calculation.PolicyCalculation.PolicyCalculationRemote;
 import tech.lapsa.insurance.facade.PolicyDriverFacade.PolicyDriverFacadeRemote;
 import tech.lapsa.insurance.facade.PolicyVehicleFacade.PolicyVehicleFacadeRemote;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
@@ -138,6 +138,9 @@ public class PolicyWS extends ALanguageDetectorWS {
 	}
     }
 
+    @EJB
+    private PolicyCalculationRemote policyCalculations;
+
     private XmlPolicyInfo _fetchPolicy(final XmlFetchPolicy request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
@@ -146,7 +149,7 @@ public class PolicyWS extends ALanguageDetectorWS {
 	    final Policy policy = convertPolicyShort(request);
 
 	    try {
-		PolicyCalculation.calculatePolicyCost(policy);
+		policyCalculations.calculatePolicyCost(policy);
 	    } catch (final CalculationFailed e) {
 		throw new InternalServerErrorException(
 			String.format("Calculation failed. %1$s. Ask to support team for details. ", e.getMessage()),
