@@ -27,7 +27,7 @@ public class PolicyCostValidConstraintValidator implements ConstraintValidator<P
 	if (value.getCost() == null)
 	    return true;
 
-	Policy policy;
+	final Policy policy;
 	try {
 	    policy = convertPolicyShort(value);
 	} catch (final WrongArgumentException e) {
@@ -39,8 +39,9 @@ public class PolicyCostValidConstraintValidator implements ConstraintValidator<P
 	    return true; // означает что была ошибка расчета. Проверка должна
 			 // быть пройдена, т.к. до сути проверки не дошло
 	}
-	final boolean result = policy.getCalculation().getAmount() == value.getCost();
+	final Double test = value.getCost();
+	final Double right = policy.getCalculation().getAmount();
+	final boolean result = test.equals(right);
 	return result;
     }
-
 }
