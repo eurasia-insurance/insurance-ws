@@ -10,7 +10,7 @@
 	<artifactId>insurance-ws</artifactId>
 	<packaging>war</packaging>
 
-	<name>Insurance Lib : Web-services : Webapp</name>
+	<name>Insurance Lib : Web-services : WAR</name>
 
 	<dependencies>
 		<!-- own -->

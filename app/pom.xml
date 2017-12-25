@@ -10,7 +10,7 @@
 	<artifactId>insurance-ws-app</artifactId>
 	<packaging>ear</packaging>
 
-	<name>Insurance Lib : Web-services : EE Application</name>
+	<name>Insurance Lib : Web-services : EAR</name>
 
 	<dependencies>
 		<dependency>
