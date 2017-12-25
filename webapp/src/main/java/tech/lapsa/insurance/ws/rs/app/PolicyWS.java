@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.lapsa.insurance.domain.CalculationData;
 import com.lapsa.insurance.domain.policy.Policy;
 import com.lapsa.insurance.domain.policy.PolicyDriver;
 import com.lapsa.insurance.domain.policy.PolicyVehicle;
@@ -146,10 +147,10 @@ public class PolicyWS extends ALanguageDetectorWS {
 	try {
 	    MyObjects.requireNonNull(request, "request");
 
-	    final Policy policy = convertPolicyShort(request);
-
+	    final CalculationData calculation;
 	    try {
-		policyCalculations.calculatePolicyCost(policy);
+		final Policy policy = convertPolicyShort(request);
+		calculation = policyCalculations.calculateAmount(policy);
 	    } catch (final CalculationFailed e) {
 		throw new InternalServerErrorException(
 			String.format("Calculation failed. %1$s. Ask to support team for details. ", e.getMessage()),
@@ -158,7 +159,7 @@ public class PolicyWS extends ALanguageDetectorWS {
 
 	    final XmlPolicyInfo response = convertPolicyShortToFull(request);
 
-	    response.setCost(policy.getCalculation().getAmount());
+	    response.setCost(calculation.getAmount());
 	    return response;
 	} catch (IllegalArgumentException | IllegalStateException e) {
 	    logger.DEBUG.log(e);

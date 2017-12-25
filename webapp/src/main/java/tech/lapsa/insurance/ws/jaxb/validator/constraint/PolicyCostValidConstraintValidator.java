@@ -6,6 +6,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.ValidationException;
 
+import com.lapsa.insurance.domain.CalculationData;
 import com.lapsa.insurance.domain.policy.Policy;
 
 import tech.lapsa.insurance.calculation.CalculationFailed;
@@ -29,27 +30,27 @@ public class PolicyCostValidConstraintValidator implements ConstraintValidator<P
 	if (value.getCost() == null)
 	    return true;
 
-	final Policy policy;
-	try {
-	    policy = convertPolicyShort(value);
-	} catch (final WrongArgumentException e) {
-	    return true;
-	}
-
 	final PolicyCalculationRemote policyCalculations = MyNaming.lookupEJB(ValidationException::new,
 		PolicyCalculationRemote.APPLICATION_NAME,
 		PolicyCalculationRemote.MODULE_NAME,
 		PolicyCalculationRemote.BEAN_NAME,
 		PolicyCalculationRemote.class);
 
+	final CalculationData calculation;
 	try {
-	    policyCalculations.calculatePolicyCost(policy);
+	    final Policy policy;
+	    try {
+		policy = convertPolicyShort(value);
+	    } catch (final WrongArgumentException e) {
+		return true;
+	    }
+	    calculation = policyCalculations.calculateAmount(policy);
 	} catch (final CalculationFailed e) {
 	    return true; // означает что была ошибка расчета. Проверка должна
 			 // быть пройдена, т.к. до сути проверки не дошло
 	}
 	final Double test = value.getCost();
-	final Double right = policy.getCalculation().getAmount();
+	final Double right = calculation.getAmount();
 	final boolean result = test.equals(right);
 	return result;
     }
