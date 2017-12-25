@@ -31,6 +31,7 @@
 		<javax-cdi-commons.version>1.1-SNAPSHOT</javax-cdi-commons.version>
 		<payara-jersey-extensions.version>1.0</payara-jersey-extensions.version>
 		<payara-hibernate-validation.version>1.0</payara-hibernate-validation.version>
+		<insurance-domain.version>2.4-SNAPSHOT</insurance-domain.version>
 		<insurance-calculation.version>1.1-SNAPSHOT</insurance-calculation.version>
 		<!-- validation -->
 		<javax-validation-commons.version>1.1-SNAPSHOT</javax-validation-commons.version>
@@ -39,7 +40,7 @@
 		<insurance-facade.version>1.1-SNAPSHOT</insurance-facade.version>
 		<epayment-facade.version>1.1-SNAPSHOT</epayment-facade.version>
 		<!-- oldies -->
-		<insurance-lib.version>2.4-SNAPSHOT</insurance-lib.version>
+		<lapsa-lib.version>2.3-SNAPSHOT</lapsa-lib.version>
 	</properties>
 
 	<dependencyManagement>
@@ -137,19 +138,23 @@
 				<artifactId>payara-hibernate-validation</artifactId>
 				<version>${payara-hibernate-validation.version}</version>
 			</dependency>
-			<!-- oldies -->
 			<dependency>
-				<groupId>com.lapsa.insurance-lib</groupId>
-				<artifactId>insurance-root</artifactId>
-				<version>${insurance-lib.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<groupId>tech.lapsa.insurance</groupId>
+				<artifactId>insurance-domain</artifactId>
+				<version>${insurance-domain.version}</version>
 			</dependency>
-			<!-- tech -->
 			<dependency>
 				<groupId>tech.lapsa.insurance</groupId>
 				<artifactId>insurance-calculation</artifactId>
 				<version>${insurance-calculation.version}</version>
+			</dependency>
+			<!-- oldies -->
+			<dependency>
+				<groupId>com.lapsa.lapsa-lib</groupId>
+				<artifactId>lapsa-root</artifactId>
+				<version>${lapsa-lib.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

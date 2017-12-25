@@ -57,14 +57,12 @@
 			<scope>runtime</scope>
 			<optional>false</optional>
 		</dependency>
-		<!-- oldies -->
 		<dependency>
-			<groupId>com.lapsa.insurance-lib</groupId>
+			<groupId>tech.lapsa.insurance</groupId>
 			<artifactId>insurance-domain</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
-		<!-- tech #2 -->
 		<dependency>
 			<groupId>tech.lapsa.insurance</groupId>
 			<artifactId>insurance-calculation</artifactId>
@@ -80,6 +78,13 @@
 		<dependency>
 			<groupId>tech.lapsa.epayment</groupId>
 			<artifactId>epayment-facade-client</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<!-- oldies -->
+		<dependency>
+			<groupId>com.lapsa.lapsa-lib</groupId>
+			<artifactId>lapsa-utils</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>
