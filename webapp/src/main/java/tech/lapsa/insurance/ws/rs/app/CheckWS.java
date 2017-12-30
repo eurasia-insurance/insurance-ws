@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.security.PermitAll;
-import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -28,7 +27,6 @@ import tech.lapsa.kz.vehicle.validators.ValidVehicleRegNumber;
 @Path("/check")
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 @PermitAll
-@Singleton
 public class CheckWS extends ALanguageDetectorWS {
 
     @Deprecated
