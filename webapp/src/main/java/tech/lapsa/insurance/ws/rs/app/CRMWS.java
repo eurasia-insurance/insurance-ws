@@ -8,7 +8,6 @@ import java.net.URI;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -41,7 +40,6 @@ import tech.lapsa.javax.validation.NotNullValue;
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 @RolesAllowed({ InsuranceSecurity.ROLE_ADMIN, InsuranceSecurity.ROLE_AGENT })
-@Singleton
 public class CRMWS extends ALanguageDetectorWS {
 
     private static final String DEFAULT_SUCCESS_MESSAGE = "Success";

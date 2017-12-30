@@ -9,7 +9,6 @@ import java.util.Map;
 
 import javax.annotation.security.PermitAll;
 import javax.ejb.EJB;
-import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -38,7 +37,6 @@ import tech.lapsa.javax.validation.NotNullValue;
 @Path("/pos")
 @Produces({ MediaType.APPLICATION_JSON })
 @PermitAll
-@Singleton
 public class POSWS extends ALanguageDetectorWS {
 
     @Context

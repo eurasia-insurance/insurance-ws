@@ -4,7 +4,6 @@ import static tech.lapsa.insurance.ws.rs.app.SamplesUtil.*;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
 import javax.annotation.security.PermitAll;
-import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -20,7 +19,6 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
 @Path("/sample")
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 @PermitAll
-@Singleton
 public class SamplesWS extends ALanguageDetectorWS {
 
     @GET
