@@ -32,7 +32,7 @@
 		<payara-jersey-extensions.version>1.1</payara-jersey-extensions.version>
 		<payara-hibernate-validation.version>1.1.1</payara-hibernate-validation.version>
 		<insurance-domain.version>2.4</insurance-domain.version>
-		<insurance-calculation.version>2.1</insurance-calculation.version>
+		<insurance-calculation.version>2.0.1</insurance-calculation.version>
 		<!-- validation -->
 		<javax-validation-commons.version>1.1</javax-validation-commons.version>
 		<insurance-validation.version>1.0</insurance-validation.version>
