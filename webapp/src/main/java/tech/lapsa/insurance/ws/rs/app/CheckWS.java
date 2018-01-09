@@ -105,12 +105,12 @@ public class CheckWS extends ALanguageDetectorWS {
 
     protected Response _testPing() {
 	try {
-	    final PingClientRemote pingClient = MyNaming.lookupEJB(IllegalStateException::new,
+	    MyNaming.lookupEJB(IllegalStateException::new,
 		    PingClientRemote.APPLICATION_NAME,
 		    PingClientRemote.MODULE_NAME,
 		    PingClientRemote.BEAN_NAME,
-		    PingClientRemote.class);
-	    pingClient.fullPing();
+		    PingClientRemote.class) //
+		    .fullPing();
 	    return responseOk(0);
 	} catch (IllegalState | IllegalStateException e) {
 	    return RESTUtils.response(Status.SERVICE_UNAVAILABLE, e.getMessage());
