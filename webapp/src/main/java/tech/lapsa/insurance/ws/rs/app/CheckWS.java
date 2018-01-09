@@ -12,11 +12,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.lapsa.international.phone.PhoneFormatException;
 import com.lapsa.international.phone.PhoneNumber;
 import com.lapsa.international.phone.validators.ValidPhoneNumber;
 
+import tech.lapsa.insurance.facade.PingClient.PingClientRemote;
+import tech.lapsa.java.commons.exceptions.IllegalState;
+import tech.lapsa.java.commons.naming.MyNaming;
+import tech.lapsa.javax.rs.utility.RESTUtils;
 import tech.lapsa.javax.validation.NotNullValue;
 import tech.lapsa.javax.validation.ValidEmail;
 import tech.lapsa.kz.taxpayer.TaxpayerNumber;
@@ -90,6 +95,26 @@ public class CheckWS extends ALanguageDetectorWS {
 	final Map<String, String> response = new HashMap<>();
 	response.put("email", email);
 	return responseOk(response, getLocaleOrDefault());
+    }
+
+    @GET
+    @Path("/ping")
+    public Response testPingGET() {
+	return _testPing();
+    }
+
+    protected Response _testPing() {
+	try {
+	    final PingClientRemote pingClient = MyNaming.lookupEJB(IllegalStateException::new,
+		    PingClientRemote.APPLICATION_NAME,
+		    PingClientRemote.MODULE_NAME,
+		    PingClientRemote.BEAN_NAME,
+		    PingClientRemote.class);
+	    pingClient.fullPing();
+	    return responseOk(0);
+	} catch (IllegalState | IllegalStateException e) {
+	    return RESTUtils.response(Status.SERVICE_UNAVAILABLE, e.getMessage());
+	}
     }
 
 }
