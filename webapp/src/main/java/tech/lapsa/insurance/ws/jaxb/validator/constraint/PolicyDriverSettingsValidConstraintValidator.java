@@ -7,11 +7,11 @@ import javax.validation.ValidationException;
 import com.lapsa.insurance.domain.policy.PolicyDriver;
 
 import tech.lapsa.insurance.facade.PolicyDriverFacade.PolicyDriverFacadeRemote;
-import tech.lapsa.insurance.facade.PolicyDriverNotFound;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
 import tech.lapsa.insurance.ws.jaxb.validator.ValidationMessages;
 import tech.lapsa.java.commons.exceptions.IllegalArgument;
+import tech.lapsa.java.commons.function.MyObjects;
 import tech.lapsa.java.commons.naming.MyNaming;
 
 public class PolicyDriverSettingsValidConstraintValidator
@@ -27,6 +27,11 @@ public class PolicyDriverSettingsValidConstraintValidator
 	if (value == null)
 	    return true;
 
+	// если не указан ИИН то ничего проверить нельзя. Верим тому что
+	// указано.
+	if (MyObjects.isNull(value.getIdNumber()))
+	    return true;
+
 	final PolicyDriverFacadeRemote policyDrivers = MyNaming.lookupEJB(ValidationException::new,
 		PolicyDriverFacadeRemote.APPLICATION_NAME,
 		PolicyDriverFacadeRemote.MODULE_NAME,
@@ -35,10 +40,8 @@ public class PolicyDriverSettingsValidConstraintValidator
 
 	final PolicyDriver fetched;
 	try {
-	    fetched = policyDrivers.getByTaxpayerNumber(value.getIdNumber());
+	    fetched = policyDrivers.getByTaxpayerNumberOrDefault(value.getIdNumber());
 	} catch (final IllegalArgument e) {
-	    return false;
-	} catch (final PolicyDriverNotFound e) {
 	    return false;
 	}
 
