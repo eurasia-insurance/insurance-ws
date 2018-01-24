@@ -52,7 +52,7 @@ public class ConverterUtil {
 
     public static PolicyRequest convertPolicyRequest(final XmlPolicyRequestInfo request, final User createdBy)
 	    throws WrongArgumentException {
-	final PolicyRequest response = new PolicyRequest(RequestSource.API);
+	final PolicyRequest response = new PolicyRequest();
 	processConversionRequest(request, response, createdBy);
 	processConversionInsuranceRequest(request, response);
 	processConversionPolicyRequest(request, response);
