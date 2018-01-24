@@ -125,11 +125,6 @@
 				<version>${payara-hibernate-validation.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>tech.lapsa.insurance</groupId>
-				<artifactId>insurance-domain</artifactId>
-				<version>${insurance-domain.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>tech.lapsa.epayment</groupId>
 				<artifactId>epayment-facade-client</artifactId>
 				<version>${epayment-facade-client.version}</version>

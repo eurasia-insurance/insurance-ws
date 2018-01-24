@@ -21,7 +21,6 @@ import com.lapsa.insurance.domain.policy.PolicyRequest;
 
 import tech.lapsa.epayment.facade.EpaymentFacade.EpaymentFacadeRemote;
 import tech.lapsa.epayment.facade.InvoiceNotFound;
-import tech.lapsa.insurance.facade.CallbackRequestFacade.CallbackRequestFacadeRemote;
 import tech.lapsa.insurance.facade.InsuranceRequestFacade.InsuranceRequestFacadeRemote;
 import tech.lapsa.insurance.ws.auth.AuthenticatedUser;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
@@ -167,14 +166,11 @@ public class CRMWS extends ALanguageDetectorWS {
 	}
     }
 
-    @EJB
-    private CallbackRequestFacadeRemote callbackRequestFacade;
-
     private XmlSendRequestResponse _sendCallbackRequest(final XmlCallbackRequestInfo request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    final CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
-	    callbackRequestFacade.acceptAndReply(callback);
+	    insuranceRequests.acceptAndReply(callback);
 	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE);
 	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
@@ -189,7 +185,7 @@ public class CRMWS extends ALanguageDetectorWS {
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    final CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
-	    final CallbackRequest reply = callbackRequestFacade.acceptAndReply(callback);
+	    final CallbackRequest reply = insuranceRequests.acceptAndReply(callback);
 	    return new XmlSendRequestResponseFull(DEFAULT_SUCCESS_MESSAGE, reply.getId());
 	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
