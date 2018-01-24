@@ -18,6 +18,7 @@ import com.lapsa.insurance.domain.policy.Policy;
 import com.lapsa.insurance.domain.policy.PolicyDriver;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 import com.lapsa.insurance.domain.policy.PolicyVehicle;
+import com.lapsa.insurance.elements.InsuranceRequestType;
 import com.lapsa.insurance.elements.PaymentStatus;
 import com.lapsa.insurance.elements.RequestSource;
 import com.lapsa.kz.country.KZArea;
@@ -44,13 +45,14 @@ public class ConverterUtil {
 	    throws WrongArgumentException {
 	final CallbackRequest response = new CallbackRequest();
 	processConversionRequest(request, response, createdBy);
+	processConversionInsuranceRequest(request, response);
 	processConversionCallbackRequest(request, response);
 	return response;
     }
 
     public static PolicyRequest convertPolicyRequest(final XmlPolicyRequestInfo request, final User createdBy)
 	    throws WrongArgumentException {
-	final PolicyRequest response = new PolicyRequest(RequestSource.API);
+	final PolicyRequest response = new PolicyRequest();
 	processConversionRequest(request, response, createdBy);
 	processConversionInsuranceRequest(request, response);
 	processConversionPolicyRequest(request, response);
@@ -242,6 +244,13 @@ public class ConverterUtil {
 	final PaymentData payment = convertPayment(request.getPayment());
 	response.setPayment(payment);
 	response.setType(request.getType());
+    }
+
+    private static void processConversionInsuranceRequest(final XmlCallbackRequestInfo request,
+	    final InsuranceRequest response)
+	    throws WrongArgumentException {
+	response.setPayment(new PaymentData());
+	response.setType(InsuranceRequestType.UNCOMPLETE);
     }
 
     private static void processConversionPolicyRequest(final XmlPolicyRequestInfo request, final PolicyRequest response)
