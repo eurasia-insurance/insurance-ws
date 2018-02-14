@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -20,6 +21,7 @@ import com.lapsa.insurance.validation.ValidInsuranceExpirienceClass;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid;
 import tech.lapsa.javax.validation.NotNullValue;
 import tech.lapsa.kz.taxpayer.TaxpayerNumber;
+import tech.lapsa.kz.taxpayer.converter.jaxb.XmlTaxpayerNumberAdapter;
 import tech.lapsa.kz.taxpayer.validators.ValidTaxpayerNumber;
 
 @XmlRootElement(name = "policyDriver")
@@ -30,6 +32,7 @@ public class XmlPolicyDriverInfo implements Serializable {
 
     @XmlAttribute
     @ValidTaxpayerNumber
+    @XmlJavaTypeAdapter(XmlTaxpayerNumberAdapter.class)
     protected TaxpayerNumber idNumber;
 
     @XmlAttribute
