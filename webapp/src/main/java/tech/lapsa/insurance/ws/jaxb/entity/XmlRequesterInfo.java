@@ -6,11 +6,13 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.lapsa.international.localization.LocalizationLanguage;
 import com.lapsa.international.phone.PhoneNumber;
+import com.lapsa.international.phone.converter.jaxb.XmlPhoneNumberAdapter;
 import com.lapsa.international.phone.validators.ValidPhoneNumber;
 
 import tech.lapsa.javax.validation.NotNullValue;
@@ -27,6 +29,7 @@ public class XmlRequesterInfo implements Serializable {
     @XmlAttribute
     @NotNullValue
     @ValidPhoneNumber
+    @XmlJavaTypeAdapter(XmlPhoneNumberAdapter.class)
     protected PhoneNumber phone;
 
     @XmlAttribute
