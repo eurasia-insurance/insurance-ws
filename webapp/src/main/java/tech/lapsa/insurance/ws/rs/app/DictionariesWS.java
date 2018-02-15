@@ -3,6 +3,7 @@ package tech.lapsa.insurance.ws.rs.app;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,6 +12,7 @@ import javax.annotation.security.PermitAll;
 import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -24,9 +26,11 @@ import com.lapsa.insurance.elements.VehicleAgeClass;
 import com.lapsa.insurance.elements.VehicleClass;
 import com.lapsa.international.localization.LocalizationLanguage;
 import com.lapsa.kz.country.KZArea;
+import com.lapsa.kz.country.KZCity;
 
 import tech.lapsa.insurance.ws.rs.entity.LocalizationLanguageWrapped;
 import tech.lapsa.java.commons.localization.Localized;
+import tech.lapsa.javax.validation.NotNullValue;
 
 @Path("/dict")
 @Produces({ MediaType.APPLICATION_JSON })
@@ -42,13 +46,6 @@ public class DictionariesWS extends ALanguageDetectorWS {
 	return responseOk(convertToResult(lang, InsuranceClassType.selectableValues()), lang.getLocale());
     }
 
-    @GET
-    @Path("/insurance-class/all")
-    public Response insuranceClassAllGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
-	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, InsuranceClassType.values()), lang.getLocale());
-    }
-
     //
 
     @GET
@@ -57,13 +54,6 @@ public class DictionariesWS extends ALanguageDetectorWS {
 	    @QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
 	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
 	return responseOk(convertToResult(lang, InsuredExpirienceClass.selectableValues()), lang.getLocale());
-    }
-
-    @GET
-    @Path("/expirience-class/all")
-    public Response expirienceClassAllGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
-	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, InsuredExpirienceClass.values()), lang.getLocale());
     }
 
     //
@@ -76,13 +66,6 @@ public class DictionariesWS extends ALanguageDetectorWS {
 	return responseOk(convertToResult(lang, InsuredAgeClass.selectableValues()), lang.getLocale());
     }
 
-    @GET
-    @Path("/driver-age-class/all")
-    public Response driverAgeClassAllGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
-	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, InsuredAgeClass.values()), lang.getLocale());
-    }
-
     //
 
     @GET
@@ -92,11 +75,36 @@ public class DictionariesWS extends ALanguageDetectorWS {
 	return responseOk(convertToResult(lang, KZArea.selectableValues()), lang.getLocale());
     }
 
+    //
+
     @GET
-    @Path("/kz-area/all")
-    public Response kzAreaAllGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
+    @Path("/kz-city/available/")
+    public Response kzCitySelectableGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
 	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, KZArea.values()), lang.getLocale());
+	return responseOk(convertToResult(lang, KZCity.selectableValues()), lang.getLocale());
+    }
+
+    @GET
+    @Path("/kz-city/majors/")
+    public Response kzCityMajorsGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
+	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
+	return responseOk(convertToResult(lang, KZCity.regionalValuesByArea(Optional.empty())), lang.getLocale());
+    }
+
+    @GET
+    @Path("/kz-city/available/{area}")
+    public Response kzCityByAreaGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped,
+	    @PathParam("area") @NotNullValue final KZArea area) {
+	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
+	return responseOk(convertToResult(lang, KZCity.selectableValuesByArea(area)), lang.getLocale());
+    }
+
+    @GET
+    @Path("/kz-city/majors/{area}/")
+    public Response kzCityMajorByAreaGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped,
+	    @PathParam("area") @NotNullValue final KZArea area) {
+	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
+	return responseOk(convertToResult(lang, KZCity.regionalValuesByArea(area)), lang.getLocale());
     }
 
     //
@@ -109,13 +117,6 @@ public class DictionariesWS extends ALanguageDetectorWS {
 	return responseOk(convertToResult(lang, VehicleAgeClass.selectableValues()), lang.getLocale());
     }
 
-    @GET
-    @Path("/vehicle-age-class/all")
-    public Response vehicleAgeClassAllGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
-	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, VehicleAgeClass.values()), lang.getLocale());
-    }
-
     //
 
     @GET
@@ -124,13 +125,6 @@ public class DictionariesWS extends ALanguageDetectorWS {
 	    @QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
 	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
 	return responseOk(convertToResult(lang, VehicleClass.selectableValues()), lang.getLocale());
-    }
-
-    @GET
-    @Path("/vehicle-type-class/all")
-    public Response vehicleTypeClassAllGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
-	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, VehicleClass.values()), lang.getLocale());
     }
 
     //
@@ -143,13 +137,6 @@ public class DictionariesWS extends ALanguageDetectorWS {
 	return responseOk(convertToResult(lang, LocalizationLanguage.selectableValues()), lang.getLocale());
     }
 
-    @GET
-    @Path("/localization-language/all")
-    public Response localizationLanguageAllGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
-	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, LocalizationLanguage.values()), lang.getLocale());
-    }
-
     //
 
     @GET
@@ -159,13 +146,6 @@ public class DictionariesWS extends ALanguageDetectorWS {
 	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
 	return responseOk(convertToResult(lang, InsuranceRequestType.UNCOMPLETE, InsuranceRequestType.EXPRESS),
 		lang.getLocale());
-    }
-
-    @GET
-    @Path("/insurance-request-type/all")
-    public Response insuranceRequestTypeAllGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
-	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
-	return responseOk(convertToResult(lang, InsuranceRequestType.values()), lang.getLocale());
     }
 
     //
