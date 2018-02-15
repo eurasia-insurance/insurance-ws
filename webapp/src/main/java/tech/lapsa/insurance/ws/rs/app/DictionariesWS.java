@@ -78,7 +78,7 @@ public class DictionariesWS extends ALanguageDetectorWS {
     //
 
     @GET
-    @Path("/kz-city/all/")
+    @Path("/kz-city/available/")
     public Response kzCitySelectableGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
 	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
 	return responseOk(convertToResult(lang, KZCity.selectableValues()), lang.getLocale());
@@ -92,7 +92,7 @@ public class DictionariesWS extends ALanguageDetectorWS {
     }
 
     @GET
-    @Path("/kz-city/all/{area}")
+    @Path("/kz-city/available/{area}")
     public Response kzCityByAreaGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped,
 	    @PathParam("area") @NotNullValue final KZArea area) {
 	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
