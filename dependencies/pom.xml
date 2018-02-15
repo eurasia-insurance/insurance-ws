@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>tech.lapsa.insurance</groupId>
 		<artifactId>insurance-ws-root</artifactId>
-		<version>1.2.5-SNAPSHOT</version>
+		<version>1.3-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>insurance-ws-dependencies</artifactId>
@@ -13,19 +13,6 @@
 	<name>Insurance Lib : Web-services : Dependencies</name>
 
 	<dependencies>
-		<!-- TO BE REMOVED AFTER MERGE : BEGIN >> -->
-		<dependency>
-			<groupId>com.lapsa.international-lib</groupId>
-			<artifactId>international-core</artifactId>
-			<version>3.3.1</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.lapsa.kz-lib</groupId>
-			<artifactId>kz-core</artifactId>
-			<version>3.2.3</version>
-		</dependency>
-		<!-- TO BE REMOVED AFTER MERGE : END << -->
 		<!-- tech -->
 		<dependency>
 			<groupId>tech.lapsa.java</groupId>
