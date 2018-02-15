@@ -3,6 +3,7 @@ package tech.lapsa.insurance.ws.rs.app;
 import static tech.lapsa.javax.rs.utility.RESTUtils.*;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,6 +12,7 @@ import javax.annotation.security.PermitAll;
 import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -24,9 +26,11 @@ import com.lapsa.insurance.elements.VehicleAgeClass;
 import com.lapsa.insurance.elements.VehicleClass;
 import com.lapsa.international.localization.LocalizationLanguage;
 import com.lapsa.kz.country.KZArea;
+import com.lapsa.kz.country.KZCity;
 
 import tech.lapsa.insurance.ws.rs.entity.LocalizationLanguageWrapped;
 import tech.lapsa.java.commons.localization.Localized;
+import tech.lapsa.javax.validation.NotNullValue;
 
 @Path("/dict")
 @Produces({ MediaType.APPLICATION_JSON })
@@ -69,6 +73,38 @@ public class DictionariesWS extends ALanguageDetectorWS {
     public Response kzAreaSelectableGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
 	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
 	return responseOk(convertToResult(lang, KZArea.selectableValues()), lang.getLocale());
+    }
+
+    //
+
+    @GET
+    @Path("/kz-city/all/")
+    public Response kzCitySelectableGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
+	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
+	return responseOk(convertToResult(lang, KZCity.selectableValues()), lang.getLocale());
+    }
+
+    @GET
+    @Path("/kz-city/majors/")
+    public Response kzCityMajorsGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped) {
+	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
+	return responseOk(convertToResult(lang, KZCity.regionalValuesByArea(Optional.empty())), lang.getLocale());
+    }
+
+    @GET
+    @Path("/kz-city/all/{area}")
+    public Response kzCityByAreaGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped,
+	    @PathParam("area") @NotNullValue final KZArea area) {
+	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
+	return responseOk(convertToResult(lang, KZCity.selectableValuesByArea(area)), lang.getLocale());
+    }
+
+    @GET
+    @Path("/kz-city/majors/{area}/")
+    public Response kzCityMajorByAreaGET(@QueryParam("lang") final LocalizationLanguageWrapped queryLangWrapped,
+	    @PathParam("area") @NotNullValue final KZArea area) {
+	final LocalizationLanguage lang = getLanguageOrDefault(queryLangWrapped);
+	return responseOk(convertToResult(lang, KZCity.regionalValuesByArea(area)), lang.getLocale());
     }
 
     //
