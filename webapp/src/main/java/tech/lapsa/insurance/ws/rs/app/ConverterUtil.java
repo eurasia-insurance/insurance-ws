@@ -20,7 +20,6 @@ import com.lapsa.insurance.domain.policy.PolicyRequest;
 import com.lapsa.insurance.domain.policy.PolicyVehicle;
 import com.lapsa.insurance.elements.InsuranceRequestType;
 import com.lapsa.insurance.elements.PaymentStatus;
-import com.lapsa.insurance.elements.RequestSource;
 import com.lapsa.kz.country.KZArea;
 import com.lapsa.kz.country.KZCity;
 
