@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>com.lapsa.kz-lib</groupId>
 			<artifactId>kz-core</artifactId>
-			<version>3.2.3</version>
+			<version>3.2.4-SNAPSHOT</version>
 		</dependency>
 		<!-- TO BE REMOVED AFTER MERGE : END << -->
 		<!-- tech -->
