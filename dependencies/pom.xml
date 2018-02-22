@@ -13,19 +13,6 @@
 	<name>Insurance Lib : Web-services : Dependencies</name>
 
 	<dependencies>
-		<!-- TO BE REMOVED AFTER MERGE : BEGIN >> -->
-		<dependency>
-			<groupId>com.lapsa.international-lib</groupId>
-			<artifactId>international-core</artifactId>
-			<version>3.3.1</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.lapsa.kz-lib</groupId>
-			<artifactId>kz-core</artifactId>
-			<version>3.2.3</version>
-		</dependency>
-		<!-- TO BE REMOVED AFTER MERGE : END << -->
 		<!-- tech -->
 		<dependency>
 			<groupId>tech.lapsa.java</groupId>
@@ -92,6 +79,30 @@
 		<dependency>
 			<groupId>com.lapsa.lapsa-lib</groupId>
 			<artifactId>lapsa-utils</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.lapsa.international-lib</groupId>
+			<artifactId>international-core</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.lapsa.international-lib</groupId>
+			<artifactId>international-eelib</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.lapsa.kz-lib</groupId>
+			<artifactId>kz-core</artifactId>
+			<scope>compile</scope>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.lapsa.kz-lib</groupId>
+			<artifactId>kz-eelib</artifactId>
 			<scope>compile</scope>
 			<optional>false</optional>
 		</dependency>

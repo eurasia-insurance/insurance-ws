@@ -35,6 +35,7 @@ import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.rs.utility.InternalServerErrorException;
 import tech.lapsa.javax.rs.utility.WrongArgumentException;
 import tech.lapsa.javax.validation.NotNullValue;
+import tech.lapsa.kz.vehicle.VehicleRegNumber;
 
 @Path("/policy")
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
