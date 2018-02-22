@@ -13,6 +13,14 @@
 	<name>Insurance Lib : Web-services : WAR</name>
 
 	<dependencies>
+		<!-- TO BE REMOVED AFTER MERGE >> -->
+		<dependency>
+			<groupId>com.lapsa.kz-lib</groupId>
+			<artifactId>kz-core</artifactId>
+			<version>3.2.4-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- TO BE REMOVED AFTER MERGE << -->
 		<!-- own -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
