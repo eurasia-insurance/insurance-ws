@@ -9,7 +9,7 @@
 
 	<groupId>tech.lapsa.insurance</groupId>
 	<artifactId>insurance-ws-root</artifactId>
-	<version>1.2.4</version>
+	<version>1.2.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Insurance Lib : Web-services</name>
