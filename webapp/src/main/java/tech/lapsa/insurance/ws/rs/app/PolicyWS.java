@@ -126,9 +126,7 @@ public class PolicyWS extends ALanguageDetectorWS {
     private XmlPolicyVehicleInfo _fetchVehicle(final XmlFetchPolicyVehicle request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    final VehicleRegNumber vrn = VehicleRegNumber
-		    .assertValid(VehicleRegNumber.normalizeNumber(request.getRegNumber().getNumber()));
-	    final PolicyVehicle vehicle = policyVehicles.fetchFirstByRegNumberOrDefault(vrn);
+	    final PolicyVehicle vehicle = policyVehicles.fetchFirstByRegNumberOrDefault(request.getRegNumber());
 	    final XmlPolicyVehicleInfo response = ConverterUtil.convertXmlPolicyVehicle(vehicle);
 	    return response;
 	} catch (final IllegalArgument e) {
