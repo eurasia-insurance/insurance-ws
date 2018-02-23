@@ -9,7 +9,7 @@
 
 	<groupId>tech.lapsa.insurance</groupId>
 	<artifactId>insurance-ws-root</artifactId>
-	<version>1.2.6-SNAPSHOT</version>
+	<version>1.2.6</version>
 	<packaging>pom</packaging>
 
 	<name>Insurance Lib : Web-services</name>
@@ -168,7 +168,7 @@
 	<scm>
 		<connection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/ws.git</connection>
 		<developerConnection>scm:git:https://gitlab.lapsa.tech/lapsa/insurance/ws.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>v1.2.6</tag>
 	</scm>
 
 	<issueManagement>
