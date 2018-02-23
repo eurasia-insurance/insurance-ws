@@ -35,7 +35,6 @@ import tech.lapsa.java.commons.logging.MyLogger;
 import tech.lapsa.javax.rs.utility.InternalServerErrorException;
 import tech.lapsa.javax.rs.utility.WrongArgumentException;
 import tech.lapsa.javax.validation.NotNullValue;
-import tech.lapsa.kz.vehicle.VehicleRegNumber;
 
 @Path("/policy")
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -126,7 +125,7 @@ public class PolicyWS extends ALanguageDetectorWS {
     private XmlPolicyVehicleInfo _fetchVehicle(final XmlFetchPolicyVehicle request)
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
-	    final PolicyVehicle vehicle = policyVehicles.fetchFirstByRegNumberOrDefault(request.getRegNumber());
+	    final PolicyVehicle vehicle = policyVehicles.fetchLastByRegNumberOrDefault(request.getRegNumber());
 	    final XmlPolicyVehicleInfo response = ConverterUtil.convertXmlPolicyVehicle(vehicle);
 	    return response;
 	} catch (final IllegalArgument e) {

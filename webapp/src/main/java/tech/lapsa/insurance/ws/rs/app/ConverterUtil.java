@@ -2,6 +2,7 @@ package tech.lapsa.insurance.ws.rs.app;
 
 import java.util.Arrays;
 import java.util.Currency;
+import java.util.Optional;
 
 import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.Driver;
@@ -261,6 +262,9 @@ public class ConverterUtil {
     private static void processConversionXmlPolicyVehicleInfo(final PolicyVehicle request,
 	    final XmlPolicyVehicleInfo response) {
 
+	final Optional<KZArea> optArea = MyOptionals.of(request.getArea());
+	final Optional<String> optName = MyOptionals.of(request.getFullName());
+
 	MyOptionals.of(request.getCertificateData()) //
 		.map(VehicleCertificateData::getRegistrationNumber) //
 		.ifPresent(response::setRegNumber);
@@ -271,11 +275,9 @@ public class ConverterUtil {
 	MyOptionals.of(request.getVehicleClass()) //
 		.ifPresent(response::setTypeClass);
 
-	MyOptionals.of(request.getArea()) //
-		.ifPresent(response::setArea);
+	optArea.ifPresent(response::setArea);
 
-	MyOptionals.of(request.getFullName()) //
-		.ifPresent(response::setName);
+	optName.ifPresent(response::setName);
 
 	MyOptionals.of(request.getYearOfManufacture()) //
 		.ifPresent(response::setYear);
@@ -287,9 +289,13 @@ public class ConverterUtil {
 		.map(KZCity::isRegional) //
 		.ifPresent(response::setMajorCity);
 
-	MyOptionals.of(response.getArea())
-		.filter(x -> x.equals(KZArea.GALM) || x.equals(KZArea.GAST)) //
+	optArea.filter(x -> x.equals(KZArea.GALM) || x.equals(KZArea.GAST)) //
 		.ifPresent(x -> response.setMajorCity(true));
+
+	optArea.ifPresent(x -> response.setTemporaryEntry(Boolean.FALSE));
+
+	if (!optArea.isPresent() && optName.isPresent())
+	    response.setTemporaryEntry(Boolean.TRUE);
     }
 
     private static void processConversionXmlPolicyDriverInfo(final PolicyDriver request,
