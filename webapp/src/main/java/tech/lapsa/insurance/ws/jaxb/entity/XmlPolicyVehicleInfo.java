@@ -29,12 +29,10 @@ public class XmlPolicyVehicleInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @XmlAttribute
-    @NotNullValue
     @ValidKZArea
     protected KZArea area;
 
     @XmlAttribute
-    @NotNullValue
     protected Boolean majorCity;
 
     @XmlAttribute
