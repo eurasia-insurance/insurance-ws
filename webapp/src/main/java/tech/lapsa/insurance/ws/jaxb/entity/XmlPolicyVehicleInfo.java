@@ -29,7 +29,7 @@ public class XmlPolicyVehicleInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @XmlAttribute
-    @ValidKZArea
+    @ValidKZArea(invalidValues = { KZArea.UNDEFINED })
     protected KZArea area;
 
     @XmlAttribute
