@@ -6,10 +6,13 @@ public class ValidationMessages {
     public static final String POLICY_PARAMETERS_VALID = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyParametersValid.message}";
 
     public static final String POLICY_VEHICLE_SETTINGS_VALID = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message}";
-    public static final String POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_AREA_MUST_DEFINED = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryAreaMustUndefined}";
-    public static final String POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_MAJOR_CITY_MUST_FALSE = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMajorCityMustFalse}";
-    public static final String POLICY_VEHICLE_SETTINGS_VALID_AREA_MUST_NOT_UNDEFINED = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.areaMustNotUndefined}";
-    public static final String POLICY_VEHICLE_SETTINGS_VALID_AREA_MUST_BE_MAJOR_CITY = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mustBeMajorCity}";
+
+    public static final String POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_MUST_NOT_NULL = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMustNotNull}";;
+    public static final String POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_AREA_MUST_NULL = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryAreaMustUndefined}";
+    public static final String POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_MAJOR_CITY_MUST_NULL = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMajorCityMustFalse}";
+    public static final String POLICY_VEHICLE_SETTINGS_VALID_AREA_MUST_NOT_NULL = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.areaMustNotUndefined}";
+    public static final String POLICY_VEHICLE_SETTINGS_VALID_MAJOR_CITY_MUST_NOT_NULL = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.majorCityMustNotNull}";
+    public static final String POLICY_VEHICLE_SETTINGS_VALID_MAJOR_CITY_MUST_TRUE = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mustBeMajorCity}";
 
     public static final String POLICY_DRIVER_SETTINGS_VALID = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid.message}";
     public static final String POLICY_DRIVER_SETTINGS_VALID_INVALID_CLASS = "{tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid.invalidInsuranceClass}";
@@ -21,10 +24,12 @@ public class ValidationMessages {
 	    POLICY_PARAMETERS_VALID,
 
 	    POLICY_VEHICLE_SETTINGS_VALID,
-	    POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_AREA_MUST_DEFINED,
-	    POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_MAJOR_CITY_MUST_FALSE,
-	    POLICY_VEHICLE_SETTINGS_VALID_AREA_MUST_NOT_UNDEFINED,
-	    POLICY_VEHICLE_SETTINGS_VALID_AREA_MUST_BE_MAJOR_CITY,
+	    POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_MUST_NOT_NULL,
+	    POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_AREA_MUST_NULL,
+	    POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_MAJOR_CITY_MUST_NULL,
+	    POLICY_VEHICLE_SETTINGS_VALID_AREA_MUST_NOT_NULL,
+	    POLICY_VEHICLE_SETTINGS_VALID_MAJOR_CITY_MUST_NOT_NULL,
+	    POLICY_VEHICLE_SETTINGS_VALID_MAJOR_CITY_MUST_TRUE,
 
 	    POLICY_DRIVER_SETTINGS_VALID,
 	    POLICY_DRIVER_SETTINGS_VALID_INVALID_CLASS,
