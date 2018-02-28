@@ -1,5 +1,7 @@
 package tech.lapsa.insurance.ws.jaxb.validator.constraint;
 
+import java.util.Optional;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -8,6 +10,7 @@ import com.lapsa.kz.country.KZArea;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
 import tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid;
 import tech.lapsa.insurance.ws.jaxb.validator.ValidationMessages;
+import tech.lapsa.java.commons.function.MyOptionals;
 
 public class PolicyVehicleSettingsValidConstraintValidator
 	implements ConstraintValidator<PolicyVehicleSettingsValid, XmlPolicyVehicleInfo> {
@@ -21,27 +24,34 @@ public class PolicyVehicleSettingsValidConstraintValidator
 	if (value == null)
 	    return true;
 
-	if (value.getTemporaryEntry() == null)
-	    return true;
+	final Optional<Boolean> optTemporaryEntry = MyOptionals.of(value.getTemporaryEntry());
+	final Optional<KZArea> optArea = MyOptionals.of(value.getArea());
+	final Optional<Boolean> optMajorCity = MyOptionals.of(value.getMajorCity());
+		
+	if (!optTemporaryEntry.isPresent())
+	    return invalid(context, ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_MUST_NOT_NULL);
+	
+	final boolean temporaryEntry = optTemporaryEntry.get().booleanValue();
 
-	if (value.getArea() == null)
-	    return true;
-
-	if (value.getMajorCity() == null)
-	    return true;
-
-	if (value.getTemporaryEntry()) {
-	    if (!KZArea.UNDEFINED.equals(value.getArea()))
+	if (temporaryEntry) {
+	    if (optArea.isPresent())
 		return invalid(context,
-			ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_AREA_MUST_DEFINED);
-	    if (value.getMajorCity())
+			ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_AREA_MUST_NULL);
+	    if (optMajorCity.isPresent())
 		return invalid(context,
-			ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_MAJOR_CITY_MUST_FALSE);
+			ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_TEMPORARY_ENTRY_MAJOR_CITY_MUST_NULL);
 	} else {
-	    if (KZArea.UNDEFINED.equals(value.getArea()))
-		return invalid(context, ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_AREA_MUST_NOT_UNDEFINED);
-	    if ((KZArea.GALM.equals(value.getArea()) || KZArea.GAST.equals(value.getArea())) && !value.getMajorCity())
-		return invalid(context, ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_AREA_MUST_BE_MAJOR_CITY);
+	    if (!optArea.isPresent() || optArea.get().equals(KZArea.UNDEFINED))
+		return invalid(context, ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_AREA_MUST_NOT_NULL);
+
+	    if (!optMajorCity.isPresent())
+		return invalid(context, ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_MAJOR_CITY_MUST_NOT_NULL);
+
+	    final KZArea area = optArea.get();
+	    final boolean majorCity = optMajorCity.get().booleanValue();
+	    
+	    if (area.in(KZArea.GALM, KZArea.GAST) && !majorCity)
+		return invalid(context, ValidationMessages.POLICY_VEHICLE_SETTINGS_VALID_MAJOR_CITY_MUST_TRUE);
 	}
 
 	return true;
