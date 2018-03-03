@@ -21,7 +21,6 @@ import tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid;
 import tech.lapsa.javax.validation.NotNullValue;
 import tech.lapsa.kz.vehicle.VehicleRegNumber;
 import tech.lapsa.kz.vehicle.converter.jaxb.XmlVehicleRegNumberAdapter;
-import tech.lapsa.kz.vehicle.validators.ValidVehicleRegNumber;
 
 @XmlRootElement(name = "policyVehicle")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -30,12 +29,10 @@ public class XmlPolicyVehicleInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @XmlAttribute
-    @NotNullValue
-    @ValidKZArea
+    @ValidKZArea(invalidValues = { KZArea.UNDEFINED })
     protected KZArea area;
 
     @XmlAttribute
-    @NotNullValue
     protected Boolean majorCity;
 
     @XmlAttribute
@@ -53,7 +50,6 @@ public class XmlPolicyVehicleInfo implements Serializable {
     protected Boolean temporaryEntry;
 
     @XmlAttribute
-    @ValidVehicleRegNumber
     @XmlJavaTypeAdapter(XmlVehicleRegNumberAdapter.class)
     protected VehicleRegNumber regNumber;
 

@@ -5,9 +5,11 @@ tech.lapsa.insurance.ws.jaxb.validator.PolicyParametersValid.message = Policy pa
 tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverAndVehicleCountValid.message = Invalid ratio of the number of insured persons and vehicles in one policy
 
 tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message = Invalid parameters of the insured vehicle
-tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryAreaMustUndefined = In the case of a temporary entry into the territory of the Republic of Kazakhstan, the vehicle registration region must not be specified (area eq UNDEFINED)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMustNotNull = Temporary entry characteristic must be specified (temporaryEntry ne null)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryAreaMustUndefined = In the case of a temporary entry into the territory of the Republic of Kazakhstan, the vehicle registration region must not be specified (area eq null)
 tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.temporaryEntryMajorCityMustFalse = In the case of temporary entry into the territory of the Republic of Kazakhstan, there should be no regional city characteristic specified (majorCity eq false)
-tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.areaMustNotUndefined = Vehicle registration region must be specified (area ne UNDEFINED)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.areaMustNotUndefined = Vehicle registration region must be specified (area ne null)
+tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.majorCityMustNotNull = Regional city characteristic must be specified (majorCtiy ne null)
 tech.lapsa.insurance.ws.jaxb.validator.PolicyVehicleSettingsValid.message.mustBeMajorCity = Regional city characteristic must be specified (majorCity eq true)
 
 tech.lapsa.insurance.ws.jaxb.validator.PolicyDriverSettingsValid.message = Incorrect insured person's parameters
