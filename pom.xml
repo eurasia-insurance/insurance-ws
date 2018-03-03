@@ -9,7 +9,7 @@
 
 	<groupId>tech.lapsa.insurance</groupId>
 	<artifactId>insurance-ws-root</artifactId>
-	<version>1.2.8-SNAPSHOT</version>
+	<version>1.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Insurance Lib : Web-services</name>
@@ -22,26 +22,27 @@
 
 	<properties>
 		<!-- BOMS -->
-		<java-commons.version>1.2</java-commons.version>
+		<java-commons.version>1.3-SNAPSHOT</java-commons.version>
 		<javax-javaee-bom.version>7.0a</javax-javaee-bom.version>
 		<payara-bom.version>4.1.2-2</payara-bom.version>
 		<!-- tech -->
-		<java-jaxb-commons.version>1.1</java-jaxb-commons.version>
-		<javax-rs-commons.version>1.1</javax-rs-commons.version>
-		<javax-cdi-commons.version>1.1</javax-cdi-commons.version>
+		<java-jaxb-commons.version>1.2-SNAPSHOT</java-jaxb-commons.version>
+		<javax-rs-commons.version>1.2-SNAPSHOT</javax-rs-commons.version>
+		<javax-cdi-commons.version>1.2-SNAPSHOT</javax-cdi-commons.version>
 		<payara-jersey-extensions.version>1.1</payara-jersey-extensions.version>
-		<payara-hibernate-validation.version>1.1.1</payara-hibernate-validation.version>
+		<payara-hibernate-validation.version>1.2-SNAPSHOT</payara-hibernate-validation.version>
+		<insurance-domain.version>2.5-SNAPSHOT</insurance-domain.version>
 		<!-- validation -->
-		<javax-validation-commons.version>1.1</javax-validation-commons.version>
-		<insurance-validation.version>1.0</insurance-validation.version>
+		<javax-validation-commons.version>1.2-SNAPSHOT</javax-validation-commons.version>
+		<insurance-validation.version>1.1-SNAPSHOT</insurance-validation.version>
 		<!-- EJB clients -->
-		<insurance-calculation-client.version>2.2.1</insurance-calculation-client.version>
-		<insurance-facade-client.version>1.3.3</insurance-facade-client.version>
-		<epayment-facade-client.version>1.2</epayment-facade-client.version>
+		<insurance-calculation-client.version>2.3-SNAPSHOT</insurance-calculation-client.version>
+		<insurance-facade-client.version>1.4-SNAPSHOT</insurance-facade-client.version>
+		<epayment-facade-client.version>1.3-SNAPSHOT</epayment-facade-client.version>
 		<!-- oldies -->
-		<lapsa-lib.version>2.3</lapsa-lib.version>
-		<kz-lib.version>3.2.5</kz-lib.version>
-		<international-lib.version>3.3.1</international-lib.version>
+		<lapsa-lib.version>2.4-SNAPSHOT</lapsa-lib.version>
+		<kz-lib.version>3.3-SNAPSHOT</kz-lib.version>
+		<international-lib.version>3.4-SNAPSHOT</international-lib.version>
 	</properties>
 
 	<dependencyManagement>
