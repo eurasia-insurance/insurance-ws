@@ -43,6 +43,7 @@
 		<lapsa-lib.version>2.4-SNAPSHOT</lapsa-lib.version>
 		<kz-lib.version>3.3-SNAPSHOT</kz-lib.version>
 		<international-lib.version>3.4-SNAPSHOT</international-lib.version>
+		<insurance-lib.version>2.4.2</insurance-lib.version>
 	</properties>
 
 	<dependencyManagement>
