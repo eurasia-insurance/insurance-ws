@@ -21,8 +21,12 @@ import com.lapsa.insurance.domain.policy.PolicyVehicle;
 import tech.lapsa.insurance.calculation.CalculationFailed;
 import tech.lapsa.insurance.calculation.PolicyCalculation.PolicyCalculationRemote;
 import tech.lapsa.insurance.facade.PolicyDriverFacade.PolicyDriverFacadeRemote;
+import tech.lapsa.insurance.facade.PolicyFacade.PolicyFacadeRemote;
+import tech.lapsa.insurance.facade.PolicyNotFound;
 import tech.lapsa.insurance.facade.PolicyVehicleFacade.PolicyVehicleFacadeRemote;
 import tech.lapsa.insurance.ws.auth.InsuranceSecurity;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlRequestCheckPolicy;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlResponseCheckPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicyDriver;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicyVehicle;
@@ -85,6 +89,23 @@ public class PolicyWS extends ALanguageDetectorWS {
     private Response fetchPolicy(final XmlFetchPolicy request) {
 	try {
 	    final XmlPolicyInfo reply = _fetchPolicy(request);
+	    return responseOk(reply, getLocaleOrDefault());
+	} catch (final WrongArgumentException e) {
+	    return responseWrongArgument(e, getLocaleOrDefault());
+	} catch (final InternalServerErrorException e) {
+	    return responseInternalServerError(e, getLocaleOrDefault());
+	}
+    }
+
+    @POST
+    @Path("/check-policy")
+    public Response checkPolicyPOST(@NotNullValue @Valid final XmlRequestCheckPolicy request) {
+	return checkPolicy(request);
+    }
+
+    private Response checkPolicy(final XmlRequestCheckPolicy request) {
+	try {
+	    final XmlResponseCheckPolicy reply = _checkPolicy(request);
 	    return responseOk(reply, getLocaleOrDefault());
 	} catch (final WrongArgumentException e) {
 	    return responseWrongArgument(e, getLocaleOrDefault());
@@ -168,4 +189,24 @@ public class PolicyWS extends ALanguageDetectorWS {
 	}
     }
 
+    @EJB
+    private PolicyFacadeRemote policies;
+
+    private XmlResponseCheckPolicy _checkPolicy(XmlRequestCheckPolicy request)
+	    throws WrongArgumentException, InternalServerErrorException {
+	try {
+	    final String number = request.getPolicyNumber();
+	    final Policy p = policies.getByNumber(number);
+	    final XmlResponseCheckPolicy response = convertXmlCheckPolicyResonse(p);
+	    return response;
+	} catch (PolicyNotFound e) {
+	    return new XmlResponseCheckPolicy();
+	} catch (final IllegalArgument e) {
+	    logger.DEBUG.log(e);
+	    throw new WrongArgumentException(e);
+	} catch (final RuntimeException e) {
+	    logger.SEVERE.log(e);
+	    throw new InternalServerErrorException(e);
+	}
+    }
 }

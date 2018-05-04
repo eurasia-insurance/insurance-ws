@@ -15,6 +15,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlRequestCheckPolicy;
 
 @Path("/sample")
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -46,6 +47,13 @@ public class SamplesWS extends ALanguageDetectorWS {
     @Path("/policy-request")
     public Response policyRequestSampleGET() {
 	final XmlPolicyRequestInfo sample = policyRequestSample();
+	return responseOk(sample, getLocaleOrDefault());
+    }
+
+    @GET
+    @Path("/check-policy")
+    public Response checkPolicyRequestSampleGET() {
+	final XmlRequestCheckPolicy sample = checkPolicyRequestSample();
 	return responseOk(sample, getLocaleOrDefault());
     }
 

@@ -35,6 +35,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequesterInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlResponseCheckPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlUTMInfo;
 import tech.lapsa.java.commons.function.MyOptionals;
 import tech.lapsa.javax.rs.utility.WrongArgumentException;
@@ -144,6 +145,12 @@ public class ConverterUtil {
     public static XmlPolicyVehicleInfo convertXmlPolicyVehicle(final PolicyVehicle request) {
 	final XmlPolicyVehicleInfo response = new XmlPolicyVehicleInfo();
 	processConversionXmlPolicyVehicleInfo(request, response);
+	return response;
+    }
+
+    public static XmlResponseCheckPolicy convertXmlCheckPolicyResonse(final Policy request) {
+	final XmlResponseCheckPolicy response = new XmlResponseCheckPolicy();
+	processConversionXmlResponseCheckPolicy(request, response);
 	return response;
     }
 
@@ -308,5 +315,21 @@ public class ConverterUtil {
 	final XmlPersonalData personalData = convertXmlPersonalData(request.getPersonalData());
 	response.setPersonal(personalData);
 	response.setPrivileger(request.isHasAnyPrivilege());
+    }
+
+    private static void processConversionXmlResponseCheckPolicy(final Policy request,
+	    final XmlResponseCheckPolicy response) {
+	if (request.getInsurant() != null) {
+	    if (request.getInsurant().getPersonal() != null)
+		response.setInsurantName(request.getInsurant().getPersonal().getFullName());
+	    else if (request.getInsurant().getCompany() != null)
+		response.setInsurantName(request.getInsurant().getCompany().getFullName());
+	    response.setInsurantIdNumber(request.getInsurant().getIdNumber());
+	}
+	response.setPolicyNumber(request.getNumber());
+	response.setAgreementDate(request.getDateOfIssue());
+	response.setDateOfTermination(request.getDateOfTermination());
+	response.setValidFrom(request.getPeriod().getFrom());
+	response.setValidTill(request.getPeriod().getTo());
     }
 }
