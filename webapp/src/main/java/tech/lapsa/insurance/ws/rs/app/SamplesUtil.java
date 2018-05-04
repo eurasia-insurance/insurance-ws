@@ -21,6 +21,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyVehicleInfo;
+import tech.lapsa.insurance.ws.jaxb.entity.XmlRequestCheckPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequesterInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlUTMInfo;
 import tech.lapsa.kz.taxpayer.TaxpayerNumber;
@@ -76,4 +77,10 @@ public class SamplesUtil {
 		"Pls call back ASAP");
 	return sample;
     }
+
+    public static XmlRequestCheckPolicy checkPolicyRequestSample() {
+	final XmlRequestCheckPolicy sample = new XmlRequestCheckPolicy("ASDADSA");
+	return sample;
+    }
+
 }
