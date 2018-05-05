@@ -1,5 +1,6 @@
 package tech.lapsa.insurance.ws.rs.app;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Currency;
 import java.util.Optional;
@@ -19,6 +20,7 @@ import com.lapsa.insurance.domain.policy.Policy;
 import com.lapsa.insurance.domain.policy.PolicyDriver;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 import com.lapsa.insurance.domain.policy.PolicyVehicle;
+import com.lapsa.insurance.elements.CancelationReason;
 import com.lapsa.insurance.elements.InsuranceRequestType;
 import com.lapsa.insurance.elements.PaymentStatus;
 import com.lapsa.kz.country.KZArea;
@@ -319,6 +321,10 @@ public class ConverterUtil {
 
     private static void processConversionXmlResponseCheckPolicy(final Policy request,
 	    final XmlResponseCheckPolicy response) {
+
+	response.setPolicyNumber(request.getNumber());
+	response.setAgreementDate(request.getDateOfIssue());
+
 	if (request.getInsurant() != null) {
 	    if (request.getInsurant().getPersonal() != null)
 		response.setInsurantName(request.getInsurant().getPersonal().getFullName());
@@ -326,10 +332,22 @@ public class ConverterUtil {
 		response.setInsurantName(request.getInsurant().getCompany().getFullName());
 	    response.setInsurantIdNumber(request.getInsurant().getIdNumber());
 	}
-	response.setPolicyNumber(request.getNumber());
-	response.setAgreementDate(request.getDateOfIssue());
-	response.setDateOfTermination(request.getDateOfTermination());
+
 	response.setValidFrom(request.getPeriod().getFrom());
 	response.setValidTill(request.getPeriod().getTo());
+
+	if (request.getDateOfTermination() != null) {
+	    final LocalDate date = request.getDateOfTermination();
+	    final CancelationReason reason = request.getTerminationReason();
+	    switch (reason) {
+	    case MADE_INSURANCE_PAYMENT:
+		response.setDateOfPayment(date);
+		break;
+	    default:
+		response.setDateOfTermination(date);
+		break;
+	    }
+	}
     }
+
 }
