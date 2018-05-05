@@ -8,7 +8,6 @@ import java.util.Optional;
 import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.Driver;
 import com.lapsa.insurance.domain.InsurancePeriodData;
-import com.lapsa.insurance.domain.InsuranceProductTerminationReason;
 import com.lapsa.insurance.domain.InsuranceRequest;
 import com.lapsa.insurance.domain.PaymentData;
 import com.lapsa.insurance.domain.PersonalData;
@@ -21,6 +20,7 @@ import com.lapsa.insurance.domain.policy.Policy;
 import com.lapsa.insurance.domain.policy.PolicyDriver;
 import com.lapsa.insurance.domain.policy.PolicyRequest;
 import com.lapsa.insurance.domain.policy.PolicyVehicle;
+import com.lapsa.insurance.elements.CancelationReason;
 import com.lapsa.insurance.elements.InsuranceRequestType;
 import com.lapsa.insurance.elements.PaymentStatus;
 import com.lapsa.kz.country.KZArea;
@@ -39,7 +39,6 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequesterInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlResponseCheckPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlUTMInfo;
-import tech.lapsa.java.commons.function.MyObjects;
 import tech.lapsa.java.commons.function.MyOptionals;
 import tech.lapsa.javax.rs.utility.WrongArgumentException;
 
@@ -339,9 +338,7 @@ public class ConverterUtil {
 
 	if (request.getDateOfTermination() != null) {
 	    final LocalDate date = request.getDateOfTermination();
-	    final InsuranceProductTerminationReason reason = MyObjects.isNull(request.getTerminationReason())
-		    ? InsuranceProductTerminationReason.OTHER
-		    : request.getTerminationReason();
+	    final CancelationReason reason = request.getTerminationReason();
 	    switch (reason) {
 	    case MADE_INSURANCE_PAYMENT:
 		response.setDateOfPayment(date);
