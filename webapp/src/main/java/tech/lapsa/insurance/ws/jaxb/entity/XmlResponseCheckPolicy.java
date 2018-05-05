@@ -120,14 +120,14 @@ public class XmlResponseCheckPolicy implements Serializable {
 
     @XmlAttribute
     @XmlJavaTypeAdapter(XmlLocalDateAdapter.class)
-    private LocalDate paidOn;
+    private LocalDate dateOfPayment;
 
-    public LocalDate getPaidOn() {
-	return paidOn;
+    public LocalDate getDateOfPayment() {
+	return dateOfPayment;
     }
 
-    public void setPaidOn(LocalDate paidOn) {
-	this.paidOn = paidOn;
+    public void setDateOfPayment(LocalDate dateOfPayment) {
+	this.dateOfPayment = dateOfPayment;
     }
 
     // policyStatus
@@ -149,8 +149,8 @@ public class XmlResponseCheckPolicy implements Serializable {
 
 	final LocalDate today = LocalDate.now();
 
-	if (MyObjects.nonNull(paidOn)
-		&& (paidOn.isEqual(today) || paidOn.isAfter(dateOfTermination)))
+	if (MyObjects.nonNull(dateOfPayment)
+		&& (dateOfPayment.isEqual(today) || today.isAfter(dateOfPayment)))
 	    return PolicyStatus.PAID;
 
 	if (MyObjects.nonNull(dateOfTermination)

@@ -1,5 +1,6 @@
 package tech.lapsa.insurance.ws.rs.app;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Currency;
 import java.util.Optional;
@@ -337,15 +338,16 @@ public class ConverterUtil {
 	response.setValidTill(request.getPeriod().getTo());
 
 	if (request.getDateOfTermination() != null) {
-	    final InsuranceProductTerminationReason termReason = MyObjects.isNull(request.getTerminationReason())
+	    final LocalDate date = request.getDateOfTermination();
+	    final InsuranceProductTerminationReason reason = MyObjects.isNull(request.getTerminationReason())
 		    ? InsuranceProductTerminationReason.OTHER
 		    : request.getTerminationReason();
-	    switch (termReason) {
+	    switch (reason) {
 	    case MADE_INSURANCE_PAYMENT:
-		response.setPaidOn(request.getDateOfTermination());
+		response.setDateOfPayment(date);
 		break;
 	    default:
-		response.setDateOfTermination(request.getDateOfTermination());
+		response.setDateOfTermination(date);
 		break;
 	    }
 	}
