@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import tech.lapsa.java.commons.function.MyObjects;
 import tech.lapsa.java.jaxb.adapter.XmlLocalDateAdapter;
 import tech.lapsa.kz.taxpayer.TaxpayerNumber;
 import tech.lapsa.kz.taxpayer.converter.jaxb.XmlTaxpayerNumberAdapter;
@@ -115,6 +116,20 @@ public class XmlResponseCheckPolicy implements Serializable {
 	this.insurantIdNumber = insurantIdNumber;
     }
 
+    // paidOn
+
+    @XmlAttribute
+    @XmlJavaTypeAdapter(XmlLocalDateAdapter.class)
+    private LocalDate paidOn;
+
+    public LocalDate getPaidOn() {
+	return paidOn;
+    }
+
+    public void setPaidOn(LocalDate paidOn) {
+	this.paidOn = paidOn;
+    }
+
     // policyStatus
 
     public enum PolicyStatus {
@@ -122,20 +137,24 @@ public class XmlResponseCheckPolicy implements Serializable {
 	VALID,
 	EXPIRED,
 	TERMINATED,
+	PAID,
     }
 
     @XmlAttribute
     public PolicyStatus getPolicyStatus() {
 
-	if (policyNumber == null
-		|| agreementDate == null
-		|| validFrom == null
-		|| validTill == null)
+	if (MyObjects.isNull(policyNumber)
+		|| MyObjects.isNull(agreementDate))
 	    return null;
 
 	final LocalDate today = LocalDate.now();
 
-	if (dateOfTermination != null && (dateOfTermination.isEqual(today) || today.isAfter(dateOfTermination)))
+	if (MyObjects.nonNull(paidOn)
+		&& (paidOn.isEqual(today) || paidOn.isAfter(dateOfTermination)))
+	    return PolicyStatus.PAID;
+
+	if (MyObjects.nonNull(dateOfTermination)
+		&& (dateOfTermination.isEqual(today) || today.isAfter(dateOfTermination)))
 	    return PolicyStatus.TERMINATED;
 
 	if (today.isBefore(validFrom))

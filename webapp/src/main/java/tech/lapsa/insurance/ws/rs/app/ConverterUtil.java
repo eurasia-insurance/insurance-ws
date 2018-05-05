@@ -7,6 +7,7 @@ import java.util.Optional;
 import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.Driver;
 import com.lapsa.insurance.domain.InsurancePeriodData;
+import com.lapsa.insurance.domain.InsuranceProductTerminationReason;
 import com.lapsa.insurance.domain.InsuranceRequest;
 import com.lapsa.insurance.domain.PaymentData;
 import com.lapsa.insurance.domain.PersonalData;
@@ -37,6 +38,7 @@ import tech.lapsa.insurance.ws.jaxb.entity.XmlRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlRequesterInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlResponseCheckPolicy;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlUTMInfo;
+import tech.lapsa.java.commons.function.MyObjects;
 import tech.lapsa.java.commons.function.MyOptionals;
 import tech.lapsa.javax.rs.utility.WrongArgumentException;
 
@@ -319,6 +321,10 @@ public class ConverterUtil {
 
     private static void processConversionXmlResponseCheckPolicy(final Policy request,
 	    final XmlResponseCheckPolicy response) {
+
+	response.setPolicyNumber(request.getNumber());
+	response.setAgreementDate(request.getDateOfIssue());
+
 	if (request.getInsurant() != null) {
 	    if (request.getInsurant().getPersonal() != null)
 		response.setInsurantName(request.getInsurant().getPersonal().getFullName());
@@ -326,10 +332,23 @@ public class ConverterUtil {
 		response.setInsurantName(request.getInsurant().getCompany().getFullName());
 	    response.setInsurantIdNumber(request.getInsurant().getIdNumber());
 	}
-	response.setPolicyNumber(request.getNumber());
-	response.setAgreementDate(request.getDateOfIssue());
-	response.setDateOfTermination(request.getDateOfTermination());
+
 	response.setValidFrom(request.getPeriod().getFrom());
 	response.setValidTill(request.getPeriod().getTo());
+
+	if (request.getDateOfTermination() != null) {
+	    final InsuranceProductTerminationReason termReason = MyObjects.isNull(request.getTerminationReason())
+		    ? InsuranceProductTerminationReason.OTHER
+		    : request.getTerminationReason();
+	    switch (termReason) {
+	    case MADE_INSURANCE_PAYMENT:
+		response.setPaidOn(request.getDateOfTermination());
+		break;
+	    default:
+		response.setDateOfTermination(request.getDateOfTermination());
+		break;
+	    }
+	}
     }
+
 }
