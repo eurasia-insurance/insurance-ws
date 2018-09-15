@@ -41,7 +41,6 @@ public class ApplicationConfig extends Application {
 		// permitted
 		.add(SamplesWS.class) //
 		.add(DictionariesWS.class) //
-		.add(POSWS.class) //
 		.add(CheckWS.class) //
 
 		// secured
