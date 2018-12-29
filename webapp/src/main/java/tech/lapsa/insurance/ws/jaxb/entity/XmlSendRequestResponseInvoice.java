@@ -14,7 +14,7 @@ import tech.lapsa.java.jaxb.adapter.XmlURIAdapter;
 
 @XmlRootElement(name = "sendRequestResponseInvoice")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlSendRequestResponseInvoice extends XmlSendRequestResponseFull {
+public class XmlSendRequestResponseInvoice extends XmlSendRequestResponse {
     private static final long serialVersionUID = 1L;
 
     // TODO REFACT : Rename to invoiceNumber
@@ -27,10 +27,6 @@ public class XmlSendRequestResponseInvoice extends XmlSendRequestResponseFull {
     protected URI paymentLink;
 
     public XmlSendRequestResponseInvoice() {
-    }
-
-    public XmlSendRequestResponseInvoice(final String message) {
-	super(message);
     }
 
     public XmlSendRequestResponseInvoice(final String message, final Integer requestId) {
