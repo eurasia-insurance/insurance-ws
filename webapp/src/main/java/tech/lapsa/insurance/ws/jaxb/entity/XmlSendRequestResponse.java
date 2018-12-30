@@ -17,11 +17,15 @@ public class XmlSendRequestResponse implements Serializable {
     @XmlAttribute
     protected String message;
 
+    @XmlAttribute
+    protected Integer requestId;
+
     public XmlSendRequestResponse() {
     }
 
-    public XmlSendRequestResponse(final String message) {
+    public XmlSendRequestResponse(final String message, Integer requestId) {
 	this.message = message;
+	this.requestId = requestId;
     }
 
     @Override
@@ -37,4 +41,11 @@ public class XmlSendRequestResponse implements Serializable {
 	this.message = message;
     }
 
+    public Integer getRequestId() {
+	return requestId;
+    }
+
+    public void setRequestId(final Integer requestId) {
+	this.requestId = requestId;
+    }
 }
