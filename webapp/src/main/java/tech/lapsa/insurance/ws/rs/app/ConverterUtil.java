@@ -174,7 +174,6 @@ public class ConverterUtil {
     }
 
     private static void processConversionPayment(final XmlPaymentInfo request, final PaymentData response) {
-	response.setStatus(PaymentStatus.PENDING);
     }
 
     private static void processConversionPeriod(final XmlPeriodInfo period, final InsurancePeriodData response) {
