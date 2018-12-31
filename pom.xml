@@ -180,10 +180,5 @@
 		<tag>HEAD</tag>
 	</scm>
 
-	<issueManagement>
-		<system>gitlab</system>
-		<url>https://gitlab.lapsa.tech/lapsa/insurance/ws/issues</url>
-	</issueManagement>
-
 
 </project>
