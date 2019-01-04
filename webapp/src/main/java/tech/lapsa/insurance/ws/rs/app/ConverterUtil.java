@@ -22,7 +22,6 @@ import com.lapsa.insurance.domain.policy.PolicyRequest;
 import com.lapsa.insurance.domain.policy.PolicyVehicle;
 import com.lapsa.insurance.elements.CancelationReason;
 import com.lapsa.insurance.elements.InsuranceRequestType;
-import com.lapsa.insurance.elements.PaymentStatus;
 import com.lapsa.kz.country.KZArea;
 import com.lapsa.kz.country.KZCity;
 
@@ -134,7 +133,7 @@ public class ConverterUtil {
 	response.setName(request.getName());
 	response.setPatronymic(request.getPatronymic());
 	response.setSurename(request.getSurename());
-	response.setDayOfBirth(request.getDayOfBirth());
+	response.setDayOfBirth(request.getDateOfBirth());
 	return response;
     }
 
