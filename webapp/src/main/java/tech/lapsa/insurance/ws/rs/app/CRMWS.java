@@ -47,20 +47,14 @@ public class CRMWS extends ALanguageDetectorWS {
     @POST
     @Path("/send-policy-request")
     public Response sendPolicyRequestPOST(@NotNullValue @Valid final XmlPolicyRequestInfo request) {
-	return sendPolicyRequest(request, insuranceRequests::newRequest);
+	return sendPolicyRequest(request, insuranceRequests::requestReceived);
     }
 
     @POST
     @Path("/send-policy-request-reply")
     @Deprecated
     public Response sendPolicyRequestSyncPOST(@NotNullValue @Valid final XmlPolicyRequestInfo request) {
-	return sendPolicyRequest(request, insuranceRequests::newRequest);
-    }
-
-    @POST
-    @Path("/send-policy-request-accepted")
-    public Response sendPolicyRequestAcceptedPOST(@NotNullValue @Valid final XmlPolicyRequestInfo request) {
-	return sendPolicyRequest(request, insuranceRequests::newAcceptedRequest);
+	return sendPolicyRequest(request, insuranceRequests::requestReceived);
     }
 
     private Response sendPolicyRequest(final XmlPolicyRequestInfo request, InsuranceRequestSendAction<PolicyRequest> sendAction) {
@@ -153,7 +147,7 @@ public class CRMWS extends ALanguageDetectorWS {
 	    throws WrongArgumentException, InternalServerErrorException {
 	try {
 	    final CallbackRequest callback = convertCallbackRequest(request, authenticatedUser.getUser());
-	    final CallbackRequest reply = insuranceRequests.newRequest(callback);
+	    final CallbackRequest reply = insuranceRequests.requestReceived(callback);
 	    return new XmlSendRequestResponse(DEFAULT_SUCCESS_MESSAGE, reply.getId());
 	} catch (final IllegalArgument e) {
 	    logger.DEBUG.log(e);
