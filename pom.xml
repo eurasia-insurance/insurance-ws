@@ -22,28 +22,28 @@
 
 	<properties>
 		<!-- BOMS -->
-		<java-commons.version>20190110</java-commons.version>
-		<javax-javaee-bom.version>20190110</javax-javaee-bom.version>
-		<payara-bom.version>20190110</payara-bom.version>
+		<java-commons.version>CURRENT-SNAPSHOT</java-commons.version>
+		<javax-javaee-bom.version>CURRENT-SNAPSHOT</javax-javaee-bom.version>
+		<payara-bom.version>CURRENT-SNAPSHOT</payara-bom.version>
 		<!-- tech -->
-		<java-jaxb-commons.version>20190110</java-jaxb-commons.version>
-		<javax-rs-commons.version>20190110</javax-rs-commons.version>
-		<javax-cdi-commons.version>20190110</javax-cdi-commons.version>
-		<payara-jersey-extensions.version>20190110</payara-jersey-extensions.version>
-		<payara-hibernate-validation.version>20190110</payara-hibernate-validation.version>
-		<insurance-domain.version>20190110</insurance-domain.version>
+		<java-jaxb-commons.version>CURRENT-SNAPSHOT</java-jaxb-commons.version>
+		<javax-rs-commons.version>CURRENT-SNAPSHOT</javax-rs-commons.version>
+		<javax-cdi-commons.version>CURRENT-SNAPSHOT</javax-cdi-commons.version>
+		<payara-jersey-extensions.version>CURRENT-SNAPSHOT</payara-jersey-extensions.version>
+		<payara-hibernate-validation.version>CURRENT-SNAPSHOT</payara-hibernate-validation.version>
+		<insurance-domain.version>CURRENT-SNAPSHOT</insurance-domain.version>
 		<!-- validation -->
-		<javax-validation-commons.version>20190110</javax-validation-commons.version>
-		<insurance-validation.version>20190110</insurance-validation.version>
+		<javax-validation-commons.version>CURRENT-SNAPSHOT</javax-validation-commons.version>
+		<insurance-validation.version>CURRENT-SNAPSHOT</insurance-validation.version>
 		<!-- EJB clients -->
-		<insurance-calculation-client.version>20190110</insurance-calculation-client.version>
-		<insurance-facade-client.version>20190110</insurance-facade-client.version>
-		<epayment-facade-client.version>20190110</epayment-facade-client.version>
+		<insurance-calculation-client.version>CURRENT-SNAPSHOT</insurance-calculation-client.version>
+		<insurance-facade-client.version>CURRENT-SNAPSHOT</insurance-facade-client.version>
+		<epayment-facade-client.version>CURRENT-SNAPSHOT</epayment-facade-client.version>
 		<!-- oldies -->
-		<lapsa-lib.version>20190110</lapsa-lib.version>
-		<kz-lib.version>20190110</kz-lib.version>
-		<international-lib.version>20190110</international-lib.version>
-		<insurance-lib.version>20190110</insurance-lib.version>
+		<lapsa-lib.version>CURRENT-SNAPSHOT</lapsa-lib.version>
+		<kz-lib.version>CURRENT-SNAPSHOT</kz-lib.version>
+		<international-lib.version>CURRENT-SNAPSHOT</international-lib.version>
+		<insurance-lib.version>CURRENT-SNAPSHOT</insurance-lib.version>
 	</properties>
 
 	<dependencyManagement>
