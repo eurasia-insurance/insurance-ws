@@ -117,7 +117,7 @@ public class CRMWS extends ALanguageDetectorWS {
 	try {
 	    final PolicyRequest policy = convertPolicyRequest(request, authenticatedUser.getUser());
 	    final PolicyRequest saved = action.apply(policy);
-	    final String invoiceNumber = saved.getPayment().getInvoiceNumber();
+	    final String invoiceNumber = saved.getInvoiceNumber();
 	    final XmlSendRequestResponse response;
 
 	    if (MyStrings.nonEmpty(invoiceNumber)) {
