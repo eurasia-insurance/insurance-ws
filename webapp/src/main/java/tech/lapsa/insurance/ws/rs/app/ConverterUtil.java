@@ -9,7 +9,6 @@ import com.lapsa.insurance.domain.CallbackRequest;
 import com.lapsa.insurance.domain.Driver;
 import com.lapsa.insurance.domain.InsurancePeriodData;
 import com.lapsa.insurance.domain.InsuranceRequest;
-import com.lapsa.insurance.domain.PaymentData;
 import com.lapsa.insurance.domain.PersonalData;
 import com.lapsa.insurance.domain.Request;
 import com.lapsa.insurance.domain.RequesterData;
@@ -27,7 +26,6 @@ import com.lapsa.kz.country.KZCity;
 
 import tech.lapsa.insurance.ws.jaxb.entity.XmlCallbackRequestInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlFetchPolicy;
-import tech.lapsa.insurance.ws.jaxb.entity.XmlPaymentInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPeriodInfo;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPersonalData;
 import tech.lapsa.insurance.ws.jaxb.entity.XmlPolicyDriverInfo;
@@ -72,14 +70,6 @@ public class ConverterUtil {
 	    return null;
 	final UTMData response = new UTMData();
 	processConversionUTM(request, response);
-	return response;
-    }
-
-    private static PaymentData convertPayment(final XmlPaymentInfo request) {
-	if (request == null)
-	    return null;
-	final PaymentData response = new PaymentData();
-	processConversionPayment(request, response);
 	return response;
     }
 
@@ -172,9 +162,6 @@ public class ConverterUtil {
 	response.setTerm(request.getTerm());
     }
 
-    private static void processConversionPayment(final XmlPaymentInfo request, final PaymentData response) {
-    }
-
     private static void processConversionPeriod(final XmlPeriodInfo period, final InsurancePeriodData response) {
 	response.setFrom(period.getFrom());
 	response.setTo(period.getTo());
@@ -248,15 +235,12 @@ public class ConverterUtil {
     private static void processConversionInsuranceRequest(final XmlPolicyRequestInfo request,
 	    final InsuranceRequest response)
 	    throws WrongArgumentException {
-	final PaymentData payment = convertPayment(request.getPayment());
-	response.setPayment(payment);
 	response.setType(request.getType());
     }
 
     private static void processConversionInsuranceRequest(final XmlCallbackRequestInfo request,
 	    final InsuranceRequest response)
 	    throws WrongArgumentException {
-	response.setPayment(new PaymentData());
 	response.setType(InsuranceRequestType.UNCOMPLETE);
     }
 
